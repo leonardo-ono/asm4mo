@@ -1085,630 +1085,630 @@
 		db 0
 
 
-
-	opcode_AAA_GenInstr_1      db OG.WB, 037h, 0  ; w37
-	opcode_AAS_GenInstr_2      db OG.WB, 03Fh, 0  ; w3F
-	opcode_AAD_GenInstr_3      db OG.WB, 0D5h, OG.WB, 00Ah, 0  ; wD5 w0A
-	opcode_AAD_GenInstr_4      db OG.WB, 0D5h, OG.IB, 0  ; wD5 ib
-	opcode_AAM_GenInstr_5      db OG.WB, 0D4h, OG.WB, 00Ah, 0  ; wD4 w0A
-	opcode_AAM_GenInstr_6      db OG.WB, 0D4h, OG.IB, 0  ; wD4 ib
-	opcode_ADC_GenInstr_7      db OG.WB, 010h, OG.RM1, 0  ; w10 /r1
-	opcode_ADC_GenInstr_8      db OG.WB, 010h, OG.RM1, 0  ; w10 /r1
-	opcode_ADC_GenInstr_9      db OG.WB, 011h, OG.RM1, 0  ; o16 w11 /r1
-	opcode_ADC_GenInstr_10     db OG.WB, 011h, OG.RM1, 0  ; o16 w11 /r1
-	opcode_ADC_GenInstr_11     db OG.WB, 012h, OG.RM2, 0  ; w12 /r2
-	opcode_ADC_GenInstr_12     db OG.WB, 012h, OG.RM2, 0  ; w12 /r2
-	opcode_ADC_GenInstr_13     db OG.WB, 013h, OG.RM2, 0  ; o16 w13 /r2
-	opcode_ADC_GenInstr_14     db OG.WB, 013h, OG.RM2, 0  ; o16 w13 /r2
-	opcode_ADC_GenInstr_15     db OG.WB, 080h, OG.B2, OG.IB, 0  ; w80 /2 ib
-	opcode_ADC_GenInstr_16     db OG.WB, 080h, OG.B2, OG.IB, 0  ; w80 /2 ib
-	opcode_ADC_GenInstr_17     db OG.WB, 081h, OG.B2, OG.IW, 0  ; o16 w81 /2 iw
-	opcode_ADC_GenInstr_18     db OG.WB, 081h, OG.B2, OG.IW, 0  ; o16 w81 /2 iw
-	opcode_ADC_GenInstr_19     db OG.WB, 081h, OG.B2, OG.IW, 0  ; o16 w81 /2 iw
-	opcode_ADC_GenInstr_20     db OG.WB, 081h, OG.B2, OG.IW, 0  ; o16 w81 /2 iw
-	opcode_ADC_GenInstr_21     db OG.WB, 083h, OG.B2, OG.IB, 0  ; o16 w83 /2 ib
-	opcode_ADC_GenInstr_22     db OG.WB, 083h, OG.B2, OG.IB, 0  ; o16 w83 /2 ib
-;;;;;	opcode_ADC_GenInstr_23     db OG.WB, 014h, OG.IB, *************************************0  ; w14 ib amb1AL
-	opcode_ADC_GenInstr_23     db 0 
-
-;;;;;	opcode_ADC_GenInstr_24     db OG.WB, 015h, OG.IW, *************************************0  ; o16 w15 iw amb1AX
-	opcode_ADC_GenInstr_24     db 0 
-
-;;;;;	opcode_ADC_GenInstr_25     db OG.WB, 015h, OG.IW, *************************************0  ; o16 w15 iw amb1AX
-	opcode_ADC_GenInstr_25     db 0 
-
-	opcode_ADD_GenInstr_26     db OG.WB, 000h, OG.RM1, 0  ; w00 /r1
-	opcode_ADD_GenInstr_27     db OG.WB, 000h, OG.RM1, 0  ; w00 /r1
-	opcode_ADD_GenInstr_28     db OG.WB, 001h, OG.RM1, 0  ; o16 w01 /r1
-	opcode_ADD_GenInstr_29     db OG.WB, 001h, OG.RM1, 0  ; o16 w01 /r1
-	opcode_ADD_GenInstr_30     db OG.WB, 002h, OG.RM2, 0  ; w02 /r2
-	opcode_ADD_GenInstr_31     db OG.WB, 002h, OG.RM2, 0  ; w02 /r2
-	opcode_ADD_GenInstr_32     db OG.WB, 003h, OG.RM2, 0  ; o16 w03 /r2
-	opcode_ADD_GenInstr_33     db OG.WB, 003h, OG.RM2, 0  ; o16 w03 /r2
-	opcode_ADD_GenInstr_34     db OG.WB, 080h, OG.B0, OG.IB, 0  ; w80 /0 ib
-	opcode_ADD_GenInstr_35     db OG.WB, 080h, OG.B0, OG.IB, 0  ; w80 /0 ib
-
-	opcode_ADD_GenInstr_36     db OG.WB, 081h, OG.B0, OG.IW, 0  ; o16 w81 /0 iw
-	opcode_ADD_GenInstr_37     db OG.WB, 081h, OG.B0, OG.GBIW, 0  ; o16 w81 /0 gbiw OK
-
-	opcode_ADD_GenInstr_38     db OG.WB, 081h, OG.B0, OG.IW, 0  ; o16 w81 /0 iw
-	opcode_ADD_GenInstr_39     db OG.WB, 081h, OG.B0, OG.IW, 0  ; o16 w81 /0 iw
-	opcode_ADD_GenInstr_40     db OG.WB, 083h, OG.B0, OG.IB, 0  ; o16 w83 /0 ib
-	opcode_ADD_GenInstr_41     db OG.WB, 083h, OG.B0, OG.IB, 0  ; o16 w83 /0 ib
-;;;;;	opcode_ADD_GenInstr_42     db OG.WB, 004h, OG.IB, *************************************0  ; w04 ib amb1AL
-	opcode_ADD_GenInstr_42     db 0 
-
-;;;;;	opcode_ADD_GenInstr_43     db OG.WB, 005h, OG.IW, *************************************0  ; o16 w05 iw amb1AX
-	opcode_ADD_GenInstr_43     db 0 
-
-;;;;;	opcode_ADD_GenInstr_44     db OG.WB, 005h, OG.IW, *************************************0  ; o16 w05 iw amb1AX
-	opcode_ADD_GenInstr_44     db 0 
-
-	opcode_AND_GenInstr_45     db OG.WB, 020h, OG.RM1, 0  ; w20 /r1
-	opcode_AND_GenInstr_46     db OG.WB, 020h, OG.RM1, 0  ; w20 /r1
-	opcode_AND_GenInstr_47     db OG.WB, 021h, OG.RM1, 0  ; o16 w21 /r1
-	opcode_AND_GenInstr_48     db OG.WB, 021h, OG.RM1, 0  ; o16 w21 /r1
-	opcode_AND_GenInstr_49     db OG.WB, 022h, OG.RM2, 0  ; w22 /r2
-	opcode_AND_GenInstr_50     db OG.WB, 022h, OG.RM2, 0  ; w22 /r2
-	opcode_AND_GenInstr_51     db OG.WB, 023h, OG.RM2, 0  ; o16 w23 /r2
-	opcode_AND_GenInstr_52     db OG.WB, 023h, OG.RM2, 0  ; o16 w23 /r2
-	opcode_AND_GenInstr_53     db OG.WB, 080h, OG.B4, OG.IB, 0  ; w80 /4 ib
-	opcode_AND_GenInstr_54     db OG.WB, 080h, OG.B4, OG.IB, 0  ; w80 /4 ib
-	opcode_AND_GenInstr_55     db OG.WB, 081h, OG.B4, OG.IW, 0  ; o16 w81 /4 iw
-	opcode_AND_GenInstr_56     db OG.WB, 081h, OG.B4, OG.IW, 0  ; o16 w81 /4 iw
-	opcode_AND_GenInstr_57     db OG.WB, 081h, OG.B4, OG.IW, 0  ; o16 w81 /4 iw
-	opcode_AND_GenInstr_58     db OG.WB, 081h, OG.B4, OG.IW, 0  ; o16 w81 /4 iw
-	opcode_AND_GenInstr_59     db OG.WB, 083h, OG.B4, OG.IB, 0  ; o16 w83 /4 ib
-	opcode_AND_GenInstr_60     db OG.WB, 083h, OG.B4, OG.IB, 0  ; o16 w83 /4 ib
-;;;;;	opcode_AND_GenInstr_61     db OG.WB, 024h, OG.IB, *************************************0  ; w24 ib amb1AL
-	opcode_AND_GenInstr_61     db 0 
-
-;;;;;	opcode_AND_GenInstr_62     db OG.WB, 025h, OG.IW, *************************************0  ; o16 w25 iw amb1AX
-	opcode_AND_GenInstr_62     db 0 
-
-;;;;;	opcode_AND_GenInstr_63     db OG.WB, 025h, OG.IW, *************************************0  ; o16 w25 iw amb1AX
-	opcode_AND_GenInstr_63     db 0 
-
-	opcode_CALL_GenInstr_64    db OG.WB, 0E8h, OG.RW, 0  ; wE8 rw
-	opcode_CALL_GenInstr_65    db OG.WB, 0E8h, OG.RW, 0  ; wE8 gbrw ************************* TODO implement GBRW
-
-	opcode_CALL_GenInstr_66    db OG.WB, 09Ah, OG.IW, OG.IW, 0  ; o16 w9A iw iw
-	opcode_CALL_GenInstr_67    db OG.WB, 09Ah, OG.IW, OG.IW, 0  ; o16 w9A iw iw
-	opcode_CALL_GenInstr_68    db OG.WB, 09Ah, OG.IW, OG.IW, 0  ; o16 w9A iw iw
-	opcode_CALL_GenInstr_69    db OG.WB, 09Ah, OG.IW, OG.IW, 0  ; o16 w9A iw iw
-	opcode_CALL_GenInstr_70    db OG.WB, 0FFh, OG.B3, 0  ; o16 wFF /3
-	opcode_CALL_GenInstr_71    db OG.WB, 0FFh, OG.B2, 0  ; o16 wFF /2
-	opcode_CALL_GenInstr_72    db OG.WB, 0FFh, OG.B2, 0  ; o16 wFF /2
-	opcode_CBW_GenInstr_73     db OG.WB, 098h, 0  ; o16 w98
-	opcode_CWD_GenInstr_74     db OG.WB, 099h, 0  ; o16 w99
-	opcode_CLC_GenInstr_75     db OG.WB, 0F8h, 0  ; wF8
-	opcode_CLD_GenInstr_76     db OG.WB, 0FCh, 0  ; wFC
-	opcode_CLI_GenInstr_77     db OG.WB, 0FAh, 0  ; wFA
-	opcode_CMC_GenInstr_78     db OG.WB, 0F5h, 0  ; wF5
-	opcode_CMP_GenInstr_79     db OG.WB, 038h, OG.RM1, 0  ; w38 /r1
-	opcode_CMP_GenInstr_80     db OG.WB, 038h, OG.RM1, 0  ; w38 /r1
-	opcode_CMP_GenInstr_81     db OG.WB, 039h, OG.RM1, 0  ; o16 w39 /r1
-	opcode_CMP_GenInstr_82     db OG.WB, 039h, OG.RM1, 0  ; o16 w39 /r1
-	opcode_CMP_GenInstr_83     db OG.WB, 03Ah, OG.RM2, 0  ; w3A /r2
-	opcode_CMP_GenInstr_84     db OG.WB, 03Ah, OG.RM2, 0  ; w3A /r2
-	opcode_CMP_GenInstr_85     db OG.WB, 03Bh, OG.RM2, 0  ; o16 w3B /r2
-	opcode_CMP_GenInstr_86     db OG.WB, 03Bh, OG.RM2, 0  ; o16 w3B /r2
-
-	opcode_CMP_GenInstr_87     db OG.WB, 080h, OG.B7, OG.IB, 0  ; w80 /7 ib (OK)
-
-	opcode_CMP_GenInstr_88     db OG.WB, 080h, OG.B0, OG.IB, 0  ; w80 /0 ib
-	opcode_CMP_GenInstr_89     db OG.WB, 081h, OG.B7, OG.IW, 0  ; o16 w81 /7 iw
-	opcode_CMP_GenInstr_90     db OG.WB, 081h, OG.B7, OG.IW, 0  ; o16 w81 /7 iw
-	opcode_CMP_GenInstr_91     db OG.WB, 081h, OG.B7, OG.IW, 0  ; o16 w81 /7 iw
-	opcode_CMP_GenInstr_92     db OG.WB, 081h, OG.B7, OG.IW, 0  ; o16 w81 /7 iw
-	opcode_CMP_GenInstr_93     db OG.WB, 083h, OG.B7, OG.IB, 0  ; o16 w83 /7 ib
-	opcode_CMP_GenInstr_94     db OG.WB, 083h, OG.B7, OG.IB, 0  ; o16 w83 /7 ib
-;;;;;	opcode_CMP_GenInstr_95     db OG.WB, 03Ch, OG.IB, *************************************0  ; w3C ib amb1AL
-	opcode_CMP_GenInstr_95     db 0 
-
-;;;;;	opcode_CMP_GenInstr_96     db OG.WB, 03Dh, OG.IW, *************************************0  ; o16 w3D iw amb1AX
-	opcode_CMP_GenInstr_96     db 0 
-
-;;;;;	opcode_CMP_GenInstr_97     db OG.WB, 03Dh, OG.IW, *************************************0  ; o16 w3D iw amb1AX
-	opcode_CMP_GenInstr_97     db 0 
-
-	opcode_CMPSB_GenInstr_98   db OG.WB, 0A6h, 0  ; wA6
-	opcode_CMPSW_GenInstr_99   db OG.WB, 0A7h, 0  ; o16 wA7
-	opcode_DAA_GenInstr_100    db OG.WB, 027h, 0  ; w27
-	opcode_DAS_GenInstr_101    db OG.WB, 02Fh, 0  ; w2F
-	opcode_DEC_GenInstr_102    db OG.PLUS_R, 048h, 0  ; o16 48+r
-	opcode_DEC_GenInstr_103    db OG.WB, 0FEh, OG.B1, 0  ; wFE /1
-	opcode_DEC_GenInstr_104    db OG.WB, 0FEh, OG.B1, 0  ; wFE /1
-	opcode_DEC_GenInstr_105    db OG.WB, 0FFh, OG.B1, 0  ; o16 wFF /1
-	opcode_DEC_GenInstr_106    db OG.WB, 0FFh, OG.B1, 0  ; o16 wFF /1
-	opcode_DIV_GenInstr_107    db OG.WB, 0F6h, OG.B6, 0  ; wF6 /6
-	opcode_DIV_GenInstr_108    db OG.WB, 0F6h, OG.B6, 0  ; wF6 /6
-	opcode_DIV_GenInstr_109    db OG.WB, 0F7h, OG.B6, 0  ; o16 wF7 /6
-	opcode_DIV_GenInstr_110    db OG.WB, 0F7h, OG.B6, 0  ; o16 wF7 /6
-	opcode_HLT_GenInstr_111    db OG.WB, 0F4h, 0  ; wF4
-	opcode_IDIV_GenInstr_112   db OG.WB, 0F6h, OG.B7, 0  ; wF6 /7
-	opcode_IDIV_GenInstr_113   db OG.WB, 0F6h, OG.B7, 0  ; wF6 /7
-	opcode_IDIV_GenInstr_114   db OG.WB, 0F7h, OG.B7, 0  ; o16 wF7 /7
-	opcode_IDIV_GenInstr_115   db OG.WB, 0F7h, OG.B7, 0  ; o16 wF7 /7
-	opcode_IMUL_GenInstr_116   db OG.WB, 0F6h, OG.B5, 0  ; wF6 /5
-	opcode_IMUL_GenInstr_117   db OG.WB, 0F6h, OG.B5, 0  ; wF6 /5
-	opcode_IMUL_GenInstr_118   db OG.WB, 0F7h, OG.B5, 0  ; o16 wF7 /5
-	opcode_IMUL_GenInstr_119   db OG.WB, 0F7h, OG.B5, 0  ; o16 wF7 /5
-
-
-	opcode_IN_GenInstr_120     db OG.WB, 0E4h, OG.IB, 0  ; wE4 ib amb1AL ************** TODO implement amb1 and amb2
-
-;;;;;	opcode_IN_GenInstr_121     db OG.WB, 0E5h, OG.IB, *************************************0  ; o16 wE5 ib amb1AX
-	opcode_IN_GenInstr_121     db 0 
-
-;;;;;	opcode_IN_GenInstr_122     db OG.WB, 0ECh, **************************************************************************0  ; wEC amb1AL amb2DX
-	opcode_IN_GenInstr_122     db 0 
-
-;;;;;	opcode_IN_GenInstr_123     db OG.WB, 0EDh, **************************************************************************0  ; o16 wED amb1AX amb2DX
-	opcode_IN_GenInstr_123     db 0 
-
-
-	opcode_INC_GenInstr_124    db OG.PLUS_R, 040h, 0  ; o16 40+r
-	opcode_INC_GenInstr_125    db OG.WB, 0FEh, OG.B0, 0  ; wFE /0
-	opcode_INC_GenInstr_126    db OG.WB, 0FEh, OG.B0, 0  ; wFE /0
-	opcode_INC_GenInstr_127    db OG.WB, 0FFh, OG.B0, 0  ; o16 wFF /0
-	opcode_INC_GenInstr_128    db OG.WB, 0FFh, OG.B0, 0  ; o16 wFF /0
-	opcode_INT_GenInstr_129    db OG.WB, 0CDh, OG.IB, 0  ; wCD ib
-	opcode_INT3_GenInstr_130   db OG.WB, 0CCh, 0  ; wCC
-	opcode_INTO_GenInstr_131   db OG.WB, 0CEh, 0  ; wCE
-	opcode_IRET_GenInstr_132   db OG.WB, 0CFh, 0  ; wCF
-	opcode_IRETW_GenInstr_133  db OG.WB, 0CFh, 0  ; o16 wCF
-	opcode_JCXZ_GenInstr_134   db OG.WB, 0E3h, OG.RB, 0  ; o16 wE3 rb
-	opcode_JMP_GenInstr_135    db OG.WB, 0E9h, OG.RW, 0  ; wE9 rw
-	opcode_JMP_GenInstr_136    db OG.WB, 0E9h, OG.RW, 0  ; wE9 rw
-	opcode_JMP_GenInstr_137    db OG.WB, 0E9h, OG.RW, 0  ; wE9 rw
-	opcode_JMP_GenInstr_138    db OG.WB, 0EBh, OG.RB, 0  ; wEB rb
-	opcode_JMP_GenInstr_139    db OG.WB, 0EAh, OG.IW, OG.IW, 0  ; o16 wEA iw iw
-	opcode_JMP_GenInstr_140    db OG.WB, 0EAh, OG.IW, OG.IW, 0  ; o16 wEA iw iw
-	opcode_JMP_GenInstr_141    db OG.WB, 0EAh, OG.IW, OG.IW, 0  ; o16 wEA iw iw
-	opcode_JMP_GenInstr_142    db OG.WB, 0EAh, OG.IW, OG.IW, 0  ; o16 wEA iw iw
-	opcode_JMP_GenInstr_143    db OG.WB, 0FFh, OG.B5, 0  ; o16 wFF /5
-	opcode_JMP_GenInstr_144    db OG.WB, 0FFh, OG.B4, 0  ; o16 wFF /4
-	opcode_JMP_GenInstr_145    db OG.WB, 0FFh, OG.B4, 0  ; o16 wFF /4
-
-
-	opcode_JO_GenInstr_146     db OG.WB, 070h, OG.RB, 0  ; w70 rb
-	opcode_JNO_GenInstr_147    db OG.WB, 071h, OG.RB, 0  ; w71 rb
-	opcode_JB_GenInstr_148     db OG.WB, 072h, OG.RB, 0  ; w72 rb
-	opcode_JC_GenInstr_149     db OG.WB, 072h, OG.RB, 0  ; w72 rb
-	opcode_JNAE_GenInstr_150   db OG.WB, 072h, OG.RB, 0  ; w72 rb
-	opcode_JAE_GenInstr_151    db OG.WB, 073h, OG.RB, 0  ; w73 rb
-	opcode_JNB_GenInstr_152    db OG.WB, 073h, OG.RB, 0  ; w73 rb
-	opcode_JNC_GenInstr_153    db OG.WB, 073h, OG.RB, 0  ; w73 rb
-	opcode_JE_GenInstr_154     db OG.WB, 074h, OG.RB, 0  ; w74 rb
-	opcode_JZ_GenInstr_155     db OG.WB, 074h, OG.RB, 0  ; w74 rb
-	opcode_JNE_GenInstr_156    db OG.WB, 075h, OG.RB, 0  ; w75 rb
-	opcode_JNZ_GenInstr_157    db OG.WB, 075h, OG.RB, 0  ; w75 rb
-	opcode_JBE_GenInstr_158    db OG.WB, 076h, OG.RB, 0  ; w76 rb
-	opcode_JNA_GenInstr_159    db OG.WB, 076h, OG.RB, 0  ; w76 rb
-	opcode_JA_GenInstr_160     db OG.WB, 077h, OG.RB, 0  ; w77 rb
-	opcode_JNBE_GenInstr_161   db OG.WB, 077h, OG.RB, 0  ; w77 rb
-	opcode_JS_GenInstr_162     db OG.WB, 078h, OG.RB, 0  ; w78 rb
-	opcode_JNS_GenInstr_163    db OG.WB, 079h, OG.RB, 0  ; w79 rb
-	opcode_JP_GenInstr_164     db OG.WB, 07Ah, OG.RB, 0  ; w7A rb
-	opcode_JPE_GenInstr_165    db OG.WB, 07Ah, OG.RB, 0  ; w7A rb
-	opcode_JNP_GenInstr_166    db OG.WB, 07Bh, OG.RB, 0  ; w7B rb
-	opcode_JPO_GenInstr_167    db OG.WB, 07Bh, OG.RB, 0  ; w7B rb
-	opcode_JL_GenInstr_168     db OG.WB, 07Ch, OG.RB, 0  ; w7C rb
-	opcode_JNGE_GenInstr_169   db OG.WB, 07Ch, OG.RB, 0  ; w7C rb
-	opcode_JGE_GenInstr_170    db OG.WB, 07Dh, OG.RB, 0  ; w7D rb
-	opcode_JNL_GenInstr_171    db OG.WB, 07Dh, OG.RB, 0  ; w7D rb
-	opcode_JLE_GenInstr_172    db OG.WB, 07Eh, OG.RB, 0  ; w7E rb
-	opcode_JNG_GenInstr_173    db OG.WB, 07Eh, OG.RB, 0  ; w7E rb
-	opcode_JG_GenInstr_174     db OG.WB, 07Fh, OG.RB, 0  ; w7F rb
-	opcode_JNLE_GenInstr_175   db OG.WB, 07Fh, OG.RB, 0  ; w7F rb
-
-
-	opcode_LAHF_GenInstr_176   db OG.WB, 09Fh, 0  ; w9F
-	opcode_LDS_GenInstr_177    db OG.WB, 0C5h, OG.BR, 0  ; o16 wC5 /r
-	opcode_LES_GenInstr_178    db OG.WB, 0C4h, OG.BR, 0  ; o16 wC4 /r
-	opcode_LEA_GenInstr_179    db OG.WB, 08Dh, OG.BR, 0  ; o16 w8D /r
-	opcode_LODSB_GenInstr_180  db OG.WB, 0ACh, 0  ; wAC
-	opcode_LODSW_GenInstr_181  db OG.WB, 0ADh, 0  ; o16 wAD
-	opcode_LOOP_GenInstr_182   db OG.WB, 0E2h, OG.RB, 0  ; wE2 rb
-;;;;;	opcode_LOOP_GenInstr_183   db OG.WB, 0E2h, OG.RB, *************************************0  ; a16 wE2 rb amb2CX
-	opcode_LOOP_GenInstr_183   db 0 
-
-	opcode_LOOPE_GenInstr_184  db OG.WB, 0E1h, OG.RB, 0  ; wE1 rb
-;;;;;	opcode_LOOPE_GenInstr_185  db OG.WB, 0E1h, OG.RB, *************************************0  ; a16 wE1 rb amb2CX
-	opcode_LOOPE_GenInstr_185  db 0 
-
-	opcode_LOOPZ_GenInstr_186  db OG.WB, 0E1h, OG.RB, 0  ; wE1 rb
-;;;;;	opcode_LOOPZ_GenInstr_187  db OG.WB, 0E1h, OG.RB, *************************************0  ; a16 wE1 rb amb2CX
-	opcode_LOOPZ_GenInstr_187  db 0 
-
-	opcode_LOOPNE_GenInstr_188 db OG.WB, 0E0h, OG.RB, 0  ; wE0 rb
-;;;;;	opcode_LOOPNE_GenInstr_189 db OG.WB, 0E0h, OG.RB, *************************************0  ; a16 wE0 rb amb2CX
-	opcode_LOOPNE_GenInstr_189 db 0 
-
-	opcode_LOOPNZ_GenInstr_190 db OG.WB, 0E0h, OG.RB, 0  ; wE0 rb
-;;;;;	opcode_LOOPNZ_GenInstr_191 db OG.WB, 0E0h, OG.RB, *************************************0  ; a16 wE0 rb amb2CX
-	opcode_LOOPNZ_GenInstr_191 db 0 
-
-	opcode_MOV_GenInstr_192    db OG.WB, 088h, OG.RM1, 0  ; w88 /r1
-	opcode_MOV_GenInstr_193    db OG.WB, 088h, OG.RM1, 0  ; w88 /r1
-	opcode_MOV_GenInstr_194    db OG.WB, 089h, OG.RM1, 0  ; o16 w89 /r1
-	opcode_MOV_GenInstr_195    db OG.WB, 089h, OG.RM1, 0  ; o16 w89 /r1
-	opcode_MOV_GenInstr_196    db OG.WB, 08Ah, OG.RM2, 0  ; w8A /r2
-	opcode_MOV_GenInstr_197    db OG.WB, 08Ah, OG.RM2, 0  ; w8A /r2
-	opcode_MOV_GenInstr_198    db OG.WB, 08Bh, OG.RM2, 0  ; o16 w8B /r2
-	opcode_MOV_GenInstr_199    db OG.WB, 08Bh, OG.RM2, 0  ; o16 w8B /r2
-	opcode_MOV_GenInstr_200    db OG.PLUS_R, 0B0h, OG.IB, 0  ; B0+r ib
-	opcode_MOV_GenInstr_201    db OG.PLUS_R, 0B8h, OG.IW, 0  ; o16 B8+r iw
-
-	opcode_MOV_GenInstr_202    db OG.PLUS_R, 0B8h, OG.GBIW, 0  ; o16 B8+r gbiw ; OK
-
-	opcode_MOV_GenInstr_203    db OG.WB, 0C6h, OG.B0, OG.IB, 0  ; wC6 /0 ib
-	opcode_MOV_GenInstr_204    db OG.WB, 0C6h, OG.B0, OG.IB, 0  ; wC6 /0 ib
-	opcode_MOV_GenInstr_205    db OG.WB, 0C7h, OG.B0, OG.IW, 0  ; o16 wC7 /0 iw
-	opcode_MOV_GenInstr_206    db OG.WB, 0C7h, OG.B0, OG.IW, 0  ; o16 wC7 /0 iw
-	opcode_MOV_GenInstr_207    db OG.WB, 0C7h, OG.B0, OG.IW, 0  ; o16 wC7 /0 iw
-	opcode_MOV_GenInstr_208    db OG.WB, 0C7h, OG.B0, OG.IW, 0  ; o16 wC7 /0 iw
-;;;;;	opcode_MOV_GenInstr_209    db OG.WB, 0A0h, OG.OW, *************************************0  ; wA0 ow amb1AL
-	opcode_MOV_GenInstr_209    db 0 
-
-;;;;;	opcode_MOV_GenInstr_210    db OG.WB, 0A1h, OG.OW, *************************************0  ; o16 wA1 ow amb1AX
-	opcode_MOV_GenInstr_210    db 0 
-
-;;;;;	opcode_MOV_GenInstr_211    db OG.WB, 0A2h, OG.OW, *************************************0  ; wA2 ow amb2AL
-	opcode_MOV_GenInstr_211    db 0 
-
-;;;;;	opcode_MOV_GenInstr_212    db OG.WB, 0A3h, OG.OW, *************************************0  ; o16 wA3 ow amb2AX
-	opcode_MOV_GenInstr_212    db 0 
-
-	opcode_MOV_GenInstr_213    db OG.WB, 08Ch, OG.RM1, 0  ; o16 w8C /r1
-	opcode_MOV_GenInstr_214    db OG.WB, 08Ch, OG.RM1, 0  ; o16 w8C /r1
-	opcode_MOV_GenInstr_215    db OG.WB, 08Eh, OG.RM2, 0  ; o16 w8E /r2
-	opcode_MOV_GenInstr_216    db OG.WB, 08Eh, OG.RM2, 0  ; o16 w8E /r2
-	opcode_MOVSB_GenInstr_217  db OG.WB, 0A4h, 0  ; wA4
-	opcode_MOVSW_GenInstr_218  db OG.WB, 0A5h, 0  ; o16 wA5
-	opcode_MUL_GenInstr_219    db OG.WB, 0F6h, OG.B4, 0  ; wF6 /4
-	opcode_MUL_GenInstr_220    db OG.WB, 0F6h, OG.B4, 0  ; wF6 /4
-	opcode_MUL_GenInstr_221    db OG.WB, 0F7h, OG.B4, 0  ; o16 wF7 /4
-	opcode_MUL_GenInstr_222    db OG.WB, 0F7h, OG.B4, 0  ; o16 wF7 /4
-	opcode_NEG_GenInstr_223    db OG.WB, 0F6h, OG.B3, 0  ; wF6 /3
-	opcode_NEG_GenInstr_224    db OG.WB, 0F6h, OG.B3, 0  ; wF6 /3
-	opcode_NEG_GenInstr_225    db OG.WB, 0F7h, OG.B3, 0  ; o16 wF7 /3
-	opcode_NEG_GenInstr_226    db OG.WB, 0F7h, OG.B3, 0  ; o16 wF7 /3
-	opcode_NOT_GenInstr_227    db OG.WB, 0F6h, OG.B2, 0  ; wF6 /2
-	opcode_NOT_GenInstr_228    db OG.WB, 0F6h, OG.B2, 0  ; wF6 /2
-	opcode_NOT_GenInstr_229    db OG.WB, 0F7h, OG.B2, 0  ; o16 wF7 /2
-	opcode_NOT_GenInstr_230    db OG.WB, 0F7h, OG.B2, 0  ; o16 wF7 /2
-	opcode_NOP_GenInstr_231    db OG.WB, 090h, 0  ; w90
-	opcode_OR_GenInstr_232     db OG.WB, 008h, OG.RM1, 0  ; w08 /r1
-	opcode_OR_GenInstr_233     db OG.WB, 008h, OG.RM1, 0  ; w08 /r1
-	opcode_OR_GenInstr_234     db OG.WB, 009h, OG.RM1, 0  ; o16 w09 /r1
-	opcode_OR_GenInstr_235     db OG.WB, 009h, OG.RM1, 0  ; o16 w09 /r1
-	opcode_OR_GenInstr_236     db OG.WB, 00Ah, OG.RM2, 0  ; w0A /r2
-	opcode_OR_GenInstr_237     db OG.WB, 00Ah, OG.RM2, 0  ; w0A /r2
-	opcode_OR_GenInstr_238     db OG.WB, 00Bh, OG.RM2, 0  ; o16 w0B /r2
-	opcode_OR_GenInstr_239     db OG.WB, 00Bh, OG.RM2, 0  ; o16 w0B /r2
-	opcode_OR_GenInstr_240     db OG.WB, 080h, OG.B1, OG.IB, 0  ; w80 /1 ib
-	opcode_OR_GenInstr_241     db OG.WB, 080h, OG.B1, OG.IB, 0  ; w80 /1 ib
-	opcode_OR_GenInstr_242     db OG.WB, 081h, OG.B1, OG.IW, 0  ; o16 w81 /1 iw
-	opcode_OR_GenInstr_243     db OG.WB, 081h, OG.B1, OG.IW, 0  ; o16 w81 /1 iw
-	opcode_OR_GenInstr_244     db OG.WB, 081h, OG.B1, OG.IW, 0  ; o16 w81 /1 iw
-	opcode_OR_GenInstr_245     db OG.WB, 081h, OG.B1, OG.IW, 0  ; o16 w81 /1 iw
-	opcode_OR_GenInstr_246     db OG.WB, 083h, OG.B1, OG.IB, 0  ; o16 w83 /1 ib
-	opcode_OR_GenInstr_247     db OG.WB, 083h, OG.B1, OG.IB, 0  ; o16 w83 /1 ib
-;;;;;	opcode_OR_GenInstr_248     db OG.WB, 00Ch, OG.IB, *************************************0  ; w0C ib amb1AL
-	opcode_OR_GenInstr_248     db 0 
-
-;;;;;	opcode_OR_GenInstr_249     db OG.WB, 00Dh, OG.IW, *************************************0  ; o16 w0D iw amb1AX
-	opcode_OR_GenInstr_249     db 0 
-
-;;;;;	opcode_OR_GenInstr_250     db OG.WB, 00Dh, OG.IW, *************************************0  ; o16 w0D iw amb1AX
-	opcode_OR_GenInstr_250     db 0 
-
-;;;;;	opcode_OUT_GenInstr_251    db OG.WB, 0E6h, OG.IB, *************************************0  ; wE6 ib amb2AL
-	opcode_OUT_GenInstr_251    db 0 
-
-;;;;;	opcode_OUT_GenInstr_252    db OG.WB, 0E7h, OG.IB, *************************************0  ; o16 wE7 ib amb2AX
-	opcode_OUT_GenInstr_252    db 0 
-
-;;;;;	opcode_OUT_GenInstr_253    db OG.WB, 0EEh, **************************************************************************0  ; wEE amb1DX amb2AL
-	opcode_OUT_GenInstr_253    db 0 
-
-;;;;;	opcode_OUT_GenInstr_254    db OG.WB, 0EFh, **************************************************************************0  ; o16 wEF amb1DX amb2AX
-	opcode_OUT_GenInstr_254    db 0 
-
-	opcode_POP_GenInstr_255    db OG.PLUS_R, 058h, 0  ; o16 58+r
-	opcode_POP_GenInstr_256    db OG.WB, 08Fh, OG.B0, 0  ; o16 w8F /0
-	opcode_POP_GenInstr_257    db OG.WB, 08Fh, OG.B0, 0  ; o16 w8F /0
-;;;;;	opcode_POP_GenInstr_258    db OG.WB, 01Fh, *************************************0  ; w1F amb1DS
-	opcode_POP_GenInstr_258    db 0 
-
-;;;;;	opcode_POP_GenInstr_259    db OG.WB, 007h, *************************************0  ; w07 amb1ES
-	opcode_POP_GenInstr_259    db 0 
-
-;;;;;	opcode_POP_GenInstr_260    db OG.WB, 017h, *************************************0  ; w17 amb1SS
-	opcode_POP_GenInstr_260    db 0 
-
-	opcode_PUSH_GenInstr_261   db OG.PLUS_R, 050h, 0  ; o16 50+r
-	opcode_PUSH_GenInstr_262   db OG.WB, 0FFh, OG.B6, 0  ; o16 wFF /6
-	opcode_PUSH_GenInstr_263   db OG.WB, 0FFh, OG.B6, 0  ; o16 wFF /6
-;;;;;	opcode_PUSH_GenInstr_264   db OG.WB, 00Eh, *************************************0  ; w0E amb1CS
-	opcode_PUSH_GenInstr_264   db 0 
-
-;;;;;	opcode_PUSH_GenInstr_265   db OG.WB, 01Eh, *************************************0  ; w1E amb1DS
-	opcode_PUSH_GenInstr_265   db 0 
-
-;;;;;	opcode_PUSH_GenInstr_266   db OG.WB, 006h, *************************************0  ; w06 amb1ES
-	opcode_PUSH_GenInstr_266   db 0 
-
-;;;;;	opcode_PUSH_GenInstr_267   db OG.WB, 016h, *************************************0  ; w16 amb1SS
-	opcode_PUSH_GenInstr_267   db 0 
-
-	opcode_RCL_GenInstr_268    db OG.WB, 0D0h, OG.B2, 0  ; wD0 /2
-	opcode_RCL_GenInstr_269    db OG.WB, 0D0h, OG.B2, 0  ; wD0 /2
-;;;;;	opcode_Rreg8_GenInstr_270  db OG.WB, 0D2h, OG.B2, *************************************0  ; wD2 /2 amb2CL
-	opcode_Rreg8_GenInstr_270  db 0 
-
-;;;;;	opcode_Rreg8_GenInstr_271  db OG.WB, 0D2h, OG.B2, *************************************0  ; wD2 /2 amb2CL
-	opcode_Rreg8_GenInstr_271  db 0 
-
-	opcode_RCL_GenInstr_272    db OG.WB, 0D1h, OG.B2, 0  ; o16 wD1 /2
-	opcode_RCL_GenInstr_273    db OG.WB, 0D1h, OG.B2, 0  ; o16 wD1 /2
-;;;;;	opcode_Rreg8_GenInstr_274  db OG.WB, 0D3h, OG.B2, *************************************0  ; o16 wD3 /2 amb2CL
-	opcode_Rreg8_GenInstr_274  db 0 
-
-;;;;;	opcode_Rreg8_GenInstr_275  db OG.WB, 0D3h, OG.B2, *************************************0  ; o16 wD3 /2 amb2CL
-	opcode_Rreg8_GenInstr_275  db 0 
-
-	opcode_RCR_GenInstr_276    db OG.WB, 0D0h, OG.B3, 0  ; wD0 /3
-	opcode_RCR_GenInstr_277    db OG.WB, 0D0h, OG.B3, 0  ; wD0 /3
-;;;;;	opcode_RCR_GenInstr_278    db OG.WB, 0D2h, OG.B3, *************************************0  ; wD2 /3 amb2CL
-	opcode_RCR_GenInstr_278    db 0 
-
-;;;;;	opcode_RCR_GenInstr_279    db OG.WB, 0D2h, OG.B3, *************************************0  ; wD2 /3 amb2CL
-	opcode_RCR_GenInstr_279    db 0 
-
-	opcode_RCR_GenInstr_280    db OG.WB, 0D1h, OG.B3, 0  ; o16 wD1 /3
-	opcode_RCR_GenInstr_281    db OG.WB, 0D1h, OG.B3, 0  ; o16 wD1 /3
-;;;;;	opcode_RCR_GenInstr_282    db OG.WB, 0D3h, OG.B3, *************************************0  ; o16 wD3 /3 amb2CL
-	opcode_RCR_GenInstr_282    db 0 
-
-;;;;;	opcode_RCR_GenInstr_283    db OG.WB, 0D3h, OG.B3, *************************************0  ; o16 wD3 /3 amb2CL
-	opcode_RCR_GenInstr_283    db 0 
-
-	opcode_RET_GenInstr_284    db OG.WB, 0C3h, 0  ; wC3
-	opcode_RET_GenInstr_285    db OG.WB, 0C2h, OG.IW, 0  ; wC2 iw
-	opcode_RET_GenInstr_286    db OG.WB, 0C2h, OG.IW, 0  ; wC2 iw
-	opcode_RETF_GenInstr_287   db OG.WB, 0CBh, 0  ; wCB
-	opcode_RETF_GenInstr_288   db OG.WB, 0CAh, OG.IW, 0  ; wCA iw
-	opcode_RETF_GenInstr_289   db OG.WB, 0CAh, OG.IW, 0  ; wCA iw
-	opcode_RETN_GenInstr_290   db OG.WB, 0C3h, 0  ; wC3
-	opcode_RETN_GenInstr_291   db OG.WB, 0C2h, OG.IW, 0  ; wC2 iw
-	opcode_RETN_GenInstr_292   db OG.WB, 0C2h, OG.IW, 0  ; wC2 iw
-	opcode_ROL_GenInstr_293    db OG.WB, 0D0h, OG.B0, 0  ; wD0 /0
-	opcode_ROL_GenInstr_294    db OG.WB, 0D0h, OG.B0, 0  ; wD0 /0
-;;;;;	opcode_ROL_GenInstr_295    db OG.WB, 0D2h, OG.B0, *************************************0  ; wD2 /0 amb2CL
-	opcode_ROL_GenInstr_295    db 0 
-
-;;;;;	opcode_ROL_GenInstr_296    db OG.WB, 0D2h, OG.B0, *************************************0  ; wD2 /0 amb2CL
-	opcode_ROL_GenInstr_296    db 0 
-
-	opcode_ROL_GenInstr_297    db OG.WB, 0D1h, OG.B0, 0  ; o16 wD1 /0
-	opcode_ROL_GenInstr_298    db OG.WB, 0D1h, OG.B0, 0  ; o16 wD1 /0
-;;;;;	opcode_ROL_GenInstr_299    db OG.WB, 0D3h, OG.B0, *************************************0  ; o16 wD3 /0 amb2CL
-	opcode_ROL_GenInstr_299    db 0 
-
-;;;;;	opcode_ROL_GenInstr_300    db OG.WB, 0D3h, OG.B0, *************************************0  ; o16 wD3 /0 amb2CL
-	opcode_ROL_GenInstr_300    db 0 
-
-	opcode_ROR_GenInstr_301    db OG.WB, 0D0h, OG.B1, 0  ; wD0 /1
-	opcode_ROR_GenInstr_302    db OG.WB, 0D0h, OG.B1, 0  ; wD0 /1
-;;;;;	opcode_ROR_GenInstr_303    db OG.WB, 0D2h, OG.B1, *************************************0  ; wD2 /1 amb2CL
-	opcode_ROR_GenInstr_303    db 0 
-
-;;;;;	opcode_ROR_GenInstr_304    db OG.WB, 0D2h, OG.B1, *************************************0  ; wD2 /1 amb2CL
-	opcode_ROR_GenInstr_304    db 0 
-
-	opcode_ROR_GenInstr_305    db OG.WB, 0D1h, OG.B1, 0  ; o16 wD1 /1
-	opcode_ROR_GenInstr_306    db OG.WB, 0D1h, OG.B1, 0  ; o16 wD1 /1
-;;;;;	opcode_ROR_GenInstr_307    db OG.WB, 0D3h, OG.B1, *************************************0  ; o16 wD3 /1 amb2CL
-	opcode_ROR_GenInstr_307    db 0 
-
-;;;;;	opcode_ROR_GenInstr_308    db OG.WB, 0D3h, OG.B1, *************************************0  ; o16 wD3 /1 amb2CL
-	opcode_ROR_GenInstr_308    db 0 
-
-	opcode_SAHF_GenInstr_309   db OG.WB, 09Eh, 0  ; w9E
-	opcode_SAL_GenInstr_310    db OG.WB, 0D0h, OG.B4, 0  ; wD0 /4
-	opcode_SAL_GenInstr_311    db OG.WB, 0D0h, OG.B4, 0  ; wD0 /4
-;;;;;	opcode_SAL_GenInstr_312    db OG.WB, 0D2h, OG.B4, *************************************0  ; wD2 /4 amb2CL
-	opcode_SAL_GenInstr_312    db 0 
-
-;;;;;	opcode_SAL_GenInstr_313    db OG.WB, 0D2h, OG.B4, *************************************0  ; wD2 /4 amb2CL
-	opcode_SAL_GenInstr_313    db 0 
-
-	opcode_SAL_GenInstr_314    db OG.WB, 0D1h, OG.B4, 0  ; o16 wD1 /4
-	opcode_SAL_GenInstr_315    db OG.WB, 0D1h, OG.B4, 0  ; o16 wD1 /4
-;;;;;	opcode_SAL_GenInstr_316    db OG.WB, 0D3h, OG.B4, *************************************0  ; o16 wD3 /4 amb2CL
-	opcode_SAL_GenInstr_316    db 0 
-
-;;;;;	opcode_SAL_GenInstr_317    db OG.WB, 0D3h, OG.B4, *************************************0  ; o16 wD3 /4 amb2CL
-	opcode_SAL_GenInstr_317    db 0 
-
-	opcode_SAR_GenInstr_318    db OG.WB, 0D0h, OG.B0, 0  ; wD0 /0
-	opcode_SAR_GenInstr_319    db OG.WB, 0D0h, OG.B0, 0  ; wD0 /0
-;;;;;	opcode_SAR_GenInstr_320    db OG.WB, 0D2h, OG.B0, *************************************0  ; wD2 /0 amb2CL
-	opcode_SAR_GenInstr_320    db 0 
-
-;;;;;	opcode_SAR_GenInstr_321    db OG.WB, 0D2h, OG.B0, *************************************0  ; wD2 /0 amb2CL
-	opcode_SAR_GenInstr_321    db 0 
-
-	opcode_SAR_GenInstr_322    db OG.WB, 0D1h, OG.B0, 0  ; o16 wD1 /0
-	opcode_SAR_GenInstr_323    db OG.WB, 0D1h, OG.B0, 0  ; o16 wD1 /0
-;;;;;	opcode_SAR_GenInstr_324    db OG.WB, 0D3h, OG.B0, *************************************0  ; o16 wD3 /0 amb2CL
-	opcode_SAR_GenInstr_324    db 0 
-
-;;;;;	opcode_SAR_GenInstr_325    db OG.WB, 0D3h, OG.B0, *************************************0  ; o16 wD3 /0 amb2CL
-	opcode_SAR_GenInstr_325    db 0 
-
-	opcode_SBB_GenInstr_326    db OG.WB, 018h, OG.RM1, 0  ; w18 /r1
-	opcode_SBB_GenInstr_327    db OG.WB, 018h, OG.RM1, 0  ; w18 /r1
-	opcode_SBB_GenInstr_328    db OG.WB, 019h, OG.RM1, 0  ; o16 w19 /r1
-	opcode_SBB_GenInstr_329    db OG.WB, 019h, OG.RM1, 0  ; o16 w19 /r1
-	opcode_SBB_GenInstr_330    db OG.WB, 01Ah, OG.RM2, 0  ; w1A /r2
-	opcode_SBB_GenInstr_331    db OG.WB, 01Ah, OG.RM2, 0  ; w1A /r2
-	opcode_SBB_GenInstr_332    db OG.WB, 01Bh, OG.RM2, 0  ; o16 w1B /r2
-	opcode_SBB_GenInstr_333    db OG.WB, 01Bh, OG.RM2, 0  ; o16 w1B /r2
-	opcode_SBB_GenInstr_334    db OG.WB, 080h, OG.B3, OG.IB, 0  ; w80 /3 ib
-	opcode_SBB_GenInstr_335    db OG.WB, 080h, OG.B3, OG.IB, 0  ; w80 /3 ib
-	opcode_SBB_GenInstr_336    db OG.WB, 081h, OG.B3, OG.IW, 0  ; o16 w81 /3 iw
-	opcode_SBB_GenInstr_337    db OG.WB, 081h, OG.B3, OG.IW, 0  ; o16 w81 /3 iw
-	opcode_SBB_GenInstr_338    db OG.WB, 081h, OG.B3, OG.IW, 0  ; o16 w81 /3 iw
-	opcode_SBB_GenInstr_339    db OG.WB, 081h, OG.B3, OG.IW, 0  ; o16 w81 /3 iw
-	opcode_SBB_GenInstr_340    db OG.WB, 083h, OG.B3, OG.IB, 0  ; o16 w83 /3 ib
-	opcode_SBB_GenInstr_341    db OG.WB, 083h, OG.B3, OG.IB, 0  ; o16 w83 /3 ib
-;;;;;	opcode_SBB_GenInstr_342    db OG.WB, 01Ch, OG.IB, *************************************0  ; w1C ib amb1AL
-	opcode_SBB_GenInstr_342    db 0 
-
-;;;;;	opcode_SBB_GenInstr_343    db OG.WB, 01Dh, OG.IW, *************************************0  ; o16 w1D iw amb1AX
-	opcode_SBB_GenInstr_343    db 0 
-
-;;;;;	opcode_SBB_GenInstr_344    db OG.WB, 01Dh, OG.IW, *************************************0  ; o16 w1D iw amb1AX
-	opcode_SBB_GenInstr_344    db 0 
-
-	opcode_SCASB_GenInstr_345  db OG.WB, 0AEh, 0  ; wAE
-	opcode_SCASW_GenInstr_346  db OG.WB, 0AFh, 0  ; o16 wAF
-	opcode_SHL_GenInstr_347    db OG.WB, 0D0h, OG.B4, 0  ; wD0 /4
-	opcode_SHL_GenInstr_348    db OG.WB, 0D0h, OG.B4, 0  ; wD0 /4
-;;;;;	opcode_SHL_GenInstr_349    db OG.WB, 0D2h, OG.B4, *************************************0  ; wD2 /4 amb2CL
-	opcode_SHL_GenInstr_349    db 0 
-
-;;;;;	opcode_SHL_GenInstr_350    db OG.WB, 0D2h, OG.B4, *************************************0  ; wD2 /4 amb2CL
-	opcode_SHL_GenInstr_350    db 0 
-
-	opcode_SHL_GenInstr_351    db OG.WB, 0D1h, OG.B4, 0  ; o16 wD1 /4
-	opcode_SHL_GenInstr_352    db OG.WB, 0D1h, OG.B4, 0  ; o16 wD1 /4
-;;;;;	opcode_SHL_GenInstr_353    db OG.WB, 0D3h, OG.B4, *************************************0  ; o16 wD3 /4 amb2CL
-	opcode_SHL_GenInstr_353    db 0 
-
-;;;;;	opcode_SHL_GenInstr_354    db OG.WB, 0D3h, OG.B4, *************************************0  ; o16 wD3 /4 amb2CL
-	opcode_SHL_GenInstr_354    db 0 
-
-	opcode_SHR_GenInstr_355    db OG.WB, 0D0h, OG.B5, 0  ; wD0 /5
-	opcode_SHR_GenInstr_356    db OG.WB, 0D0h, OG.B5, 0  ; wD0 /5
-;;;;;	opcode_SHR_GenInstr_357    db OG.WB, 0D2h, OG.B5, *************************************0  ; wD2 /5 amb2CL
-	opcode_SHR_GenInstr_357    db 0 
-
-;;;;;	opcode_SHR_GenInstr_358    db OG.WB, 0D2h, OG.B5, *************************************0  ; wD2 /5 amb2CL
-	opcode_SHR_GenInstr_358    db 0 
-
-	opcode_SHR_GenInstr_359    db OG.WB, 0D1h, OG.B5, 0  ; o16 wD1 /5
-	opcode_SHR_GenInstr_360    db OG.WB, 0D1h, OG.B5, 0  ; o16 wD1 /5
-;;;;;	opcode_SHR_GenInstr_361    db OG.WB, 0D3h, OG.B5, *************************************0  ; o16 wD3 /5 amb2CL
-	opcode_SHR_GenInstr_361    db 0 
-
-;;;;;	opcode_SHR_GenInstr_362    db OG.WB, 0D3h, OG.B5, *************************************0  ; o16 wD3 /5 amb2CL
-	opcode_SHR_GenInstr_362    db 0 
-
-	opcode_STC_GenInstr_363    db OG.WB, 0F9h, 0  ; wF9
-	opcode_STD_GenInstr_364    db OG.WB, 0FDh, 0  ; wFD
-	opcode_STI_GenInstr_365    db OG.WB, 0FBh, 0  ; wFB
-	opcode_STOSB_GenInstr_366  db OG.WB, 0AAh, 0  ; wAA
-	opcode_STOSW_GenInstr_367  db OG.WB, 0ABh, 0  ; o16 wAB
-	opcode_SUB_GenInstr_368    db OG.WB, 028h, OG.RM1, 0  ; w28 /r1
-	opcode_SUB_GenInstr_369    db OG.WB, 028h, OG.RM1, 0  ; w28 /r1
-	opcode_SUB_GenInstr_370    db OG.WB, 029h, OG.RM1, 0  ; o16 w29 /r1
-	opcode_SUB_GenInstr_371    db OG.WB, 029h, OG.RM1, 0  ; o16 w29 /r1
-	opcode_SUB_GenInstr_372    db OG.WB, 02Ah, OG.RM2, 0  ; w2A /r2
-	opcode_SUB_GenInstr_373    db OG.WB, 02Ah, OG.RM2, 0  ; w2A /r2
-	opcode_SUB_GenInstr_374    db OG.WB, 02Bh, OG.RM2, 0  ; o16 w2B /r2
-	opcode_SUB_GenInstr_375    db OG.WB, 02Bh, OG.RM2, 0  ; o16 w2B /r2
-	opcode_SUB_GenInstr_376    db OG.WB, 080h, OG.B5, OG.IB, 0  ; w80 /5 ib
-	opcode_SUB_GenInstr_377    db OG.WB, 080h, OG.B5, OG.IB, 0  ; w80 /5 ib
-	opcode_SUB_GenInstr_378    db OG.WB, 081h, OG.B5, OG.IW, 0  ; o16 w81 /5 iw
-	opcode_SUB_GenInstr_379    db OG.WB, 081h, OG.B5, OG.IW, 0  ; o16 w81 /5 iw
-	opcode_SUB_GenInstr_380    db OG.WB, 081h, OG.B5, OG.IW, 0  ; o16 w81 /5 iw
-	opcode_SUB_GenInstr_381    db OG.WB, 081h, OG.B5, OG.IW, 0  ; o16 w81 /5 iw
-	opcode_SUB_GenInstr_382    db OG.WB, 083h, OG.B5, OG.IB, 0  ; o16 w83 /5 ib
-	opcode_SUB_GenInstr_383    db OG.WB, 083h, OG.B5, OG.IB, 0  ; o16 w83 /5 ib
-;;;;;	opcode_SUB_GenInstr_384    db OG.WB, 02Ch, OG.IB, *************************************0  ; w2C ib amb1AL
-	opcode_SUB_GenInstr_384    db 0 
-
-;;;;;	opcode_SUB_GenInstr_385    db OG.WB, 02Dh, OG.IW, *************************************0  ; o16 w2D iw amb1AX
-	opcode_SUB_GenInstr_385    db 0 
-
-;;;;;	opcode_SUB_GenInstr_386    db OG.WB, 02Dh, OG.IW, *************************************0  ; o16 w2D iw amb1AX
-	opcode_SUB_GenInstr_386    db 0 
-
-	opcode_TEST_GenInstr_387   db OG.WB, 084h, OG.RM1, 0  ; w84 /r1
-	opcode_TEST_GenInstr_388   db OG.WB, 084h, OG.RM1, 0  ; w84 /r1
-	opcode_TEST_GenInstr_389   db OG.WB, 085h, OG.RM1, 0  ; o16 w85 /r1
-	opcode_TEST_GenInstr_390   db OG.WB, 085h, OG.RM1, 0  ; o16 w85 /r1
-	opcode_TEST_GenInstr_391   db OG.WB, 0F6h, OG.B7, OG.IB, 0  ; wF6 /7 ib
-	opcode_TEST_GenInstr_392   db OG.WB, 0F6h, OG.B7, OG.IB, 0  ; wF6 /7 ib
-	opcode_TEST_GenInstr_393   db OG.WB, 0F7h, OG.B7, OG.IW, 0  ; o16 wF7 /7 iw
-	opcode_TEST_GenInstr_394   db OG.WB, 0F7h, OG.B7, OG.IW, 0  ; o16 wF7 /7 iw
-	opcode_TEST_GenInstr_395   db OG.WB, 0F7h, OG.B7, OG.IW, 0  ; o16 wF7 /7 iw
-	opcode_TEST_GenInstr_396   db OG.WB, 0F7h, OG.B7, OG.IW, 0  ; o16 wF7 /7 iw
-;;;;;	opcode_TEST_GenInstr_397   db OG.WB, 0A8h, OG.IB, *************************************0  ; wA8 ib amb1AL
-	opcode_TEST_GenInstr_397   db 0 
-
-;;;;;	opcode_TEST_GenInstr_398   db OG.WB, 0A9h, OG.IW, *************************************0  ; o16 wA9 iw amb1AX
-	opcode_TEST_GenInstr_398   db 0 
-
-;;;;;	opcode_TEST_GenInstr_399   db OG.WB, 0A9h, OG.IW, *************************************0  ; o16 wA9 iw amb1AX
-	opcode_TEST_GenInstr_399   db 0 
-
-	opcode_WAIT_GenInstr_400   db OG.WB, 09Bh, 0  ; w9B
-	opcode_XCHG_GenInstr_401   db OG.WB, 086h, OG.RM2, 0  ; w86 /r2
-	opcode_XCHG_GenInstr_402   db OG.WB, 086h, OG.RM2, 0  ; w86 /r2
-	opcode_XCHG_GenInstr_403   db OG.WB, 087h, OG.RM2, 0  ; o16 w87 /r2
-	opcode_XCHG_GenInstr_404   db OG.WB, 087h, OG.RM2, 0  ; o16 w87 /r2
-	opcode_XCHG_GenInstr_405   db OG.WB, 086h, OG.RM1, 0  ; w86 /r1
-	opcode_XCHG_GenInstr_406   db OG.WB, 086h, OG.RM1, 0  ; w86 /r1
-	opcode_XCHG_GenInstr_407   db OG.WB, 087h, OG.RM1, 0  ; o16 w87 /r1
-	opcode_XCHG_GenInstr_408   db OG.WB, 087h, OG.RM1, 0  ; o16 w87 /r1
-;;;;;	opcode_XCHG_GenInstr_409   db OG.PLUS_R, 090h, *************************************0  ; o16 90+r amb1AX
-	opcode_XCHG_GenInstr_409   db 0 
-
-;;;;;	opcode_XCHG_GenInstr_410   db OG.PLUS_R, 090h, *************************************0  ; o16 90+r amb2AX
-	opcode_XCHG_GenInstr_410   db 0 
-
-	opcode_XLATB_GenInstr_411  db OG.WB, 0D7h, 0  ; wD7
-	opcode_XOR_GenInstr_412    db OG.WB, 030h, OG.RM1, 0  ; w30 /r1
-	opcode_XOR_GenInstr_413    db OG.WB, 030h, OG.RM1, 0  ; w30 /r1
-	opcode_XOR_GenInstr_414    db OG.WB, 031h, OG.RM1, 0  ; o16 w31 /r1
-	opcode_XOR_GenInstr_415    db OG.WB, 031h, OG.RM1, 0  ; o16 w31 /r1
-	opcode_XOR_GenInstr_416    db OG.WB, 032h, OG.RM2, 0  ; w32 /r2
-	opcode_XOR_GenInstr_417    db OG.WB, 032h, OG.RM2, 0  ; w32 /r2
-	opcode_XOR_GenInstr_418    db OG.WB, 033h, OG.RM2, 0  ; o16 w33 /r2
-	opcode_XOR_GenInstr_419    db OG.WB, 033h, OG.RM2, 0  ; o16 w33 /r2
-	opcode_XOR_GenInstr_420    db OG.WB, 080h, OG.B6, OG.IB, 0  ; w80 /6 ib
-	opcode_XOR_GenInstr_421    db OG.WB, 080h, OG.B6, OG.IB, 0  ; w80 /6 ib
-	opcode_XOR_GenInstr_422    db OG.WB, 081h, OG.B6, OG.IW, 0  ; o16 w81 /6 iw
-	opcode_XOR_GenInstr_423    db OG.WB, 081h, OG.B6, OG.IW, 0  ; o16 w81 /6 iw
-	opcode_XOR_GenInstr_424    db OG.WB, 081h, OG.B6, OG.IW, 0  ; o16 w81 /6 iw
-	opcode_XOR_GenInstr_425    db OG.WB, 081h, OG.B6, OG.IW, 0  ; o16 w81 /6 iw
-	opcode_XOR_GenInstr_426    db OG.WB, 083h, OG.B6, OG.IB, 0  ; o16 w83 /6 ib
-	opcode_XOR_GenInstr_427    db OG.WB, 083h, OG.B6, OG.IB, 0  ; o16 w83 /6 ib
-;;;;;	opcode_XOR_GenInstr_428    db OG.WB, 034h, OG.IB, *************************************0  ; w34 ib amb1AL
-	opcode_XOR_GenInstr_428    db 0 
-
-;;;;;	opcode_XOR_GenInstr_429    db OG.WB, 035h, OG.IW, *************************************0  ; o16 w35 iw amb1AX
-	opcode_XOR_GenInstr_429    db 0 
-
-;;;;;	opcode_XOR_GenInstr_430    db OG.WB, 035h, OG.IW, *************************************0  ; o16 w35 iw amb1AX
-	opcode_XOR_GenInstr_430    db 0 
-
-	opcode_DB_GenInstr_431     db OG.IB, 0  ; ib
-	opcode_DW_GenInstr_432     db OG.IW, 0  ; iw
-	opcode_DW_GenInstr_433     db OG.IW, 0  ; iw
-	opcode_DW_GenInstr_434     db OG.IW, 0  ; iw
-	opcode_ORG_GenInstr_435    db 0  ; org
-	opcode_ORG_GenInstr_436    db 0  ; \n
-	opcode_ORG_GenInstr_437    db 0  ; \n
-	opcode_BITS_GenInstr_438   db 0  ; \n
-	opcode_BITS_GenInstr_439   db 0  ; \n
-	opcode_BITS_GenInstr_440   db 0  ; \n
-
+; --- Opcode generation instructions
+
+        opcode_AAA_GenInstr_1 db 2, OG.WB, 037h ; w37
+        opcode_AAS_GenInstr_2 db 2, OG.WB, 03Fh ; w3F
+        opcode_AAD_GenInstr_3 db 4, OG.WB, 0D5h, OG.WB, 00Ah ; wD5 w0A
+        opcode_AAD_GenInstr_4 db 3, OG.WB, 0D5h, OG.IB ; wD5 ib
+        opcode_AAM_GenInstr_5 db 4, OG.WB, 0D4h, OG.WB, 00Ah ; wD4 w0A
+        opcode_AAM_GenInstr_6 db 3, OG.WB, 0D4h, OG.IB ; wD4 ib
+        opcode_ADC_GenInstr_7 db 3, OG.WB, 010h, OG.RM1 ; w10 /r1
+        opcode_ADC_GenInstr_8 db 3, OG.WB, 010h, OG.RM1 ; w10 /r1
+        opcode_ADC_GenInstr_9 db 3, OG.WB, 011h, OG.RM1 ; o16 w11 /r1
+        opcode_ADC_GenInstr_10 db 3, OG.WB, 011h, OG.RM1 ; o16 w11 /r1
+        opcode_ADC_GenInstr_11 db 3, OG.WB, 012h, OG.RM2 ; w12 /r2
+        opcode_ADC_GenInstr_12 db 3, OG.WB, 012h, OG.RM2 ; w12 /r2
+        opcode_ADC_GenInstr_13 db 3, OG.WB, 013h, OG.RM2 ; o16 w13 /r2
+        opcode_ADC_GenInstr_14 db 3, OG.WB, 013h, OG.RM2 ; o16 w13 /r2
+        opcode_ADC_GenInstr_15 db 4, OG.WB, 080h, OG.B2, OG.IB ; w80 /2 ib
+        opcode_ADC_GenInstr_16 db 4, OG.WB, 080h, OG.B2, OG.IB ; w80 /2 ib
+        opcode_ADC_GenInstr_17 db 4, OG.WB, 081h, OG.B2, OG.IW ; o16 w81 /2 iw
+        opcode_ADC_GenInstr_18 db 4, OG.WB, 081h, OG.B2, OG.IW ; o16 w81 /2 iw
+        opcode_ADC_GenInstr_19 db 4, OG.WB, 081h, OG.B2, OG.IW ; o16 w81 /2 iw
+        opcode_ADC_GenInstr_20 db 4, OG.WB, 081h, OG.B2, OG.IW ; o16 w81 /2 iw
+        opcode_ADC_GenInstr_21 db 4, OG.WB, 083h, OG.B2, OG.IB ; o16 w83 /2 ib
+        opcode_ADC_GenInstr_22 db 4, OG.WB, 083h, OG.B2, OG.IB ; o16 w83 /2 ib
+;;;;;        opcode_ADC_GenInstr_23 db 3, OG.WB, 014h, OG.IB, *********************************** 
+        opcode_ADC_GenInstr_23 db 0, 0  
+
+;;;;;        opcode_ADC_GenInstr_24 db 3, OG.WB, 015h, OG.IW, *********************************** 
+        opcode_ADC_GenInstr_24 db 0, 0  
+
+;;;;;        opcode_ADC_GenInstr_25 db 3, OG.WB, 015h, OG.IW, *********************************** 
+        opcode_ADC_GenInstr_25 db 0, 0  
+
+        opcode_ADD_GenInstr_26 db 3, OG.WB, 000h, OG.RM1 ; w00 /r1
+        opcode_ADD_GenInstr_27 db 3, OG.WB, 000h, OG.RM1 ; w00 /r1
+        opcode_ADD_GenInstr_28 db 3, OG.WB, 001h, OG.RM1 ; o16 w01 /r1
+        opcode_ADD_GenInstr_29 db 3, OG.WB, 001h, OG.RM1 ; o16 w01 /r1
+        opcode_ADD_GenInstr_30 db 3, OG.WB, 002h, OG.RM2 ; w02 /r2
+        opcode_ADD_GenInstr_31 db 3, OG.WB, 002h, OG.RM2 ; w02 /r2
+        opcode_ADD_GenInstr_32 db 3, OG.WB, 003h, OG.RM2 ; o16 w03 /r2
+        opcode_ADD_GenInstr_33 db 3, OG.WB, 003h, OG.RM2 ; o16 w03 /r2
+        opcode_ADD_GenInstr_34 db 4, OG.WB, 080h, OG.B0, OG.IB ; w80 /0 ib
+        opcode_ADD_GenInstr_35 db 4, OG.WB, 080h, OG.B0, OG.IB ; w80 /0 ib
+
+        opcode_ADD_GenInstr_36 db 4, OG.WB, 081h, OG.B0, OG.IW ; o16 w81 /0 iw
+        opcode_ADD_GenInstr_37 db 4, OG.WB, 081h, OG.B0, OG.GBIW ; o16 w81 /0 gbiw OK
+
+        opcode_ADD_GenInstr_38 db 4, OG.WB, 081h, OG.B0, OG.IW ; o16 w81 /0 iw
+        opcode_ADD_GenInstr_39 db 4, OG.WB, 081h, OG.B0, OG.IW ; o16 w81 /0 iw
+        opcode_ADD_GenInstr_40 db 4, OG.WB, 083h, OG.B0, OG.IB ; o16 w83 /0 ib
+        opcode_ADD_GenInstr_41 db 4, OG.WB, 083h, OG.B0, OG.IB ; o16 w83 /0 ib
+;;;;;        opcode_ADD_GenInstr_42 db 3, OG.WB, 004h, OG.IB, *********************************** 
+        opcode_ADD_GenInstr_42 db 0, 0  
+
+;;;;;        opcode_ADD_GenInstr_43 db 3, OG.WB, 005h, OG.IW, *********************************** 
+        opcode_ADD_GenInstr_43 db 0, 0  
+
+;;;;;        opcode_ADD_GenInstr_44 db 3, OG.WB, 005h, OG.IW, *********************************** 
+        opcode_ADD_GenInstr_44 db 0, 0  
+
+        opcode_AND_GenInstr_45 db 3, OG.WB, 020h, OG.RM1 ; w20 /r1
+        opcode_AND_GenInstr_46 db 3, OG.WB, 020h, OG.RM1 ; w20 /r1
+        opcode_AND_GenInstr_47 db 3, OG.WB, 021h, OG.RM1 ; o16 w21 /r1
+        opcode_AND_GenInstr_48 db 3, OG.WB, 021h, OG.RM1 ; o16 w21 /r1
+        opcode_AND_GenInstr_49 db 3, OG.WB, 022h, OG.RM2 ; w22 /r2
+        opcode_AND_GenInstr_50 db 3, OG.WB, 022h, OG.RM2 ; w22 /r2
+        opcode_AND_GenInstr_51 db 3, OG.WB, 023h, OG.RM2 ; o16 w23 /r2
+        opcode_AND_GenInstr_52 db 3, OG.WB, 023h, OG.RM2 ; o16 w23 /r2
+        opcode_AND_GenInstr_53 db 4, OG.WB, 080h, OG.B4, OG.IB ; w80 /4 ib
+        opcode_AND_GenInstr_54 db 4, OG.WB, 080h, OG.B4, OG.IB ; w80 /4 ib
+        opcode_AND_GenInstr_55 db 4, OG.WB, 081h, OG.B4, OG.IW ; o16 w81 /4 iw
+        opcode_AND_GenInstr_56 db 4, OG.WB, 081h, OG.B4, OG.IW ; o16 w81 /4 iw
+        opcode_AND_GenInstr_57 db 4, OG.WB, 081h, OG.B4, OG.IW ; o16 w81 /4 iw
+        opcode_AND_GenInstr_58 db 4, OG.WB, 081h, OG.B4, OG.IW ; o16 w81 /4 iw
+        opcode_AND_GenInstr_59 db 4, OG.WB, 083h, OG.B4, OG.IB ; o16 w83 /4 ib
+        opcode_AND_GenInstr_60 db 4, OG.WB, 083h, OG.B4, OG.IB ; o16 w83 /4 ib
+;;;;;        opcode_AND_GenInstr_61 db 3, OG.WB, 024h, OG.IB, *********************************** 
+        opcode_AND_GenInstr_61 db 0, 0  
+
+;;;;;        opcode_AND_GenInstr_62 db 3, OG.WB, 025h, OG.IW, *********************************** 
+        opcode_AND_GenInstr_62 db 0, 0  
+
+;;;;;        opcode_AND_GenInstr_63 db 3, OG.WB, 025h, OG.IW, *********************************** 
+        opcode_AND_GenInstr_63 db 0, 0  
+
+        opcode_CALL_GenInstr_64 db 3, OG.WB, 0E8h, OG.RW ; wE8 rw
+        opcode_CALL_GenInstr_65 db 3, OG.WB, 0E8h, OG.RW ; wE8 gbrw ************************* TODO implement GBRW
+
+        opcode_CALL_GenInstr_66 db 4, OG.WB, 09Ah, OG.IW, OG.IW ; o16 w9A iw iw
+        opcode_CALL_GenInstr_67 db 4, OG.WB, 09Ah, OG.IW, OG.IW ; o16 w9A iw iw
+        opcode_CALL_GenInstr_68 db 4, OG.WB, 09Ah, OG.IW, OG.IW ; o16 w9A iw iw
+        opcode_CALL_GenInstr_69 db 4, OG.WB, 09Ah, OG.IW, OG.IW ; o16 w9A iw iw
+        opcode_CALL_GenInstr_70 db 3, OG.WB, 0FFh, OG.B3 ; o16 wFF /3
+        opcode_CALL_GenInstr_71 db 3, OG.WB, 0FFh, OG.B2 ; o16 wFF /2
+        opcode_CALL_GenInstr_72 db 3, OG.WB, 0FFh, OG.B2 ; o16 wFF /2
+        opcode_CBW_GenInstr_73 db 2, OG.WB, 098h ; o16 w98
+        opcode_CWD_GenInstr_74 db 2, OG.WB, 099h ; o16 w99
+        opcode_CLC_GenInstr_75 db 2, OG.WB, 0F8h ; wF8
+        opcode_CLD_GenInstr_76 db 2, OG.WB, 0FCh ; wFC
+        opcode_CLI_GenInstr_77 db 2, OG.WB, 0FAh ; wFA
+        opcode_CMC_GenInstr_78 db 2, OG.WB, 0F5h ; wF5
+        opcode_CMP_GenInstr_79 db 3, OG.WB, 038h, OG.RM1 ; w38 /r1
+        opcode_CMP_GenInstr_80 db 3, OG.WB, 038h, OG.RM1 ; w38 /r1
+        opcode_CMP_GenInstr_81 db 3, OG.WB, 039h, OG.RM1 ; o16 w39 /r1
+        opcode_CMP_GenInstr_82 db 3, OG.WB, 039h, OG.RM1 ; o16 w39 /r1
+        opcode_CMP_GenInstr_83 db 3, OG.WB, 03Ah, OG.RM2 ; w3A /r2
+        opcode_CMP_GenInstr_84 db 3, OG.WB, 03Ah, OG.RM2 ; w3A /r2
+        opcode_CMP_GenInstr_85 db 3, OG.WB, 03Bh, OG.RM2 ; o16 w3B /r2
+        opcode_CMP_GenInstr_86 db 3, OG.WB, 03Bh, OG.RM2 ; o16 w3B /r2
+
+        opcode_CMP_GenInstr_87 db 4, OG.WB, 080h, OG.B7, OG.IB ; w80 /7 ib (OK)
+
+        opcode_CMP_GenInstr_88 db 4, OG.WB, 080h, OG.B0, OG.IB ; w80 /0 ib
+        opcode_CMP_GenInstr_89 db 4, OG.WB, 081h, OG.B7, OG.IW ; o16 w81 /7 iw
+        opcode_CMP_GenInstr_90 db 4, OG.WB, 081h, OG.B7, OG.IW ; o16 w81 /7 iw
+        opcode_CMP_GenInstr_91 db 4, OG.WB, 081h, OG.B7, OG.IW ; o16 w81 /7 iw
+        opcode_CMP_GenInstr_92 db 4, OG.WB, 081h, OG.B7, OG.IW ; o16 w81 /7 iw
+        opcode_CMP_GenInstr_93 db 4, OG.WB, 083h, OG.B7, OG.IB ; o16 w83 /7 ib
+        opcode_CMP_GenInstr_94 db 4, OG.WB, 083h, OG.B7, OG.IB ; o16 w83 /7 ib
+;;;;;        opcode_CMP_GenInstr_95 db 3, OG.WB, 03Ch, OG.IB, *********************************** 
+        opcode_CMP_GenInstr_95 db 0, 0  
+
+;;;;;        opcode_CMP_GenInstr_96 db 3, OG.WB, 03Dh, OG.IW, *********************************** 
+        opcode_CMP_GenInstr_96 db 0, 0  
+
+;;;;;        opcode_CMP_GenInstr_97 db 3, OG.WB, 03Dh, OG.IW, *********************************** 
+        opcode_CMP_GenInstr_97 db 0, 0  
+
+        opcode_CMPSB_GenInstr_98 db 2, OG.WB, 0A6h ; wA6
+        opcode_CMPSW_GenInstr_99 db 2, OG.WB, 0A7h ; o16 wA7
+        opcode_DAA_GenInstr_100 db 2, OG.WB, 027h ; w27
+        opcode_DAS_GenInstr_101 db 2, OG.WB, 02Fh ; w2F
+        opcode_DEC_GenInstr_102 db 2, OG.PLUS_R, 048h ; o16 48+r
+        opcode_DEC_GenInstr_103 db 3, OG.WB, 0FEh, OG.B1 ; wFE /1
+        opcode_DEC_GenInstr_104 db 3, OG.WB, 0FEh, OG.B1 ; wFE /1
+        opcode_DEC_GenInstr_105 db 3, OG.WB, 0FFh, OG.B1 ; o16 wFF /1
+        opcode_DEC_GenInstr_106 db 3, OG.WB, 0FFh, OG.B1 ; o16 wFF /1
+        opcode_DIV_GenInstr_107 db 3, OG.WB, 0F6h, OG.B6 ; wF6 /6
+        opcode_DIV_GenInstr_108 db 3, OG.WB, 0F6h, OG.B6 ; wF6 /6
+        opcode_DIV_GenInstr_109 db 3, OG.WB, 0F7h, OG.B6 ; o16 wF7 /6
+        opcode_DIV_GenInstr_110 db 3, OG.WB, 0F7h, OG.B6 ; o16 wF7 /6
+        opcode_HLT_GenInstr_111 db 2, OG.WB, 0F4h ; wF4
+        opcode_IDIV_GenInstr_112 db 3, OG.WB, 0F6h, OG.B7 ; wF6 /7
+        opcode_IDIV_GenInstr_113 db 3, OG.WB, 0F6h, OG.B7 ; wF6 /7
+        opcode_IDIV_GenInstr_114 db 3, OG.WB, 0F7h, OG.B7 ; o16 wF7 /7
+        opcode_IDIV_GenInstr_115 db 3, OG.WB, 0F7h, OG.B7 ; o16 wF7 /7
+        opcode_IMUL_GenInstr_116 db 3, OG.WB, 0F6h, OG.B5 ; wF6 /5
+        opcode_IMUL_GenInstr_117 db 3, OG.WB, 0F6h, OG.B5 ; wF6 /5
+        opcode_IMUL_GenInstr_118 db 3, OG.WB, 0F7h, OG.B5 ; o16 wF7 /5
+        opcode_IMUL_GenInstr_119 db 3, OG.WB, 0F7h, OG.B5 ; o16 wF7 /5
+
+
+        opcode_IN_GenInstr_120 db 3, OG.WB, 0E4h, OG.IB ; wE4 ib amb1AL ************** TODO implement amb1 and amb2
+
+;;;;;        opcode_IN_GenInstr_121 db 3, OG.WB, 0E5h, OG.IB, *********************************** 
+        opcode_IN_GenInstr_121 db 0, 0  
+
+;;;;;        opcode_IN_GenInstr_122 db 2, OG.WB, 0ECh, ************************************************************************ 
+        opcode_IN_GenInstr_122 db 0, 0  
+
+;;;;;        opcode_IN_GenInstr_123 db 2, OG.WB, 0EDh, ************************************************************************ 
+        opcode_IN_GenInstr_123 db 0, 0  
+
+
+        opcode_INC_GenInstr_124 db 2, OG.PLUS_R, 040h ; o16 40+r
+        opcode_INC_GenInstr_125 db 3, OG.WB, 0FEh, OG.B0 ; wFE /0
+        opcode_INC_GenInstr_126 db 3, OG.WB, 0FEh, OG.B0 ; wFE /0
+        opcode_INC_GenInstr_127 db 3, OG.WB, 0FFh, OG.B0 ; o16 wFF /0
+        opcode_INC_GenInstr_128 db 3, OG.WB, 0FFh, OG.B0 ; o16 wFF /0
+        opcode_INT_GenInstr_129 db 3, OG.WB, 0CDh, OG.IB ; wCD ib
+        opcode_INT3_GenInstr_130 db 2, OG.WB, 0CCh ; wCC
+        opcode_INTO_GenInstr_131 db 2, OG.WB, 0CEh ; wCE
+        opcode_IRET_GenInstr_132 db 2, OG.WB, 0CFh ; wCF
+        opcode_IRETW_GenInstr_133 db 2, OG.WB, 0CFh ; o16 wCF
+        opcode_JCXZ_GenInstr_134 db 3, OG.WB, 0E3h, OG.RB ; o16 wE3 rb
+        opcode_JMP_GenInstr_135 db 3, OG.WB, 0E9h, OG.RW ; wE9 rw
+        opcode_JMP_GenInstr_136 db 3, OG.WB, 0E9h, OG.RW ; wE9 rw
+        opcode_JMP_GenInstr_137 db 3, OG.WB, 0E9h, OG.RW ; wE9 rw
+        opcode_JMP_GenInstr_138 db 3, OG.WB, 0EBh, OG.RB ; wEB rb
+        opcode_JMP_GenInstr_139 db 4, OG.WB, 0EAh, OG.IW, OG.IW ; o16 wEA iw iw
+        opcode_JMP_GenInstr_140 db 4, OG.WB, 0EAh, OG.IW, OG.IW ; o16 wEA iw iw
+        opcode_JMP_GenInstr_141 db 4, OG.WB, 0EAh, OG.IW, OG.IW ; o16 wEA iw iw
+        opcode_JMP_GenInstr_142 db 4, OG.WB, 0EAh, OG.IW, OG.IW ; o16 wEA iw iw
+        opcode_JMP_GenInstr_143 db 3, OG.WB, 0FFh, OG.B5 ; o16 wFF /5
+        opcode_JMP_GenInstr_144 db 3, OG.WB, 0FFh, OG.B4 ; o16 wFF /4
+        opcode_JMP_GenInstr_145 db 3, OG.WB, 0FFh, OG.B4 ; o16 wFF /4
+
+
+        opcode_JO_GenInstr_146 db 3, OG.WB, 070h, OG.RB ; w70 rb
+        opcode_JNO_GenInstr_147 db 3, OG.WB, 071h, OG.RB ; w71 rb
+        opcode_JB_GenInstr_148 db 3, OG.WB, 072h, OG.RB ; w72 rb
+        opcode_JC_GenInstr_149 db 3, OG.WB, 072h, OG.RB ; w72 rb
+        opcode_JNAE_GenInstr_150 db 3, OG.WB, 072h, OG.RB ; w72 rb
+        opcode_JAE_GenInstr_151 db 3, OG.WB, 073h, OG.RB ; w73 rb
+        opcode_JNB_GenInstr_152 db 3, OG.WB, 073h, OG.RB ; w73 rb
+        opcode_JNC_GenInstr_153 db 3, OG.WB, 073h, OG.RB ; w73 rb
+        opcode_JE_GenInstr_154 db 3, OG.WB, 074h, OG.RB ; w74 rb
+        opcode_JZ_GenInstr_155 db 3, OG.WB, 074h, OG.RB ; w74 rb
+        opcode_JNE_GenInstr_156 db 3, OG.WB, 075h, OG.RB ; w75 rb
+        opcode_JNZ_GenInstr_157 db 3, OG.WB, 075h, OG.RB ; w75 rb
+        opcode_JBE_GenInstr_158 db 3, OG.WB, 076h, OG.RB ; w76 rb
+        opcode_JNA_GenInstr_159 db 3, OG.WB, 076h, OG.RB ; w76 rb
+        opcode_JA_GenInstr_160 db 3, OG.WB, 077h, OG.RB ; w77 rb
+        opcode_JNBE_GenInstr_161 db 3, OG.WB, 077h, OG.RB ; w77 rb
+        opcode_JS_GenInstr_162 db 3, OG.WB, 078h, OG.RB ; w78 rb
+        opcode_JNS_GenInstr_163 db 3, OG.WB, 079h, OG.RB ; w79 rb
+        opcode_JP_GenInstr_164 db 3, OG.WB, 07Ah, OG.RB ; w7A rb
+        opcode_JPE_GenInstr_165 db 3, OG.WB, 07Ah, OG.RB ; w7A rb
+        opcode_JNP_GenInstr_166 db 3, OG.WB, 07Bh, OG.RB ; w7B rb
+        opcode_JPO_GenInstr_167 db 3, OG.WB, 07Bh, OG.RB ; w7B rb
+        opcode_JL_GenInstr_168 db 3, OG.WB, 07Ch, OG.RB ; w7C rb
+        opcode_JNGE_GenInstr_169 db 3, OG.WB, 07Ch, OG.RB ; w7C rb
+        opcode_JGE_GenInstr_170 db 3, OG.WB, 07Dh, OG.RB ; w7D rb
+        opcode_JNL_GenInstr_171 db 3, OG.WB, 07Dh, OG.RB ; w7D rb
+        opcode_JLE_GenInstr_172 db 3, OG.WB, 07Eh, OG.RB ; w7E rb
+        opcode_JNG_GenInstr_173 db 3, OG.WB, 07Eh, OG.RB ; w7E rb
+        opcode_JG_GenInstr_174 db 3, OG.WB, 07Fh, OG.RB ; w7F rb
+        opcode_JNLE_GenInstr_175 db 3, OG.WB, 07Fh, OG.RB ; w7F rb
+
+
+        opcode_LAHF_GenInstr_176 db 2, OG.WB, 09Fh ; w9F
+        opcode_LDS_GenInstr_177 db 3, OG.WB, 0C5h, OG.BR ; o16 wC5 /r
+        opcode_LES_GenInstr_178 db 3, OG.WB, 0C4h, OG.BR ; o16 wC4 /r
+        opcode_LEA_GenInstr_179 db 3, OG.WB, 08Dh, OG.BR ; o16 w8D /r
+        opcode_LODSB_GenInstr_180 db 2, OG.WB, 0ACh ; wAC
+        opcode_LODSW_GenInstr_181 db 2, OG.WB, 0ADh ; o16 wAD
+        opcode_LOOP_GenInstr_182 db 3, OG.WB, 0E2h, OG.RB ; wE2 rb
+;;;;;        opcode_LOOP_GenInstr_183 db 3, OG.WB, 0E2h, OG.RB, *********************************** 
+        opcode_LOOP_GenInstr_183 db 0, 0  
+
+        opcode_LOOPE_GenInstr_184 db 3, OG.WB, 0E1h, OG.RB ; wE1 rb
+;;;;;        opcode_LOOPE_GenInstr_185 db 3, OG.WB, 0E1h, OG.RB, *********************************** 
+        opcode_LOOPE_GenInstr_185 db 0, 0  
+
+        opcode_LOOPZ_GenInstr_186 db 3, OG.WB, 0E1h, OG.RB ; wE1 rb
+;;;;;        opcode_LOOPZ_GenInstr_187 db 3, OG.WB, 0E1h, OG.RB, *********************************** 
+        opcode_LOOPZ_GenInstr_187 db 0, 0  
+
+        opcode_LOOPNE_GenInstr_188 db 3, OG.WB, 0E0h, OG.RB ; wE0 rb
+;;;;;        opcode_LOOPNE_GenInstr_189 db 3, OG.WB, 0E0h, OG.RB, *********************************** 
+        opcode_LOOPNE_GenInstr_189 db 0, 0  
+
+        opcode_LOOPNZ_GenInstr_190 db 3, OG.WB, 0E0h, OG.RB ; wE0 rb
+;;;;;        opcode_LOOPNZ_GenInstr_191 db 3, OG.WB, 0E0h, OG.RB, *********************************** 
+        opcode_LOOPNZ_GenInstr_191 db 0, 0  
+
+        opcode_MOV_GenInstr_192 db 3, OG.WB, 088h, OG.RM1 ; w88 /r1
+        opcode_MOV_GenInstr_193 db 3, OG.WB, 088h, OG.RM1 ; w88 /r1
+        opcode_MOV_GenInstr_194 db 3, OG.WB, 089h, OG.RM1 ; o16 w89 /r1
+        opcode_MOV_GenInstr_195 db 3, OG.WB, 089h, OG.RM1 ; o16 w89 /r1
+        opcode_MOV_GenInstr_196 db 3, OG.WB, 08Ah, OG.RM2 ; w8A /r2
+        opcode_MOV_GenInstr_197 db 3, OG.WB, 08Ah, OG.RM2 ; w8A /r2
+        opcode_MOV_GenInstr_198 db 3, OG.WB, 08Bh, OG.RM2 ; o16 w8B /r2
+        opcode_MOV_GenInstr_199 db 3, OG.WB, 08Bh, OG.RM2 ; o16 w8B /r2
+        opcode_MOV_GenInstr_200 db 3, OG.PLUS_R, 0B0h, OG.IB ; B0+r ib
+        opcode_MOV_GenInstr_201 db 3, OG.PLUS_R, 0B8h, OG.IW ; o16 B8+r iw
+
+        opcode_MOV_GenInstr_202 db 3, OG.PLUS_R, 0B8h, OG.GBIW ; o16 B8+r gbiw ; OK
+
+        opcode_MOV_GenInstr_203 db 4, OG.WB, 0C6h, OG.B0, OG.IB ; wC6 /0 ib
+        opcode_MOV_GenInstr_204 db 4, OG.WB, 0C6h, OG.B0, OG.IB ; wC6 /0 ib
+        opcode_MOV_GenInstr_205 db 4, OG.WB, 0C7h, OG.B0, OG.IW ; o16 wC7 /0 iw
+        opcode_MOV_GenInstr_206 db 4, OG.WB, 0C7h, OG.B0, OG.IW ; o16 wC7 /0 iw
+        opcode_MOV_GenInstr_207 db 4, OG.WB, 0C7h, OG.B0, OG.IW ; o16 wC7 /0 iw
+        opcode_MOV_GenInstr_208 db 4, OG.WB, 0C7h, OG.B0, OG.IW ; o16 wC7 /0 iw
+;;;;;        opcode_MOV_GenInstr_209 db 3, OG.WB, 0A0h, OG.OW, *********************************** 
+        opcode_MOV_GenInstr_209 db 0, 0  
+
+;;;;;        opcode_MOV_GenInstr_210 db 3, OG.WB, 0A1h, OG.OW, *********************************** 
+        opcode_MOV_GenInstr_210 db 0, 0  
+
+;;;;;        opcode_MOV_GenInstr_211 db 3, OG.WB, 0A2h, OG.OW, *********************************** 
+        opcode_MOV_GenInstr_211 db 0, 0  
+
+;;;;;        opcode_MOV_GenInstr_212 db 3, OG.WB, 0A3h, OG.OW, *********************************** 
+        opcode_MOV_GenInstr_212 db 0, 0  
+
+        opcode_MOV_GenInstr_213 db 3, OG.WB, 08Ch, OG.RM1 ; o16 w8C /r1
+        opcode_MOV_GenInstr_214 db 3, OG.WB, 08Ch, OG.RM1 ; o16 w8C /r1
+        opcode_MOV_GenInstr_215 db 3, OG.WB, 08Eh, OG.RM2 ; o16 w8E /r2
+        opcode_MOV_GenInstr_216 db 3, OG.WB, 08Eh, OG.RM2 ; o16 w8E /r2
+        opcode_MOVSB_GenInstr_217 db 2, OG.WB, 0A4h ; wA4
+        opcode_MOVSW_GenInstr_218 db 2, OG.WB, 0A5h ; o16 wA5
+        opcode_MUL_GenInstr_219 db 3, OG.WB, 0F6h, OG.B4 ; wF6 /4
+        opcode_MUL_GenInstr_220 db 3, OG.WB, 0F6h, OG.B4 ; wF6 /4
+        opcode_MUL_GenInstr_221 db 3, OG.WB, 0F7h, OG.B4 ; o16 wF7 /4
+        opcode_MUL_GenInstr_222 db 3, OG.WB, 0F7h, OG.B4 ; o16 wF7 /4
+        opcode_NEG_GenInstr_223 db 3, OG.WB, 0F6h, OG.B3 ; wF6 /3
+        opcode_NEG_GenInstr_224 db 3, OG.WB, 0F6h, OG.B3 ; wF6 /3
+        opcode_NEG_GenInstr_225 db 3, OG.WB, 0F7h, OG.B3 ; o16 wF7 /3
+        opcode_NEG_GenInstr_226 db 3, OG.WB, 0F7h, OG.B3 ; o16 wF7 /3
+        opcode_NOT_GenInstr_227 db 3, OG.WB, 0F6h, OG.B2 ; wF6 /2
+        opcode_NOT_GenInstr_228 db 3, OG.WB, 0F6h, OG.B2 ; wF6 /2
+        opcode_NOT_GenInstr_229 db 3, OG.WB, 0F7h, OG.B2 ; o16 wF7 /2
+        opcode_NOT_GenInstr_230 db 3, OG.WB, 0F7h, OG.B2 ; o16 wF7 /2
+        opcode_NOP_GenInstr_231 db 2, OG.WB, 090h ; w90
+        opcode_OR_GenInstr_232 db 3, OG.WB, 008h, OG.RM1 ; w08 /r1
+        opcode_OR_GenInstr_233 db 3, OG.WB, 008h, OG.RM1 ; w08 /r1
+        opcode_OR_GenInstr_234 db 3, OG.WB, 009h, OG.RM1 ; o16 w09 /r1
+        opcode_OR_GenInstr_235 db 3, OG.WB, 009h, OG.RM1 ; o16 w09 /r1
+        opcode_OR_GenInstr_236 db 3, OG.WB, 00Ah, OG.RM2 ; w0A /r2
+        opcode_OR_GenInstr_237 db 3, OG.WB, 00Ah, OG.RM2 ; w0A /r2
+        opcode_OR_GenInstr_238 db 3, OG.WB, 00Bh, OG.RM2 ; o16 w0B /r2
+        opcode_OR_GenInstr_239 db 3, OG.WB, 00Bh, OG.RM2 ; o16 w0B /r2
+        opcode_OR_GenInstr_240 db 4, OG.WB, 080h, OG.B1, OG.IB ; w80 /1 ib
+        opcode_OR_GenInstr_241 db 4, OG.WB, 080h, OG.B1, OG.IB ; w80 /1 ib
+        opcode_OR_GenInstr_242 db 4, OG.WB, 081h, OG.B1, OG.IW ; o16 w81 /1 iw
+        opcode_OR_GenInstr_243 db 4, OG.WB, 081h, OG.B1, OG.IW ; o16 w81 /1 iw
+        opcode_OR_GenInstr_244 db 4, OG.WB, 081h, OG.B1, OG.IW ; o16 w81 /1 iw
+        opcode_OR_GenInstr_245 db 4, OG.WB, 081h, OG.B1, OG.IW ; o16 w81 /1 iw
+        opcode_OR_GenInstr_246 db 4, OG.WB, 083h, OG.B1, OG.IB ; o16 w83 /1 ib
+        opcode_OR_GenInstr_247 db 4, OG.WB, 083h, OG.B1, OG.IB ; o16 w83 /1 ib
+;;;;;        opcode_OR_GenInstr_248 db 3, OG.WB, 00Ch, OG.IB, *********************************** 
+        opcode_OR_GenInstr_248 db 0, 0  
+
+;;;;;        opcode_OR_GenInstr_249 db 3, OG.WB, 00Dh, OG.IW, *********************************** 
+        opcode_OR_GenInstr_249 db 0, 0  
+
+;;;;;        opcode_OR_GenInstr_250 db 3, OG.WB, 00Dh, OG.IW, *********************************** 
+        opcode_OR_GenInstr_250 db 0, 0  
+
+;;;;;        opcode_OUT_GenInstr_251 db 3, OG.WB, 0E6h, OG.IB, *********************************** 
+        opcode_OUT_GenInstr_251 db 0, 0  
+
+;;;;;        opcode_OUT_GenInstr_252 db 3, OG.WB, 0E7h, OG.IB, *********************************** 
+        opcode_OUT_GenInstr_252 db 0, 0  
+
+;;;;;        opcode_OUT_GenInstr_253 db 2, OG.WB, 0EEh, ************************************************************************ 
+        opcode_OUT_GenInstr_253 db 0, 0  
+
+;;;;;        opcode_OUT_GenInstr_254 db 2, OG.WB, 0EFh, ************************************************************************ 
+        opcode_OUT_GenInstr_254 db 0, 0  
+
+        opcode_POP_GenInstr_255 db 2, OG.PLUS_R, 058h ; o16 58+r
+        opcode_POP_GenInstr_256 db 3, OG.WB, 08Fh, OG.B0 ; o16 w8F /0
+        opcode_POP_GenInstr_257 db 3, OG.WB, 08Fh, OG.B0 ; o16 w8F /0
+;;;;;        opcode_POP_GenInstr_258 db 2, OG.WB, 01Fh, *********************************** 
+        opcode_POP_GenInstr_258 db 0, 0  
+
+;;;;;        opcode_POP_GenInstr_259 db 2, OG.WB, 007h, *********************************** 
+        opcode_POP_GenInstr_259 db 0, 0  
+
+;;;;;        opcode_POP_GenInstr_260 db 2, OG.WB, 017h, *********************************** 
+        opcode_POP_GenInstr_260 db 0, 0  
+
+        opcode_PUSH_GenInstr_261 db 2, OG.PLUS_R, 050h ; o16 50+r
+        opcode_PUSH_GenInstr_262 db 3, OG.WB, 0FFh, OG.B6 ; o16 wFF /6
+        opcode_PUSH_GenInstr_263 db 3, OG.WB, 0FFh, OG.B6 ; o16 wFF /6
+;;;;;        opcode_PUSH_GenInstr_264 db 2, OG.WB, 00Eh, *********************************** 
+        opcode_PUSH_GenInstr_264 db 0, 0  
+
+;;;;;        opcode_PUSH_GenInstr_265 db 2, OG.WB, 01Eh, *********************************** 
+        opcode_PUSH_GenInstr_265 db 0, 0  
+
+;;;;;        opcode_PUSH_GenInstr_266 db 2, OG.WB, 006h, *********************************** 
+        opcode_PUSH_GenInstr_266 db 0, 0  
+
+;;;;;        opcode_PUSH_GenInstr_267 db 2, OG.WB, 016h, *********************************** 
+        opcode_PUSH_GenInstr_267 db 0, 0  
+
+        opcode_RCL_GenInstr_268 db 3, OG.WB, 0D0h, OG.B2 ; wD0 /2
+        opcode_RCL_GenInstr_269 db 3, OG.WB, 0D0h, OG.B2 ; wD0 /2
+;;;;;        opcode_Rreg8_GenInstr_270 db 3, OG.WB, 0D2h, OG.B2, *********************************** 
+        opcode_Rreg8_GenInstr_270 db 0, 0  
+
+;;;;;        opcode_Rreg8_GenInstr_271 db 3, OG.WB, 0D2h, OG.B2, *********************************** 
+        opcode_Rreg8_GenInstr_271 db 0, 0  
+
+        opcode_RCL_GenInstr_272 db 3, OG.WB, 0D1h, OG.B2 ; o16 wD1 /2
+        opcode_RCL_GenInstr_273 db 3, OG.WB, 0D1h, OG.B2 ; o16 wD1 /2
+;;;;;        opcode_Rreg8_GenInstr_274 db 3, OG.WB, 0D3h, OG.B2, *********************************** 
+        opcode_Rreg8_GenInstr_274 db 0, 0  
+
+;;;;;        opcode_Rreg8_GenInstr_275 db 3, OG.WB, 0D3h, OG.B2, *********************************** 
+        opcode_Rreg8_GenInstr_275 db 0, 0  
+
+        opcode_RCR_GenInstr_276 db 3, OG.WB, 0D0h, OG.B3 ; wD0 /3
+        opcode_RCR_GenInstr_277 db 3, OG.WB, 0D0h, OG.B3 ; wD0 /3
+;;;;;        opcode_RCR_GenInstr_278 db 3, OG.WB, 0D2h, OG.B3, *********************************** 
+        opcode_RCR_GenInstr_278 db 0, 0  
+
+;;;;;        opcode_RCR_GenInstr_279 db 3, OG.WB, 0D2h, OG.B3, *********************************** 
+        opcode_RCR_GenInstr_279 db 0, 0  
+
+        opcode_RCR_GenInstr_280 db 3, OG.WB, 0D1h, OG.B3 ; o16 wD1 /3
+        opcode_RCR_GenInstr_281 db 3, OG.WB, 0D1h, OG.B3 ; o16 wD1 /3
+;;;;;        opcode_RCR_GenInstr_282 db 3, OG.WB, 0D3h, OG.B3, *********************************** 
+        opcode_RCR_GenInstr_282 db 0, 0  
+
+;;;;;        opcode_RCR_GenInstr_283 db 3, OG.WB, 0D3h, OG.B3, *********************************** 
+        opcode_RCR_GenInstr_283 db 0, 0  
+
+        opcode_RET_GenInstr_284 db 2, OG.WB, 0C3h ; wC3
+        opcode_RET_GenInstr_285 db 3, OG.WB, 0C2h, OG.IW ; wC2 iw
+        opcode_RET_GenInstr_286 db 3, OG.WB, 0C2h, OG.IW ; wC2 iw
+        opcode_RETF_GenInstr_287 db 2, OG.WB, 0CBh ; wCB
+        opcode_RETF_GenInstr_288 db 3, OG.WB, 0CAh, OG.IW ; wCA iw
+        opcode_RETF_GenInstr_289 db 3, OG.WB, 0CAh, OG.IW ; wCA iw
+        opcode_RETN_GenInstr_290 db 2, OG.WB, 0C3h ; wC3
+        opcode_RETN_GenInstr_291 db 3, OG.WB, 0C2h, OG.IW ; wC2 iw
+        opcode_RETN_GenInstr_292 db 3, OG.WB, 0C2h, OG.IW ; wC2 iw
+        opcode_ROL_GenInstr_293 db 3, OG.WB, 0D0h, OG.B0 ; wD0 /0
+        opcode_ROL_GenInstr_294 db 3, OG.WB, 0D0h, OG.B0 ; wD0 /0
+;;;;;        opcode_ROL_GenInstr_295 db 3, OG.WB, 0D2h, OG.B0, *********************************** 
+        opcode_ROL_GenInstr_295 db 0, 0  
+
+;;;;;        opcode_ROL_GenInstr_296 db 3, OG.WB, 0D2h, OG.B0, *********************************** 
+        opcode_ROL_GenInstr_296 db 0, 0  
+
+        opcode_ROL_GenInstr_297 db 3, OG.WB, 0D1h, OG.B0 ; o16 wD1 /0
+        opcode_ROL_GenInstr_298 db 3, OG.WB, 0D1h, OG.B0 ; o16 wD1 /0
+;;;;;        opcode_ROL_GenInstr_299 db 3, OG.WB, 0D3h, OG.B0, *********************************** 
+        opcode_ROL_GenInstr_299 db 0, 0  
+
+;;;;;        opcode_ROL_GenInstr_300 db 3, OG.WB, 0D3h, OG.B0, *********************************** 
+        opcode_ROL_GenInstr_300 db 0, 0  
+
+        opcode_ROR_GenInstr_301 db 3, OG.WB, 0D0h, OG.B1 ; wD0 /1
+        opcode_ROR_GenInstr_302 db 3, OG.WB, 0D0h, OG.B1 ; wD0 /1
+;;;;;        opcode_ROR_GenInstr_303 db 3, OG.WB, 0D2h, OG.B1, *********************************** 
+        opcode_ROR_GenInstr_303 db 0, 0  
+
+;;;;;        opcode_ROR_GenInstr_304 db 3, OG.WB, 0D2h, OG.B1, *********************************** 
+        opcode_ROR_GenInstr_304 db 0, 0  
+
+        opcode_ROR_GenInstr_305 db 3, OG.WB, 0D1h, OG.B1 ; o16 wD1 /1
+        opcode_ROR_GenInstr_306 db 3, OG.WB, 0D1h, OG.B1 ; o16 wD1 /1
+;;;;;        opcode_ROR_GenInstr_307 db 3, OG.WB, 0D3h, OG.B1, *********************************** 
+        opcode_ROR_GenInstr_307 db 0, 0  
+
+;;;;;        opcode_ROR_GenInstr_308 db 3, OG.WB, 0D3h, OG.B1, *********************************** 
+        opcode_ROR_GenInstr_308 db 0, 0  
+
+        opcode_SAHF_GenInstr_309 db 2, OG.WB, 09Eh ; w9E
+        opcode_SAL_GenInstr_310 db 3, OG.WB, 0D0h, OG.B4 ; wD0 /4
+        opcode_SAL_GenInstr_311 db 3, OG.WB, 0D0h, OG.B4 ; wD0 /4
+;;;;;        opcode_SAL_GenInstr_312 db 3, OG.WB, 0D2h, OG.B4, *********************************** 
+        opcode_SAL_GenInstr_312 db 0, 0  
+
+;;;;;        opcode_SAL_GenInstr_313 db 3, OG.WB, 0D2h, OG.B4, *********************************** 
+        opcode_SAL_GenInstr_313 db 0, 0  
+
+        opcode_SAL_GenInstr_314 db 3, OG.WB, 0D1h, OG.B4 ; o16 wD1 /4
+        opcode_SAL_GenInstr_315 db 3, OG.WB, 0D1h, OG.B4 ; o16 wD1 /4
+;;;;;        opcode_SAL_GenInstr_316 db 3, OG.WB, 0D3h, OG.B4, *********************************** 
+        opcode_SAL_GenInstr_316 db 0, 0  
+
+;;;;;        opcode_SAL_GenInstr_317 db 3, OG.WB, 0D3h, OG.B4, *********************************** 
+        opcode_SAL_GenInstr_317 db 0, 0  
+
+        opcode_SAR_GenInstr_318 db 3, OG.WB, 0D0h, OG.B0 ; wD0 /0
+        opcode_SAR_GenInstr_319 db 3, OG.WB, 0D0h, OG.B0 ; wD0 /0
+;;;;;        opcode_SAR_GenInstr_320 db 3, OG.WB, 0D2h, OG.B0, *********************************** 
+        opcode_SAR_GenInstr_320 db 0, 0  
+
+;;;;;        opcode_SAR_GenInstr_321 db 3, OG.WB, 0D2h, OG.B0, *********************************** 
+        opcode_SAR_GenInstr_321 db 0, 0  
+
+        opcode_SAR_GenInstr_322 db 3, OG.WB, 0D1h, OG.B0 ; o16 wD1 /0
+        opcode_SAR_GenInstr_323 db 3, OG.WB, 0D1h, OG.B0 ; o16 wD1 /0
+;;;;;        opcode_SAR_GenInstr_324 db 3, OG.WB, 0D3h, OG.B0, *********************************** 
+        opcode_SAR_GenInstr_324 db 0, 0  
+
+;;;;;        opcode_SAR_GenInstr_325 db 3, OG.WB, 0D3h, OG.B0, *********************************** 
+        opcode_SAR_GenInstr_325 db 0, 0  
+
+        opcode_SBB_GenInstr_326 db 3, OG.WB, 018h, OG.RM1 ; w18 /r1
+        opcode_SBB_GenInstr_327 db 3, OG.WB, 018h, OG.RM1 ; w18 /r1
+        opcode_SBB_GenInstr_328 db 3, OG.WB, 019h, OG.RM1 ; o16 w19 /r1
+        opcode_SBB_GenInstr_329 db 3, OG.WB, 019h, OG.RM1 ; o16 w19 /r1
+        opcode_SBB_GenInstr_330 db 3, OG.WB, 01Ah, OG.RM2 ; w1A /r2
+        opcode_SBB_GenInstr_331 db 3, OG.WB, 01Ah, OG.RM2 ; w1A /r2
+        opcode_SBB_GenInstr_332 db 3, OG.WB, 01Bh, OG.RM2 ; o16 w1B /r2
+        opcode_SBB_GenInstr_333 db 3, OG.WB, 01Bh, OG.RM2 ; o16 w1B /r2
+        opcode_SBB_GenInstr_334 db 4, OG.WB, 080h, OG.B3, OG.IB ; w80 /3 ib
+        opcode_SBB_GenInstr_335 db 4, OG.WB, 080h, OG.B3, OG.IB ; w80 /3 ib
+        opcode_SBB_GenInstr_336 db 4, OG.WB, 081h, OG.B3, OG.IW ; o16 w81 /3 iw
+        opcode_SBB_GenInstr_337 db 4, OG.WB, 081h, OG.B3, OG.IW ; o16 w81 /3 iw
+        opcode_SBB_GenInstr_338 db 4, OG.WB, 081h, OG.B3, OG.IW ; o16 w81 /3 iw
+        opcode_SBB_GenInstr_339 db 4, OG.WB, 081h, OG.B3, OG.IW ; o16 w81 /3 iw
+        opcode_SBB_GenInstr_340 db 4, OG.WB, 083h, OG.B3, OG.IB ; o16 w83 /3 ib
+        opcode_SBB_GenInstr_341 db 4, OG.WB, 083h, OG.B3, OG.IB ; o16 w83 /3 ib
+;;;;;        opcode_SBB_GenInstr_342 db 3, OG.WB, 01Ch, OG.IB, *********************************** 
+        opcode_SBB_GenInstr_342 db 0, 0  
+
+;;;;;        opcode_SBB_GenInstr_343 db 3, OG.WB, 01Dh, OG.IW, *********************************** 
+        opcode_SBB_GenInstr_343 db 0, 0  
+
+;;;;;        opcode_SBB_GenInstr_344 db 3, OG.WB, 01Dh, OG.IW, *********************************** 
+        opcode_SBB_GenInstr_344 db 0, 0  
+
+        opcode_SCASB_GenInstr_345 db 2, OG.WB, 0AEh ; wAE
+        opcode_SCASW_GenInstr_346 db 2, OG.WB, 0AFh ; o16 wAF
+        opcode_SHL_GenInstr_347 db 3, OG.WB, 0D0h, OG.B4 ; wD0 /4
+        opcode_SHL_GenInstr_348 db 3, OG.WB, 0D0h, OG.B4 ; wD0 /4
+;;;;;        opcode_SHL_GenInstr_349 db 3, OG.WB, 0D2h, OG.B4, *********************************** 
+        opcode_SHL_GenInstr_349 db 0, 0  
+
+;;;;;        opcode_SHL_GenInstr_350 db 3, OG.WB, 0D2h, OG.B4, *********************************** 
+        opcode_SHL_GenInstr_350 db 0, 0  
+
+        opcode_SHL_GenInstr_351 db 3, OG.WB, 0D1h, OG.B4 ; o16 wD1 /4
+        opcode_SHL_GenInstr_352 db 3, OG.WB, 0D1h, OG.B4 ; o16 wD1 /4
+;;;;;        opcode_SHL_GenInstr_353 db 3, OG.WB, 0D3h, OG.B4, *********************************** 
+        opcode_SHL_GenInstr_353 db 0, 0  
+
+;;;;;        opcode_SHL_GenInstr_354 db 3, OG.WB, 0D3h, OG.B4, *********************************** 
+        opcode_SHL_GenInstr_354 db 0, 0  
+
+        opcode_SHR_GenInstr_355 db 3, OG.WB, 0D0h, OG.B5 ; wD0 /5
+        opcode_SHR_GenInstr_356 db 3, OG.WB, 0D0h, OG.B5 ; wD0 /5
+;;;;;        opcode_SHR_GenInstr_357 db 3, OG.WB, 0D2h, OG.B5, *********************************** 
+        opcode_SHR_GenInstr_357 db 0, 0  
+
+;;;;;        opcode_SHR_GenInstr_358 db 3, OG.WB, 0D2h, OG.B5, *********************************** 
+        opcode_SHR_GenInstr_358 db 0, 0  
+
+        opcode_SHR_GenInstr_359 db 3, OG.WB, 0D1h, OG.B5 ; o16 wD1 /5
+        opcode_SHR_GenInstr_360 db 3, OG.WB, 0D1h, OG.B5 ; o16 wD1 /5
+;;;;;        opcode_SHR_GenInstr_361 db 3, OG.WB, 0D3h, OG.B5, *********************************** 
+        opcode_SHR_GenInstr_361 db 0, 0  
+
+;;;;;        opcode_SHR_GenInstr_362 db 3, OG.WB, 0D3h, OG.B5, *********************************** 
+        opcode_SHR_GenInstr_362 db 0, 0  
+
+        opcode_STC_GenInstr_363 db 2, OG.WB, 0F9h ; wF9
+        opcode_STD_GenInstr_364 db 2, OG.WB, 0FDh ; wFD
+        opcode_STI_GenInstr_365 db 2, OG.WB, 0FBh ; wFB
+        opcode_STOSB_GenInstr_366 db 2, OG.WB, 0AAh ; wAA
+        opcode_STOSW_GenInstr_367 db 2, OG.WB, 0ABh ; o16 wAB
+        opcode_SUB_GenInstr_368 db 3, OG.WB, 028h, OG.RM1 ; w28 /r1
+        opcode_SUB_GenInstr_369 db 3, OG.WB, 028h, OG.RM1 ; w28 /r1
+        opcode_SUB_GenInstr_370 db 3, OG.WB, 029h, OG.RM1 ; o16 w29 /r1
+        opcode_SUB_GenInstr_371 db 3, OG.WB, 029h, OG.RM1 ; o16 w29 /r1
+        opcode_SUB_GenInstr_372 db 3, OG.WB, 02Ah, OG.RM2 ; w2A /r2
+        opcode_SUB_GenInstr_373 db 3, OG.WB, 02Ah, OG.RM2 ; w2A /r2
+        opcode_SUB_GenInstr_374 db 3, OG.WB, 02Bh, OG.RM2 ; o16 w2B /r2
+        opcode_SUB_GenInstr_375 db 3, OG.WB, 02Bh, OG.RM2 ; o16 w2B /r2
+        opcode_SUB_GenInstr_376 db 4, OG.WB, 080h, OG.B5, OG.IB ; w80 /5 ib
+        opcode_SUB_GenInstr_377 db 4, OG.WB, 080h, OG.B5, OG.IB ; w80 /5 ib
+        opcode_SUB_GenInstr_378 db 4, OG.WB, 081h, OG.B5, OG.IW ; o16 w81 /5 iw
+        opcode_SUB_GenInstr_379 db 4, OG.WB, 081h, OG.B5, OG.IW ; o16 w81 /5 iw
+        opcode_SUB_GenInstr_380 db 4, OG.WB, 081h, OG.B5, OG.IW ; o16 w81 /5 iw
+        opcode_SUB_GenInstr_381 db 4, OG.WB, 081h, OG.B5, OG.IW ; o16 w81 /5 iw
+        opcode_SUB_GenInstr_382 db 4, OG.WB, 083h, OG.B5, OG.IB ; o16 w83 /5 ib
+        opcode_SUB_GenInstr_383 db 4, OG.WB, 083h, OG.B5, OG.IB ; o16 w83 /5 ib
+;;;;;        opcode_SUB_GenInstr_384 db 3, OG.WB, 02Ch, OG.IB, *********************************** 
+        opcode_SUB_GenInstr_384 db 0, 0  
+
+;;;;;        opcode_SUB_GenInstr_385 db 3, OG.WB, 02Dh, OG.IW, *********************************** 
+        opcode_SUB_GenInstr_385 db 0, 0  
+
+;;;;;        opcode_SUB_GenInstr_386 db 3, OG.WB, 02Dh, OG.IW, *********************************** 
+        opcode_SUB_GenInstr_386 db 0, 0  
+
+        opcode_TEST_GenInstr_387 db 3, OG.WB, 084h, OG.RM1 ; w84 /r1
+        opcode_TEST_GenInstr_388 db 3, OG.WB, 084h, OG.RM1 ; w84 /r1
+        opcode_TEST_GenInstr_389 db 3, OG.WB, 085h, OG.RM1 ; o16 w85 /r1
+        opcode_TEST_GenInstr_390 db 3, OG.WB, 085h, OG.RM1 ; o16 w85 /r1
+        opcode_TEST_GenInstr_391 db 4, OG.WB, 0F6h, OG.B7, OG.IB ; wF6 /7 ib
+        opcode_TEST_GenInstr_392 db 4, OG.WB, 0F6h, OG.B7, OG.IB ; wF6 /7 ib
+        opcode_TEST_GenInstr_393 db 4, OG.WB, 0F7h, OG.B7, OG.IW ; o16 wF7 /7 iw
+        opcode_TEST_GenInstr_394 db 4, OG.WB, 0F7h, OG.B7, OG.IW ; o16 wF7 /7 iw
+        opcode_TEST_GenInstr_395 db 4, OG.WB, 0F7h, OG.B7, OG.IW ; o16 wF7 /7 iw
+        opcode_TEST_GenInstr_396 db 4, OG.WB, 0F7h, OG.B7, OG.IW ; o16 wF7 /7 iw
+;;;;;        opcode_TEST_GenInstr_397 db 3, OG.WB, 0A8h, OG.IB, *********************************** 
+        opcode_TEST_GenInstr_397 db 0, 0  
+
+;;;;;        opcode_TEST_GenInstr_398 db 3, OG.WB, 0A9h, OG.IW, *********************************** 
+        opcode_TEST_GenInstr_398 db 0, 0  
+
+;;;;;        opcode_TEST_GenInstr_399 db 3, OG.WB, 0A9h, OG.IW, *********************************** 
+        opcode_TEST_GenInstr_399 db 0, 0  
+
+        opcode_WAIT_GenInstr_400 db 2, OG.WB, 09Bh ; w9B
+        opcode_XCHG_GenInstr_401 db 3, OG.WB, 086h, OG.RM2 ; w86 /r2
+        opcode_XCHG_GenInstr_402 db 3, OG.WB, 086h, OG.RM2 ; w86 /r2
+        opcode_XCHG_GenInstr_403 db 3, OG.WB, 087h, OG.RM2 ; o16 w87 /r2
+        opcode_XCHG_GenInstr_404 db 3, OG.WB, 087h, OG.RM2 ; o16 w87 /r2
+        opcode_XCHG_GenInstr_405 db 3, OG.WB, 086h, OG.RM1 ; w86 /r1
+        opcode_XCHG_GenInstr_406 db 3, OG.WB, 086h, OG.RM1 ; w86 /r1
+        opcode_XCHG_GenInstr_407 db 3, OG.WB, 087h, OG.RM1 ; o16 w87 /r1
+        opcode_XCHG_GenInstr_408 db 3, OG.WB, 087h, OG.RM1 ; o16 w87 /r1
+;;;;;        opcode_XCHG_GenInstr_409 db 2, OG.PLUS_R, 090h, *********************************** 
+        opcode_XCHG_GenInstr_409 db 0, 0  
+
+;;;;;        opcode_XCHG_GenInstr_410 db 2, OG.PLUS_R, 090h, *********************************** 
+        opcode_XCHG_GenInstr_410 db 0, 0  
+
+        opcode_XLATB_GenInstr_411 db 2, OG.WB, 0D7h ; wD7
+        opcode_XOR_GenInstr_412 db 3, OG.WB, 030h, OG.RM1 ; w30 /r1
+        opcode_XOR_GenInstr_413 db 3, OG.WB, 030h, OG.RM1 ; w30 /r1
+        opcode_XOR_GenInstr_414 db 3, OG.WB, 031h, OG.RM1 ; o16 w31 /r1
+        opcode_XOR_GenInstr_415 db 3, OG.WB, 031h, OG.RM1 ; o16 w31 /r1
+        opcode_XOR_GenInstr_416 db 3, OG.WB, 032h, OG.RM2 ; w32 /r2
+        opcode_XOR_GenInstr_417 db 3, OG.WB, 032h, OG.RM2 ; w32 /r2
+        opcode_XOR_GenInstr_418 db 3, OG.WB, 033h, OG.RM2 ; o16 w33 /r2
+        opcode_XOR_GenInstr_419 db 3, OG.WB, 033h, OG.RM2 ; o16 w33 /r2
+        opcode_XOR_GenInstr_420 db 4, OG.WB, 080h, OG.B6, OG.IB ; w80 /6 ib
+        opcode_XOR_GenInstr_421 db 4, OG.WB, 080h, OG.B6, OG.IB ; w80 /6 ib
+        opcode_XOR_GenInstr_422 db 4, OG.WB, 081h, OG.B6, OG.IW ; o16 w81 /6 iw
+        opcode_XOR_GenInstr_423 db 4, OG.WB, 081h, OG.B6, OG.IW ; o16 w81 /6 iw
+        opcode_XOR_GenInstr_424 db 4, OG.WB, 081h, OG.B6, OG.IW ; o16 w81 /6 iw
+        opcode_XOR_GenInstr_425 db 4, OG.WB, 081h, OG.B6, OG.IW ; o16 w81 /6 iw
+        opcode_XOR_GenInstr_426 db 4, OG.WB, 083h, OG.B6, OG.IB ; o16 w83 /6 ib
+        opcode_XOR_GenInstr_427 db 4, OG.WB, 083h, OG.B6, OG.IB ; o16 w83 /6 ib
+;;;;;        opcode_XOR_GenInstr_428 db 3, OG.WB, 034h, OG.IB, *********************************** 
+        opcode_XOR_GenInstr_428 db 0, 0  
+
+;;;;;        opcode_XOR_GenInstr_429 db 3, OG.WB, 035h, OG.IW, *********************************** 
+        opcode_XOR_GenInstr_429 db 0, 0  
+
+;;;;;        opcode_XOR_GenInstr_430 db 3, OG.WB, 035h, OG.IW, *********************************** 
+        opcode_XOR_GenInstr_430 db 0, 0  
+
+        opcode_DB_GenInstr_431 db 1, OG.IB ; ib
+        opcode_DW_GenInstr_432 db 1, OG.IW ; iw
+        opcode_DW_GenInstr_433 db 1, OG.IW ; iw
+        opcode_DW_GenInstr_434 db 1, OG.IW ; iw
+        opcode_ORG_GenInstr_435 db 0, 0  ; org
+        opcode_ORG_GenInstr_436 db 0, 0  ; \n
+        opcode_ORG_GenInstr_437 db 0, 0  ; \n
+        opcode_BITS_GenInstr_438 db 0, 0  ; \n
+        opcode_BITS_GenInstr_439 db 0, 0  ; \n
+        opcode_BITS_GenInstr_440 db 0, 0  ; \n
 
 

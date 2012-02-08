@@ -98,7 +98,7 @@
 		; ax = memory address of opcode generation instructions
 		; bl = 0 - invalid instruction !
 		;      1 - success
-				mov	word [private.OpcodeGenerator.generationInstructionIndex], 0
+				mov	word [private.OpcodeGenerator.generationInstructionIndex], 1
 				mov	word [private.OpcodeGenerator.generationInstructionAddress], ax
 				call	private.OpcodeGenerator.debug.printIndex
 			.nextInstruction:
@@ -431,16 +431,25 @@
 		; al = next instruction
 		; bl = 0 - end of line
 		;      1 - success
+				push	cx
+
 				mov	si, [private.OpcodeGenerator.generationInstructionIndex]
 				mov	bx, [private.OpcodeGenerator.generationInstructionAddress]
-				mov	al, [bx + si]
-				cmp	al, 0
-				je	.endOfLine
+
+				mov	ch, 0
+				mov	cl, [bx] ; size of opcode generation array
+				cmp	si, cx
+				jg	.endOfLine
+
+				mov	al, [bx + si] ; next instruction
+
 				inc	word [private.OpcodeGenerator.generationInstructionIndex]
 			.success:
+				pop	cx
 				mov	bl, 1
 				ret
 			.endOfLine:
+				pop	cx
 				mov	bl, 0
 				ret
 
@@ -842,6 +851,7 @@
 				call	os_print_string
 
 				call	OpcodeGenerator.popRM ; cl=regindex
+
 				call	private.OpcodeGenerator.getNextInstruction ; al=next byte
 				add	al, cl
 				call	private.OpcodeGenerator.debug.printHexByte
