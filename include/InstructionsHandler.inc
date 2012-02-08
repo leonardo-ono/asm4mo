@@ -316,8 +316,10 @@
 		dw opcode_CBW_GenInstr_73
 		db  10, 0, 0, 0, 0 ; CWD 
 		dw opcode_CWD_GenInstr_74
+
 		db  11, 0, 0, 0, 0 ; CLC 
-		dw opcode_CLC_GenInstr_75
+		dw opcode_CLC_GenInstr_75 ; TESTED OK 08/02/2012 16:18
+
 		db  12, 0, 0, 0, 0 ; CLD 
 		dw opcode_CLD_GenInstr_76
 		db  13, 0, 0, 0, 0 ; CLI 
@@ -1193,7 +1195,9 @@
         opcode_CALL_GenInstr_72 db 3, OG.WB, 0FFh, OG.B2 ; o16 wFF /2
         opcode_CBW_GenInstr_73 db 2, OG.WB, 098h ; o16 w98
         opcode_CWD_GenInstr_74 db 2, OG.WB, 099h ; o16 w99
-        opcode_CLC_GenInstr_75 db 2, OG.WB, 0F8h ; wF8
+
+        opcode_CLC_GenInstr_75 db 2, OG.WB, 0F8h ; wF8 ; OK 08/02/2012 16:18
+
         opcode_CLD_GenInstr_76 db 2, OG.WB, 0FCh ; wFC
         opcode_CLI_GenInstr_77 db 2, OG.WB, 0FAh ; wFA
         opcode_CMC_GenInstr_78 db 2, OG.WB, 0F5h ; wF5
