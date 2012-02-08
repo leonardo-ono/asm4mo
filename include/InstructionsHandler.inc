@@ -930,8 +930,10 @@
 		dw opcode_SHR_GenInstr_361
 		db 101, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_REG8, 0 ; SHR mem , reg8 
 		dw opcode_SHR_GenInstr_362
+
 		db 102, 0, 0, 0, 0 ; STC 
-		dw opcode_STC_GenInstr_363
+		dw opcode_STC_GenInstr_363 ; TESTED OK 08/02/2012 16:10
+
 		db 103, 0, 0, 0, 0 ; STD 
 		dw opcode_STD_GenInstr_364
 		db 104, 0, 0, 0, 0 ; STI 
@@ -1092,13 +1094,13 @@
 
 ; --- Opcode generation instructions
 
-        opcode_AAA_GenInstr_1 db 2, OG.WB, 037h ; w37 ; -- OK
-        opcode_AAS_GenInstr_2 db 2, OG.WB, 03Fh ; w3F ; -- OK
-        opcode_AAD_GenInstr_3 db 4, OG.WB, 0D5h, OG.WB, 00Ah ; wD5 w0A ; --OK
+        opcode_AAA_GenInstr_1 db 2, OG.WB, 037h ; w37 ; -- OK 08/02/2012
+        opcode_AAS_GenInstr_2 db 2, OG.WB, 03Fh ; w3F ; -- OK 08/02/2012
+        opcode_AAD_GenInstr_3 db 4, OG.WB, 0D5h, OG.WB, 00Ah ; wD5 w0A ; --OK 08/02/2012
 
         opcode_AAD_GenInstr_4 db 3, OG.WB, 0D5h, OG.IB ; wD5 ib -- ---> NOT TESTED YET
 
-        opcode_AAM_GenInstr_5 db 4, OG.WB, 0D4h, OG.WB, 00Ah ; wD4 w0A ; --OK
+        opcode_AAM_GenInstr_5 db 4, OG.WB, 0D4h, OG.WB, 00Ah ; wD4 w0A ; --OK 08/02/2012
 
         opcode_AAM_GenInstr_6 db 3, OG.WB, 0D4h, OG.IB ; wD4 ib -- ---> NOT TESTED YET
 
@@ -1619,7 +1621,8 @@
 ;;;;;        opcode_SHR_GenInstr_362 db 3, OG.WB, 0D3h, OG.B5, *********************************** 
         opcode_SHR_GenInstr_362 db 0, 0  
 
-        opcode_STC_GenInstr_363 db 2, OG.WB, 0F9h ; wF9
+        opcode_STC_GenInstr_363 db 2, OG.WB, 0F9h ; wF9 ; -- OK 16/02/2012 16:10
+
         opcode_STD_GenInstr_364 db 2, OG.WB, 0FDh ; wFD
         opcode_STI_GenInstr_365 db 2, OG.WB, 0FBh ; wFB
         opcode_STOSB_GenInstr_366 db 2, OG.WB, 0AAh ; wAA
