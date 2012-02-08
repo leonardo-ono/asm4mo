@@ -1,0 +1,207 @@
+;===============================================================================
+; class Parser
+;===============================================================================
+
+	; includes -> needs "../../include/FileInputStream.inc"
+	;             needs "../../include/Token.inc"
+	;             needs "../../include/Character.inc"
+	; ----------------------------------------------------------------------
+
+	; public properties
+	; ----------------------------------------------------------------------
+	parser.file.name	db "________.___", 0
+
+	; public methods
+	; ----------------------------------------------------------------------
+
+		parser.setFileName:
+		; --------------------------------------------------------------
+		; si = memory location of file name string
+				mov	cx, 12
+				mov	di, parser.file.name
+			parser.setFileName.nextChar:
+				mov	al, [si]
+				mov	byte [di], al
+				inc	si
+				inc	di
+				loop	parser.setFileName.nextChar
+				mov	byte [di], 0
+				ret
+
+		parser.start:
+		; --------------------------------------------------------------
+		; ah = 0 - file not found
+		;      1 - success
+				mov	si, parser.file.name
+				call	fileInputStream.setFileName
+				call	fileInputStream.openFile
+				ret
+
+		parser.getNextToken:
+		; --------------------------------------------------------------
+		; ah = 0 - end of file
+		;      1 - ok
+				call	token.clear
+			parser.getNextToken.nextChar:
+				call	fileInputStream.seeNextChar ; al = next char
+				cmp	ah, 0
+				je	parser.getNextToken.endOfFile
+
+				call	private.parser.ignoreComment
+
+				call	private.parser.isPunctuation
+				cmp	ah, 1
+				je	parser.getNextToken.isPunctuation
+
+				call	fileInputStream.getNextChar
+
+				; call	private.parser.extractMem
+				; cmp	ah, 1
+				; je	parser.getNextToken.ok
+
+				call	private.parser.extractString
+				cmp	ah, 1
+				je	parser.getNextToken.ok
+
+				call	private.parser.isSeparator
+				cmp	ah, 1
+				je	parser.getNextToken.isSeparator
+
+				call	Character.toUpper
+				call	token.addChar
+				jmp	parser.getNextToken.nextChar
+			parser.getNextToken.isSeparator:
+				mov	ah, [token.index]
+				cmp	ah, 0
+				je	parser.getNextToken.nextChar
+				jmp	short parser.getNextToken.ok
+			parser.getNextToken.isPunctuation:
+				mov	ah, [token.index]
+				cmp	ah, 0
+				je	parser.getNextToken.addPonctuation
+				jmp	short parser.getNextToken.ok
+			parser.getNextToken.addPonctuation:
+				call	fileInputStream.getNextChar
+				call	token.addChar
+				jmp	short parser.getNextToken.ok
+			parser.getNextToken.ok:
+				call	token.classify
+				mov	ah, 1
+				ret
+			parser.getNextToken.endOfFile:
+				mov	ah, 0
+				ret
+
+	; private methods
+	; ----------------------------------------------------------------------
+
+		private.parser.extractMem:
+		; --------------------------------------------------------------
+		; ah = 1 - mem extracted
+		;      0 - not is mem
+		; IMPORTANT: fileInputStream.getNextChar must have already been called
+				cmp	al, '[' 
+				je	private.parser.extractMem.start
+			private.parser.extractMem.notIsMem:
+				mov	ah, 0
+				ret
+			private.parser.extractMem.start:
+				call	token.addChar
+			private.parser.extractMem.nextChar:
+				call	fileInputStream.getNextChar
+				call	token.addChar
+				cmp	al, ']'
+				je	private.parser.extractMem.ok
+				jmp	short private.parser.extractMem.nextChar
+			private.parser.extractMem.ok:
+				mov	ah, 1
+				ret
+
+		private.parser.extractString:
+		; --------------------------------------------------------------
+		; ah = 1 - string extracted
+		;      0 - not is string
+		; IMPORTANT: fileInputStream.getNextChar must have already been called
+				cmp	al, '"' 
+				je	private.parser.extractString.start
+				cmp	al, "'" 
+				je	private.parser.extractString.start
+			private.parser.extractString.notIsString:
+				mov	ah, 0
+				ret
+			private.parser.extractString.start:
+				mov	dl, al
+				call	token.addChar
+			private.parser.extractString.nextChar:
+				call	fileInputStream.getNextChar
+				call	token.addChar
+				cmp	al, dl
+				je	private.parser.extractString.ok
+				jmp	short private.parser.extractString.nextChar
+			private.parser.extractString.ok:
+				mov	ah, 1
+				ret
+
+		private.parser.ignoreComment:
+		; --------------------------------------------------------------
+		; IMPORTANT: fileInputStream.getNextChar must have NOT been called
+				cmp	al, ';'
+				je	private.parser.ignoreComment.nextChar
+				ret
+			private.parser.ignoreComment.nextChar:
+				call	fileInputStream.seeNextChar
+				cmp	al, 10 ; lf
+				je	private.parser.ignoreComment.ok
+				cmp	al, 13 ; lf
+				je	private.parser.ignoreComment.ok
+				call	fileInputStream.getNextChar
+				jmp	short private.parser.ignoreComment.nextChar
+			private.parser.ignoreComment.ok:
+				ret
+
+		private.parser.isSeparator:
+		; --------------------------------------------------------------
+		; al = ASCII char code
+		; ah = 0 - false 
+		;      1 - true
+				cmp	al, ' '
+				je	parser.isSeparator.true
+				cmp	al, 9 ; tab
+				je	parser.isSeparator.true
+			parser.isSeparator.false:
+				mov	ah, 0
+				ret
+			parser.isSeparator.true:
+				mov	ah, 1
+				ret
+
+		private.parser.isPunctuation:
+		; --------------------------------------------------------------
+		; al = ASCII char code
+		; ah = 0 - false 
+		;      1 - true
+				cmp	al, 10 ; lf
+				je	parser.isSeparator.true
+				cmp	al, 13 ; cr
+				je	parser.isSeparator.true
+				cmp	al, ','
+				jz	parser.isPunctuation.true
+				cmp	al, ';'
+				jz	parser.isPunctuation.true
+				cmp	al, '+'
+				jz	parser.isPunctuation.true
+				; cmp	al, '['
+				; jz	parser.isPunctuation.true
+				; cmp	al, ']'
+				; jz	parser.isPunctuation.true
+				cmp	al, ':'
+				jz	parser.isPunctuation.true
+			parser.isPunctuation.false:
+				mov	ah, 0
+				ret
+			parser.isPunctuation.true:
+				mov	ah, 1
+				ret
+
+;===============================================================================
+

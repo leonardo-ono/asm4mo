@@ -1,0 +1,233 @@
+;===============================================================================
+; class Token
+;===============================================================================
+
+	; includes ->	needs "../../include/Character.inc" 
+	;		needs "../../include/Keywords.inc"
+	; ----------------------------------------------------------------------
+
+	; public static constants
+	; ----------------------------------------------------------------------
+	Token.MAX_LENGTH		equ 32
+
+	Token.TYPE_INVALID		equ 0
+	Token.TYPE_INSTR		equ 1
+	Token.TYPE_REG8			equ 2
+	Token.TYPE_REG16		equ 3
+	Token.TYPE_REGSEG		equ 4
+	Token.TYPE_IMM8			equ 5
+	Token.TYPE_IMM16		equ 6
+	Token.TYPE_MEM			equ 7
+	Token.TYPE_RESERVED		equ 8
+	Token.TYPE_LABEL		equ 9
+	Token.TYPE_DOIS_PONTOS		equ 10
+	Token.TYPE_VIRGULA		equ 11
+	Token.TYPE_ABRE_COLCHETE	equ 12
+	Token.TYPE_FECHA_COLCHETE	equ 13
+	Token.TYPE_MAIS			equ 14
+	Token.TYPE_ASPAS		equ 15
+	Token.TYPE_APOSTROFE		equ 16
+	Token.TYPE_PONTO_VIRGULA	equ 17
+	Token.TYPE_STRING		equ 18
+	Token.TYPE_END_OF_LINE		equ 19
+	Token.TYPE_COMMENT		equ 20
+	Token.TYPE_ONE			equ 21
+	Token.TYPE_MEMOFFS8		equ 22
+	Token.TYPE_MEMOFFS16		equ 23
+	Token.TYPE_RESERVED_BYTE	equ 24
+	Token.TYPE_RESERVED_WORD	equ 25
+
+	; public properties
+	; ----------------------------------------------------------------------
+	token.id	db 0
+	token.type	db Token.TYPE_INVALID
+	token.index	db 0
+	token.handler	dw 0
+	token.value	times (Token.MAX_LENGTH + 1) db 0
+	token.iw	dw 0
+
+	; public methods
+	; ----------------------------------------------------------------------
+
+		token.clear:
+		; --------------------------------------------------------------
+				mov	byte [token.id], 0
+				mov	byte [token.type], Token.TYPE_INVALID
+				mov	byte [token.index], 0
+				mov	word [token.handler], 0
+				mov	cx, Token.MAX_LENGTH
+				mov	bx, token.value
+			token.clear.nextChar:
+				mov	byte [bx], 0
+				inc	bx
+				loop	token.clear.nextChar
+				ret
+
+		token.addChar:
+		; --------------------------------------------------------------
+		; al = ASCII char code to add
+				mov	si, token.value
+				mov	bh, 0
+				mov	bl, [token.index]
+				mov	byte [bx + si], al
+				inc	byte [token.index]
+				ret
+
+		token.classify:
+		; --------------------------------------------------------------
+		; ah = 0 - invalid token
+		;      1 - success
+				call	private.token.classifyKeyword
+				cmp	ah, 1
+				je	token.classify.success
+				call	private.token.classifyLabel
+				cmp	ah, 1
+				je	token.classify.success
+				call	private.token.classifyImm
+				cmp	ah, 1
+				je	token.classify.success
+				call	private.token.classifyString
+				cmp	ah, 1
+				je	token.classify.success
+				call	private.token.classifyMem
+				cmp	ah, 1
+				je	token.classify.success
+			token.classify.invalidToken:
+				mov	ah, 0
+				ret
+			token.classify.success:
+				mov	ah, 1
+				ret
+
+	; private methods
+	; ----------------------------------------------------------------------
+
+		private.token.classifyKeyword: 
+		; --------------------------------------------------------------
+		; Description: try to classify between instr, reg8, reg16, 
+                ;              regseg and punctuations.
+		; ah = 0 - not is keyword
+		;      1 - classified as keyword
+				mov	si, Keywords.list
+				mov	di, token.value
+			private.token.classifyKeyword.compareNext:
+				cmp	byte [si], 0
+				jz	private.token.classifyKeyword.false
+				call	os_string_compare
+				jc	private.token.classifyKeyword.true
+				add	si, Keywords.INSTR_LENGTH
+				jmp	private.token.classifyKeyword.compareNext
+			private.token.classifyKeyword.true:
+				mov	al, [si + 7]
+				mov	byte [token.id], al
+				mov	al, [si + 8]
+				mov	byte [token.type], al
+				mov	ax, [si + 9]
+				mov	word [token.handler], ax
+				mov	ah, 1
+				ret
+			private.token.classifyKeyword.false:
+				mov	ah, 0
+				ret
+
+		private.token.classifyLabel:
+		; --------------------------------------------------------------
+		; ah = 0 - not is label
+		;      1 - classified as label
+				mov	al, [token.value]
+				call	Character.isLetter
+				cmp	ah, 1
+				je	private.token.classifyLabel.true
+			private.token.classifyLabel.false:
+				mov	ah, 0
+				ret
+			private.token.classifyLabel.true:
+				mov	byte [token.id], 0
+				mov	byte [token.type], Token.TYPE_LABEL
+				mov	word [token.handler], DEFAULT_handler
+				mov	ah, 1
+				ret
+
+		private.token.classifyImm:
+		; --------------------------------------------------------------
+		; ah = 0 - not is imm
+		;      1 - classified as imm
+				mov	al, [token.value]
+				call	Character.isDigit
+				cmp	ah, 1
+				je	private.token.classifyImm.true
+			private.token.classifyImm.false:
+				mov	ah, 0
+				ret
+			private.token.classifyImm.true:
+				mov	si, token.value
+				call	os_print_string
+
+				mov	si, token.value
+				call	Imm.getValue
+				; call	os_string_to_int ; ax=number
+				mov	ax, dx
+				mov	word [token.iw], ax
+
+				cmp	ax, 255
+				ja	.isImm16
+			.isImm8:
+				mov	byte [token.id], Token.ID_IMM8
+				mov	byte [token.type], Token.TYPE_IMM8
+				mov	word [token.handler], DEFAULT_handler
+				jmp	.ok
+			.isImm16:
+				;call	os_int_to_string
+				;mov	si, ax
+				;call	os_print_string
+				;call	os_print_newline
+				;call	os_wait_for_key		
+
+				mov	byte [token.id], Token.ID_IMM16
+				mov	byte [token.type], Token.TYPE_IMM16
+				mov	word [token.handler], DEFAULT_handler
+				jmp	.ok
+			.ok:
+				mov	ah, 1
+				ret
+
+		; // TODO
+		private.token.classifyString:
+		; --------------------------------------------------------------
+		; ah = 0 - not is string
+		;      1 - classified as string
+				mov	al, [token.value]
+				cmp	al, '"'
+				je	private.token.classifyString.true
+				cmp	al, "'"
+				je	private.token.classifyString.true
+			private.token.classifyString.false:
+				mov	ah, 0
+				ret
+			private.token.classifyString.true:
+				mov	byte [token.id], Token.ID_STRING
+				mov	byte [token.type], Token.TYPE_STRING
+				mov	word [token.handler], DEFAULT_handler
+				mov	ah, 1
+				ret
+
+		; // TODO
+		private.token.classifyMem:
+		; --------------------------------------------------------------
+		; ah = 0 - not is mem
+		;      1 - classified as mem
+				mov	al, [token.value]
+				cmp	al, "["
+				je	private.token.classifyMem.true
+			private.token.classifyMem.false:
+				mov	ah, 0
+				ret
+			private.token.classifyMem.true:
+				mov	byte [token.id], Token.ID_MEM
+				mov	byte [token.type], Token.TYPE_MEM
+				mov	word [token.handler], DEFAULT_handler
+				mov	ah, 1
+				ret
+
+;===============================================================================
+

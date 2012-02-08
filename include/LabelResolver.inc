@@ -1,0 +1,319 @@
+;===============================================================================
+; class LabelResolver
+;
+; vai guardando todos os label (imm) que sao usados
+; como um dos operadores de uma instrucao
+;===============================================================================
+
+	; includes
+	; ----------------------------------------------------------------------
+
+	; public static constants
+	; ----------------------------------------------------------------------
+	LabelResolver:
+		.TYPE_IB	EQU 1
+		.TYPE_IW	EQU 2
+		.TYPE_RB	EQU 3
+		.TYPE_RW	EQU 4
+
+	; private static constants
+	; ----------------------------------------------------------------------
+
+		;                 0123456789012345678   
+		; mov ax, label > label________0aally  aa = address (offset) of label (org)
+		;                 1234567890123411212  ll = address where value must be corrected
+		;                                       t = type (r->relative i->immediate)
+
+		.LABEL_LENGTH		equ 32  ;  13 bytes for label + 1 byte (end of string) 
+						; + 1 byte for type (r->relative i->immediate)
+						; + 2 bytes for address (offset) of label (org)
+						; + 2 bytes for address where value must be corrected
+
+		.MAX_SIZE		equ 3200  ; allows max 100 labels
+
+
+	; public static methods
+	; ----------------------------------------------------------------------
+		.index			dw 0
+		.startMemoryAddress	dw 60335 ; 63935 (LabelHandler) - 3200
+
+		LabelResolver.add:
+		; --------------------------------------------------------------
+		; ax = pointer to label string
+		; dx = address (offset) of label (org)
+		; bx = address where value must be corrected
+		; cl = LabelResolver.TYPE_XX
+		;      
+		; si = 0 - stack overflow !
+		;      1 - ok
+		;      2 - label length too long
+				mov	word [.provBX], bx
+				mov	word [.provCX], cx
+				pusha
+				call	os_string_length
+				cmp	ax, (LabelResolver.LABEL_LENGTH-19)
+				popa
+				jg	.labelLengthTooLong
+				mov	si, ax
+				mov	ax, [LabelResolver.index]
+				cmp	ax, LabelResolver.MAX_SIZE
+				jge	.stackOverflow
+				mov	bx, [LabelResolver.startMemoryAddress]
+				mov	di, [LabelResolver.index]
+			.nextChar:
+				mov	al, [si]
+				mov	byte [bx + di], al
+				inc	si	
+				inc	di
+				inc	word [LabelResolver.index]
+				cmp	al, 0
+				je	.ok
+				jmp	.nextChar
+			.ok:
+				mov	cx, di
+				and	cx, 0fh
+				mov	ax, 14
+				sub	ax, cx
+				add	di, ax
+				mov	word [bx + di], dx
+				add	di, 2
+				mov	dx, [.provBX]
+				mov	word [bx + di], dx
+				add	di, 2
+				mov	dx, [.provCX]
+				mov	byte [bx + di], dl
+				add	di, 14
+
+				; debug
+				; mov	si, .here
+				; call	os_print_string
+				; mov	ax, di
+				; call	os_int_to_string
+				; mov	si, ax
+				; call	os_print_string
+				; call	os_print_newline
+
+				mov	word [LabelResolver.index], di
+				mov	si, 1
+				ret
+			.labelLengthTooLong:
+				mov	si, 2
+				ret
+			.stackOverflow:
+				mov	si, 0
+				ret
+			.provBX dw 0
+			.provCX dw 0
+			.here	db "----> here <-----", 0
+
+		LabelResolver.getOffset:
+		; --------------------------------------------------------------
+		; ax = pointer to label string
+		; ret dx = address (offset) of label (org)
+		;     bx = address where value must be corrected
+		;     cl = LabelResolver.TYPE_XX
+		;     si = 0 - label not found !
+		;          1 - ok
+				mov	si, ax
+				mov	di, [LabelResolver.startMemoryAddress]
+			.nextLabel:
+				mov	al, [di]
+				cmp	al, 0 ; end of list ?
+				je	.notFound
+				call	os_string_compare
+				jc	.found
+				add	di, LabelResolver.LABEL_LENGTH
+				jmp	.nextLabel
+			.found:
+				mov	dx, [di + 14]
+				mov	bx, [di + 16]
+				mov	cl, [di + 18]
+				mov	si, 1
+				ret
+			.notFound:
+				mov	si, 0
+				ret
+
+		LabelResolver.list:
+		; --------------------------------------------------------------
+				mov	di, [LabelResolver.startMemoryAddress]
+			.nextLabel:
+				mov	al, [di]
+				cmp	al, 0 ; end of list ?
+				je	.end
+
+				mov	si, .msg.labelEqual
+				call	os_print_string
+				mov	si, di
+				call	os_print_string
+
+				mov	si, .msg.offsetEqual
+				call	os_print_string
+				mov	ax, [di + 14]
+				call	os_int_to_string
+				mov	si, ax
+				call	os_print_string
+
+				mov	si, .msg.offsetToCorrectEqual
+				call	os_print_string
+				mov	ax, [di + 16]
+				call	os_int_to_string
+				mov	si, ax
+				call	os_print_string
+
+				mov	si, .msg.labelTypeEqual
+				call	os_print_string
+				mov	ah, 0
+				mov	al, [di + 18]
+				call	os_int_to_string
+				mov	si, ax
+				call	os_print_string
+
+				call	os_print_newline
+
+				add	di, LabelResolver.LABEL_LENGTH
+				jmp	.nextLabel
+			.end:
+				ret
+			.msg.labelEqual			db "label=", 0
+			.msg.offsetEqual		db " / offset=", 0
+			.msg.offsetToCorrectEqual	db " / offset to correct=", 0
+			.msg.labelTypeEqual		db " / type=", 0
+
+
+		LabelResolver.resolve:
+		; --------------------------------------------------------------
+		; ax = start memory location
+		; ah = 0 - label not declared !
+		;      1 - all labels resolved success
+				mov	word [.startMemoryLocation], ax
+				mov	di, [LabelResolver.startMemoryAddress]
+			.nextLabel:
+				mov	al, [di]
+				cmp	al, 0 ; end of list ?
+				je	.labelNotDeclared
+
+				mov	si, .msg.labelEqual
+				call	os_print_string
+				mov	si, di
+				call	os_print_string
+
+				; mov	si, .msg.offsetEqual
+				; call	os_print_string
+				; mov	ax, [di + 14]
+				; call	os_int_to_string
+				; mov	si, ax
+				; call	os_print_string
+
+				mov	si, .msg.offsetToCorrectEqual
+				call	os_print_string
+				mov	ax, [di + 16]
+				call	os_int_to_string
+				mov	si, ax
+				call	os_print_string
+
+				mov	si, .msg.labelTypeEqual
+				call	os_print_string
+				mov	ah, 0
+				mov	al, [di + 18]
+				call	os_int_to_string
+				mov	si, ax
+				call	os_print_string
+				call	os_print_newline
+
+				; ------------------------------------------ resolve start
+				mov	al, [di + 18]
+				cmp	al, LabelResolver.TYPE_IB
+				je	.resolve_TYPE_IB
+				cmp	al, LabelResolver.TYPE_IW
+				je	.resolve_TYPE_IW
+				cmp	al, LabelResolver.TYPE_RB
+				je	.resolve_TYPE_RB
+				cmp	al, LabelResolver.TYPE_RW
+				je	.resolve_TYPE_RW
+				jmp	.error
+
+			.resolve_TYPE_IB:
+
+				;// never will be this situation ?
+
+				jmp	short .resolved
+
+			.resolve_TYPE_IW:
+
+				; --- debug
+				;mov	si, Main.msg.here
+				;call	os_print_string
+				;call	os_print_newline
+
+				; ax = pointer to label string
+				; ret dx = offset
+				push	di
+				mov	ax, di
+				call	LabelHandler.getOffset
+
+				pop	di
+				mov	ax, [di + 16] ; offset to correct
+				mov	bx, [.startMemoryLocation]
+				add	bx, ax
+				mov	ax, [OpcodeGenerator.offset] ; org
+				add	dx, ax
+				mov	word [bx], dx
+
+				jmp	short .resolved
+
+			.resolve_TYPE_RB:
+
+				; ax = pointer to label string
+				; ret dx = offset
+				push	di
+				mov	ax, di
+				call	LabelHandler.getOffset
+
+				pop	di
+				mov	ax, [di + 16] ; offset to correct
+				add	ax, 1 ; +1 because 1 byte
+				sub	dx, ax ; dx = correct value
+
+				mov	ax, [di + 16] ; offset to correct
+				mov	bx, [.startMemoryLocation]
+				add	bx, ax
+				mov	byte [bx], dl
+
+				jmp	short .resolved
+
+			.resolve_TYPE_RW:
+
+				; ax = pointer to label string
+				; ret dx = offset
+				push	di
+				mov	ax, di
+				call	LabelHandler.getOffset
+
+				pop	di
+				mov	ax, [di + 16] ; offset to correct
+				add	ax, 2
+				sub	dx, ax ; dx = correct value
+
+				mov	ax, [di + 16] ; offset to correct
+				mov	bx, [.startMemoryLocation]
+				add	bx, ax
+				mov	word [bx], dx
+		
+				jmp	short .resolved
+
+			.resolved:
+				add	di, LabelResolver.LABEL_LENGTH
+				jmp	.nextLabel
+			.error:
+			.labelNotDeclared:
+				mov	ah, 0
+				ret
+			.startMemoryLocation		dw 0
+			.msg.labelEqual			db "resolving: label=", 0
+			.msg.offsetEqual		db " / offset=", 0
+			.msg.offsetToCorrectEqual	db " / offset to correct=", 0
+			.msg.labelTypeEqual		db " / type=", 0
+
+;===============================================================================
+
