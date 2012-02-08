@@ -155,7 +155,8 @@
 		dw opcode_AAA_GenInstr_1  ; TESTED OK 08/02/2012 14:06
 
 		db   2, 0, 0, 0, 0 ; AAS 
-		dw opcode_AAS_GenInstr_2
+		dw opcode_AAS_GenInstr_2  ; TESTED OK 08/02/2012 14:24
+
 		db   3, 0, 0, 0, 0 ; AAD 
 		dw opcode_AAD_GenInstr_3
 		db   3, Token.TYPE_IMM8, 0, 0, 0 ; AAD imm8 
@@ -1087,8 +1088,9 @@
 
 ; --- Opcode generation instructions
 
-        opcode_AAA_GenInstr_1 db 2, OG.WB, 037h ; w37
-        opcode_AAS_GenInstr_2 db 2, OG.WB, 03Fh ; w3F
+        opcode_AAA_GenInstr_1 db 2, OG.WB, 037h ; w37 ; -- OK
+        opcode_AAS_GenInstr_2 db 2, OG.WB, 03Fh ; w3F ; -- OK
+
         opcode_AAD_GenInstr_3 db 4, OG.WB, 0D5h, OG.WB, 00Ah ; wD5 w0A
         opcode_AAD_GenInstr_4 db 3, OG.WB, 0D5h, OG.IB ; wD5 ib
         opcode_AAM_GenInstr_5 db 4, OG.WB, 0D4h, OG.WB, 00Ah ; wD4 w0A
