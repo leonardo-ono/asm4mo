@@ -243,9 +243,15 @@
 		dw DEFAULT_handler
 
 		; BYTE and WORD reserved 
-		db "BYTE", 0, 0, 0, 130, Token.TYPE_RESERVED_BYTE
+		db "BYTE", 0, 0, 0,     130, Token.TYPE_RESERVED_BYTE
 		dw DEFAULT_handler
-		db "WORD", 0, 0, 0, 131, Token.TYPE_RESERVED_WORD
+		db "WORD", 0, 0, 0,     131, Token.TYPE_RESERVED_WORD
+		dw DEFAULT_handler
+
+		; SHORT and FAR reserved 
+		db "SHORT", 0, 0,       132, Token.TYPE_RESERVED_SHORT
+		dw DEFAULT_handler
+		db "FAR", 0, 0, 0, 0,   133, Token.TYPE_RESERVED_FAR
 		dw DEFAULT_handler
 
 		; Assembler instructions

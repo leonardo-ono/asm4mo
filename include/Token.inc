@@ -36,6 +36,8 @@
 	Token.TYPE_MEMOFFS16		equ 23
 	Token.TYPE_RESERVED_BYTE	equ 24
 	Token.TYPE_RESERVED_WORD	equ 25
+	Token.TYPE_RESERVED_SHORT	equ 26
+	Token.TYPE_RESERVED_FAR		equ 27
 
 	; public properties
 	; ----------------------------------------------------------------------
