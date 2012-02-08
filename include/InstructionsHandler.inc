@@ -152,7 +152,7 @@
 	InstructionHandler.possibleInstructions:
 
 		db   1, 0, 0, 0, 0 ; AAA 
-		dw opcode_AAA_GenInstr_1
+		dw opcode_AAA_GenInstr_1  ; TESTED OK 08/02/2012 14:06
 
 		db   2, 0, 0, 0, 0 ; AAS 
 		dw opcode_AAS_GenInstr_2
