@@ -1217,7 +1217,7 @@
         opcode_CMPSW_GenInstr_99 db 2, OG.WB, 0A7h ; o16 wA7
         opcode_DAA_GenInstr_100 db 2, OG.WB, 027h ; w27
         opcode_DAS_GenInstr_101 db 2, OG.WB, 02Fh ; w2F
-        opcode_DEC_GenInstr_102 db 2, OG.PLUS_R, 048h ; o16 48+r
+        opcode_DEC_GenInstr_102 db 2, OG.PR, 048h ; o16 48+r
         opcode_DEC_GenInstr_103 db 3, OG.WB, 0FEh, OG.B1 ; wFE /1
         opcode_DEC_GenInstr_104 db 3, OG.WB, 0FEh, OG.B1 ; wFE /1
         opcode_DEC_GenInstr_105 db 3, OG.WB, 0FFh, OG.B1 ; o16 wFF /1
@@ -1249,7 +1249,7 @@
         opcode_IN_GenInstr_123 db 0, 0  
 
 
-        opcode_INC_GenInstr_124 db 2, OG.PLUS_R, 040h ; o16 40+r
+        opcode_INC_GenInstr_124 db 2, OG.PR, 040h ; o16 40+r
         opcode_INC_GenInstr_125 db 3, OG.WB, 0FEh, OG.B0 ; wFE /0
         opcode_INC_GenInstr_126 db 3, OG.WB, 0FEh, OG.B0 ; wFE /0
         opcode_INC_GenInstr_127 db 3, OG.WB, 0FFh, OG.B0 ; o16 wFF /0
@@ -1339,10 +1339,10 @@
         opcode_MOV_GenInstr_197 db 3, OG.WB, 08Ah, OG.RM2 ; w8A /r2
         opcode_MOV_GenInstr_198 db 3, OG.WB, 08Bh, OG.RM2 ; o16 w8B /r2
         opcode_MOV_GenInstr_199 db 3, OG.WB, 08Bh, OG.RM2 ; o16 w8B /r2
-        opcode_MOV_GenInstr_200 db 3, OG.PLUS_R, 0B0h, OG.IB ; B0+r ib
-        opcode_MOV_GenInstr_201 db 3, OG.PLUS_R, 0B8h, OG.IW ; o16 B8+r iw
+        opcode_MOV_GenInstr_200 db 3, OG.PR, 0B0h, OG.IB ; B0+r ib
+        opcode_MOV_GenInstr_201 db 3, OG.PR, 0B8h, OG.IW ; o16 B8+r iw
 
-        opcode_MOV_GenInstr_202 db 3, OG.PLUS_R, 0B8h, OG.GBIW ; o16 B8+r gbiw ; OK
+        opcode_MOV_GenInstr_202 db 3, OG.PR, 0B8h, OG.GBIW ; o16 B8+r gbiw ; OK
 
         opcode_MOV_GenInstr_203 db 4, OG.WB, 0C6h, OG.B0, OG.IB ; wC6 /0 ib
         opcode_MOV_GenInstr_204 db 4, OG.WB, 0C6h, OG.B0, OG.IB ; wC6 /0 ib
@@ -1418,7 +1418,7 @@
 ;;;;;        opcode_OUT_GenInstr_254 db 2, OG.WB, 0EFh, ************************************************************************ 
         opcode_OUT_GenInstr_254 db 0, 0  
 
-        opcode_POP_GenInstr_255 db 2, OG.PLUS_R, 058h ; o16 58+r
+        opcode_POP_GenInstr_255 db 2, OG.PR, 058h ; o16 58+r
         opcode_POP_GenInstr_256 db 3, OG.WB, 08Fh, OG.B0 ; o16 w8F /0
         opcode_POP_GenInstr_257 db 3, OG.WB, 08Fh, OG.B0 ; o16 w8F /0
 ;;;;;        opcode_POP_GenInstr_258 db 2, OG.WB, 01Fh, *********************************** 
@@ -1430,7 +1430,7 @@
 ;;;;;        opcode_POP_GenInstr_260 db 2, OG.WB, 017h, *********************************** 
         opcode_POP_GenInstr_260 db 0, 0  
 
-        opcode_PUSH_GenInstr_261 db 2, OG.PLUS_R, 050h ; o16 50+r
+        opcode_PUSH_GenInstr_261 db 2, OG.PR, 050h ; o16 50+r
         opcode_PUSH_GenInstr_262 db 3, OG.WB, 0FFh, OG.B6 ; o16 wFF /6
         opcode_PUSH_GenInstr_263 db 3, OG.WB, 0FFh, OG.B6 ; o16 wFF /6
 ;;;;;        opcode_PUSH_GenInstr_264 db 2, OG.WB, 00Eh, *********************************** 
@@ -1668,10 +1668,10 @@
         opcode_XCHG_GenInstr_406 db 3, OG.WB, 086h, OG.RM1 ; w86 /r1
         opcode_XCHG_GenInstr_407 db 3, OG.WB, 087h, OG.RM1 ; o16 w87 /r1
         opcode_XCHG_GenInstr_408 db 3, OG.WB, 087h, OG.RM1 ; o16 w87 /r1
-;;;;;        opcode_XCHG_GenInstr_409 db 2, OG.PLUS_R, 090h, *********************************** 
+;;;;;        opcode_XCHG_GenInstr_409 db 2, OG.PR, 090h, *********************************** 
         opcode_XCHG_GenInstr_409 db 0, 0  
 
-;;;;;        opcode_XCHG_GenInstr_410 db 2, OG.PLUS_R, 090h, *********************************** 
+;;;;;        opcode_XCHG_GenInstr_410 db 2, OG.PR, 090h, *********************************** 
         opcode_XCHG_GenInstr_410 db 0, 0  
 
         opcode_XLATB_GenInstr_411 db 2, OG.WB, 0D7h ; wD7

@@ -31,7 +31,7 @@
 
 		.OW	EQU 080h ; ? offset (value of offset ?)
 
-		.PLUS_R	EQU 090h ; XX+r 
+		.PR	EQU 090h ; XX+r 
 
 
 	; public static properties
@@ -127,7 +127,7 @@
 				cmp	al, OG.RM2
 				je	private.OpcodeGenerator.handle_INSTR_RM2
 
-				cmp	al, OG.PLUS_R
+				cmp	al, OG.PR
 				je	private.OpcodeGenerator.handle_INSTR_PLUS_R
 
 				cmp	al, OG.RB
