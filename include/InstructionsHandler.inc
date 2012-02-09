@@ -104,7 +104,7 @@
 
 			.dbImm8:
 				mov	si, token.value
-				call	os_string_to_int ; ax=number
+				mov	ax, [token.iw]
 				call	private.OpcodeGenerator.writeByte
 				jmp	.verifyHasMoreArguments
 
