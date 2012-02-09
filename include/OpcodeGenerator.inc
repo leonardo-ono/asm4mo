@@ -37,9 +37,9 @@
 	; public static properties
 	; ----------------------------------------------------------------------
 	OpcodeGenerator:
-		.MAX_SIZE			EQU 8192 	; can generate max 8k opcodes
+		.MAX_SIZE			EQU 5567 	; can generate max 5k opcodes
 		.offset				dw 32768 	; default value for org instruction
-		.startMemoryAddress		dw 53248
+		.startMemoryAddress		dw 54768
 		.index				dw 0		; index of generated opcode
 
 	; private static properties
