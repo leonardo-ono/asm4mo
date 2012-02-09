@@ -257,12 +257,16 @@
 		; Assembler instructions
 		db "DB", 0, 0, 0, 0, 0, 113, Token.TYPE_INSTR
 		dw DB_handler
+
 		db "DW", 0, 0, 0, 0, 0, 114, Token.TYPE_INSTR
 		dw DEFAULT_handler
+
 		db "ORG", 0, 0, 0, 0,   115, Token.TYPE_INSTR
-		dw DEFAULT_handler
+		dw ORG_handler
+
 		db "BITS", 0, 0, 0,     116, Token.TYPE_INSTR
 		dw DEFAULT_handler
+
 		db "EQU", 0, 0, 0, 0,   117, Token.TYPE_INSTR
 		dw DEFAULT_handler
 

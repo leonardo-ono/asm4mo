@@ -88,6 +88,39 @@
 				mov	ah, 0 ; <--------------- important !
 				ret
 
+		ORG_handler:
+		; --------------------------------------------------------------
+				mov	si, ORG_handler_msg
+				call	os_print_string
+				call	os_print_newline
+
+				call	parser.getNextToken
+				mov	al, [token.type]
+				cmp	al, Token.TYPE_IMM8
+				je	.orgImm
+				cmp	al, Token.TYPE_IMM16
+				je	.orgImm
+				jmp	.error
+
+			.orgImm:
+				mov	si, token.value
+				mov	ax, [token.iw]
+				mov	word [OpcodeGenerator.offset], ax
+
+				call	parser.getNextToken
+				mov	al, [token.type]
+				cmp	al, Token.TYPE_END_OF_LINE
+				je	.ok
+
+			.error:
+				mov	ah, 2
+				ret
+			.ok:
+				mov	ah, 1
+				ret
+			ORG_handler_msg	db "ORG_handler invoked !", 0
+
+
 		DB_handler:
 		; --------------------------------------------------------------
 				mov	si, DB_handler_msg
@@ -1163,10 +1196,12 @@
 		dw opcode_DW_GenInstr_434
 		db 115, Token.TYPE_IMM8, 0, 0, 0, 0 ; ORG imm8 
 		dw opcode_ORG_GenInstr_435
+
 		db 115, Token.TYPE_IMM16, 0, 0, 0, 0 ; ORG imm16 
 		dw opcode_ORG_GenInstr_436
 		db 115, Token.TYPE_IMM8, 0, 0, 0, 0 ; ORG imm8 
 		dw opcode_ORG_GenInstr_437
+
 		db 116, Token.TYPE_IMM8, 0, 0, 0, 0 ; BITS imm8 
 		dw opcode_BITS_GenInstr_438
 		db 116, Token.TYPE_IMM16, 0, 0, 0, 0 ; BITS imm16 
