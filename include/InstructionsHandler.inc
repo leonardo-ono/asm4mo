@@ -110,15 +110,15 @@
 
 			.dbString:
 					mov	bx, token.value
-					inc	bx ; ignore the first caracter
-
+					mov	cl, [bx] ; single-quote or double-quote ?
+					inc	bx
 					mov	si, bx
 					call	os_print_string
 					call	os_print_newline
 
 				.dbString.nextChar:
 					mov	al, [bx]
-					cmp	al, '"'
+					cmp	al, cl
 					je	.dbString.end
 					push	bx
 					call	private.OpcodeGenerator.writeByte
