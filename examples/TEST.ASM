@@ -12,7 +12,7 @@ nextChar:
    je end
    mov ds, ax
    mov [di], cl
-   mov [di+1], 65
+   mov byte [di+1], 65
    add di, 2
    inc si
    jmp nextChar   
