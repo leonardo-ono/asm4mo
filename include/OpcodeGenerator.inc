@@ -28,6 +28,7 @@
 
 		.RW	EQU 070h ; relative adress WORD
 		.RB	EQU 071h ; relative adress BYTE
+		.GBRW	EQU 072h ; relative adress WORD (but must get data from byte imm stack)
 
 		.OW	EQU 080h ; ? offset (value of offset ?)
 
@@ -134,7 +135,12 @@
 				je	private.OpcodeGenerator.handle_INSTR_RB
 
 				cmp	al, OG.RW
+				mov	ah, 1
 				je	private.OpcodeGenerator.handle_INSTR_RW
+
+				cmp	al, OG.GBRW
+				mov	ah, 2
+				je	private.OpcodeGenerator.handle_INSTR_GBRW
 
 				mov	ah, al
 				and	ah, 0F0h
@@ -920,15 +926,37 @@
 			msg.handle_INSTR_RB	db	"          ---> writing rel byte: ", 0
 
 
+		private.OpcodeGenerator.handle_INSTR_GBRW:
+		; --------------------------------------------------------------
+				mov ah, 2
+				jmp short private.OpcodeGenerator.handle_INSTR_RW
+
+
 		private.OpcodeGenerator.handle_INSTR_RW:
 		; --------------------------------------------------------------
+		; ah = 1 -> handle_INSTR_RW
+		; ah = 2 -> handle_INSTR_GBRW
+				cmp	ah, 1 ; -> handle_INSTR_RW
+				je	.handle_INSTR_RW
+				jmp	.handle_INSTR_GBRW
+
+			.handle_INSTR_RW:
 				mov	si, msg.handle_INSTR_RW
 				call	os_print_string
 				call	OpcodeGenerator.popIw ; ax=iw
+				jmp	short .verifyIsLabel
 
+			.handle_INSTR_GBRW:
+				mov	si, msg.handle_INSTR_GBRW
+				call	os_print_string
+				call	OpcodeGenerator.popIb ; al=ib
+				mov	ah, 0
+
+			.verifyIsLabel:
 				; is label ?
 				cmp	cl, 1
 				jne	.notIsLabel
+
 			.isLabel:
 				; ax = pointer to label string
 				; dx = address (offset) of label (org)
@@ -940,13 +968,22 @@
 				mov	cl, LabelResolver.TYPE_RW
 				call	LabelResolver.add
 				mov	ax, 0
+				jmp	short .write
+
 			.notIsLabel:
+				mov	bx, [OpcodeGenerator.offset]
+				add	bx, [OpcodeGenerator.index]
+				add	bx, 2
+				sub	ax, bx
+
+			.write:
 				call	private.OpcodeGenerator.debug.printHexWord
 				call	os_print_newline
-
 				call	private.OpcodeGenerator.writeWord
+
 				jmp	OpcodeGenerator.execute.nextInstruction
 			msg.handle_INSTR_RW	db	"          ---> writing rel word: ", 0
+			msg.handle_INSTR_GBRW	db	"          ---> writing rel word (GBRW): ", 0
 
 
 	; private static methods (debug functions)

@@ -332,6 +332,7 @@
 		dw opcode_CALL_GenInstr_64
 		db   8, Token.TYPE_IMM8, 0, 0, 0, 0 ; CALL imm8 
 		dw opcode_CALL_GenInstr_65
+
 		db   8, Token.TYPE_IMM16, Token.TYPE_DOIS_PONTOS, Token.TYPE_IMM16, 0, 0 ; CALL imm16 : imm16 
 		dw opcode_CALL_GenInstr_66
 		db   8, Token.TYPE_IMM8, Token.TYPE_DOIS_PONTOS, Token.TYPE_IMM8, 0, 0 ; CALL imm8 : imm8 
@@ -1305,7 +1306,7 @@
         opcode_AND_GenInstr_63 db 0, 0  
 
         opcode_CALL_GenInstr_64 db 3, OG.WB, 0E8h, OG.RW ; wE8 rw
-        opcode_CALL_GenInstr_65 db 3, OG.WB, 0E8h, OG.RW ; wE8 gbrw ************************* TODO implement GBRW
+        opcode_CALL_GenInstr_65 db 3, OG.WB, 0E8h, OG.GBRW ; wE8 gbrw
 
         opcode_CALL_GenInstr_66 db 4, OG.WB, 09Ah, OG.IW, OG.IW ; o16 w9A iw iw
         opcode_CALL_GenInstr_67 db 4, OG.WB, 09Ah, OG.IW, OG.IW ; o16 w9A iw iw
