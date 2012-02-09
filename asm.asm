@@ -20,6 +20,7 @@
 
 		Main.main: ; (entry point)
 		; --------------------------------------------------------------
+				call	Main.clearMemory
 
 				mov	al, ' '
 				cmp	si, 0			; Were we passed a filename?
@@ -726,6 +727,17 @@
 		Main.msg.writingFile1	db "Writing ",0
 		Main.msg.writingFile2	db " file ...", 0
 
+		Main.clearMemory:
+		; --------------------------------------------------------------
+				mov bx, FileInputStream.MEMORY_LOCATION_TO_LOAD
+			.next:
+				mov	byte [bx] ,0
+				cmp	bx, 0ffffh
+				je	.end
+				inc	bx
+				jmp	.next
+			.end
+				ret
 
 	; includes
 	; ----------------------------------------------------------------------
