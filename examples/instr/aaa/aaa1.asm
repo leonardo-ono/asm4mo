@@ -3,6 +3,7 @@
 ; Example written by Leonardo Ono (ono.leo@gmail.com)
 ; 08/02/2012 13:46
 
+mov ah, 0
 mov al, '7'
 mov bl, '6'
 
