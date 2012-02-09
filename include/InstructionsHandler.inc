@@ -211,6 +211,8 @@
 		dw opcode_ADC_GenInstr_25
 
 
+
+
 		db   6, Token.TYPE_REG8, Token.TYPE_VIRGULA, Token.TYPE_REG8, 0, 0 ; ADD reg8 , reg8 
 		dw opcode_ADD_GenInstr_26
 		db   6, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_REG8, 0, 0 ; ADD mem , reg8 
@@ -331,6 +333,8 @@
 
 
 
+
+
 		db  15, Token.TYPE_REG8, Token.TYPE_VIRGULA, Token.TYPE_REG8, 0, 0 ; CMP reg8 , reg8 
 		dw opcode_CMP_GenInstr_79
 
@@ -376,6 +380,8 @@
 
 
 
+
+
 		db  16, 0, 0, 0, 0, 0 ; CMPSB 
 		dw opcode_CMPSB_GenInstr_98
 		db  17, 0, 0, 0, 0, 0 ; CMPSW 
@@ -384,6 +390,8 @@
 		dw opcode_DAA_GenInstr_100
 		db  19, 0, 0, 0, 0, 0 ; DAS 
 		dw opcode_DAS_GenInstr_101
+
+
 		db  20, Token.TYPE_REG16, 0, 0, 0, 0 ; DEC reg16 
 		dw opcode_DEC_GenInstr_102
 		db  20, Token.TYPE_REG8, 0, 0, 0, 0 ; DEC reg8 
@@ -394,6 +402,8 @@
 		dw opcode_DEC_GenInstr_105
 		db  20, Token.TYPE_MEM, 0, 0, 0, 0 ; DEC mem 
 		dw opcode_DEC_GenInstr_106
+
+
 		db  21, Token.TYPE_REG8, 0, 0, 0, 0 ; DIV reg8 
 		dw opcode_DIV_GenInstr_107
 		db  21, Token.TYPE_MEM, 0, 0, 0, 0 ; DIV mem 
@@ -402,8 +412,12 @@
 		dw opcode_DIV_GenInstr_109
 		db  21, Token.TYPE_MEM, 0, 0, 0, 0 ; DIV mem 
 		dw opcode_DIV_GenInstr_110
+
+
 		db  22, 0, 0, 0, 0, 0 ; HLT 
 		dw opcode_HLT_GenInstr_111
+
+
 		db  23, Token.TYPE_REG8, 0, 0, 0, 0 ; IDIV reg8 
 		dw opcode_IDIV_GenInstr_112
 		db  23, Token.TYPE_MEM, 0, 0, 0, 0 ; IDIV mem 
@@ -412,6 +426,8 @@
 		dw opcode_IDIV_GenInstr_114
 		db  23, Token.TYPE_MEM, 0, 0, 0, 0 ; IDIV mem 
 		dw opcode_IDIV_GenInstr_115
+
+
 		db  24, Token.TYPE_REG8, 0, 0, 0, 0 ; IMUL reg8 
 		dw opcode_IMUL_GenInstr_116
 		db  24, Token.TYPE_MEM, 0, 0, 0, 0 ; IMUL mem 
@@ -461,111 +477,124 @@
 
 
 
-		db  33, Token.TYPE_IMM8, 0, 0, 0, 0 ; JMP imm8 
-		dw opcode_JMP_GenInstr_135
+		;db  33, Token.TYPE_IMM8, 0, 0, 0, 0 ; JMP imm8 
+		;dw opcode_JMP_GenInstr_135
 
 		db  33, Token.TYPE_IMM16, 0, 0, 0, 0 ; JMP imm16 
 		dw opcode_JMP_GenInstr_136
 
-		db  33, Token.TYPE_IMM8, 0, 0, 0, 0 ; JMP imm8 
-		dw opcode_JMP_GenInstr_137
-		db  33, Token.TYPE_INSTR, Token.TYPE_IMM8, 0, 0, 0 ; JMP SHORT imm8 
+		;db  33, Token.TYPE_IMM8, 0, 0, 0, 0 ; JMP imm8 
+		;dw opcode_JMP_GenInstr_137
+
+		db  33, Token.TYPE_RESERVED_SHORT, Token.TYPE_IMM16, 0, 0, 0 ; JMP SHORT label  
 		dw opcode_JMP_GenInstr_138
-		db  33, Token.TYPE_IMM16, Token.TYPE_DOIS_PONTOS, Token.TYPE_IMM16, 0, 0 ; JMP imm16 : imm16 
-		dw opcode_JMP_GenInstr_139
-		db  33, Token.TYPE_IMM8, Token.TYPE_DOIS_PONTOS, Token.TYPE_IMM8, 0, 0 ; JMP imm8 : imm8 
-		dw opcode_JMP_GenInstr_140
-		db  33, Token.TYPE_IMM8, Token.TYPE_DOIS_PONTOS, Token.TYPE_IMM16, 0, 0 ; JMP imm8 : imm16 
-		dw opcode_JMP_GenInstr_141
-		db  33, Token.TYPE_IMM16, Token.TYPE_DOIS_PONTOS, Token.TYPE_IMM8, 0, 0 ; JMP imm16 : imm8 
-		dw opcode_JMP_GenInstr_142
-		db  33, Token.TYPE_INSTR, Token.TYPE_MEM, 0, 0, 0 ; JMP FAR mem 
-		dw opcode_JMP_GenInstr_143
-		db  33, Token.TYPE_REG16, 0, 0, 0, 0 ; JMP reg16 
-		dw opcode_JMP_GenInstr_144
-		db  33, Token.TYPE_MEM, 0, 0, 0, 0 ; JMP mem 
-		dw opcode_JMP_GenInstr_145
+
+		;db  33, Token.TYPE_IMM16, Token.TYPE_DOIS_PONTOS, Token.TYPE_IMM16, 0, 0 ; JMP imm16 : imm16 
+		;dw opcode_JMP_GenInstr_139
+		;db  33, Token.TYPE_IMM8, Token.TYPE_DOIS_PONTOS, Token.TYPE_IMM8, 0, 0 ; JMP imm8 : imm8 
+		;dw opcode_JMP_GenInstr_140
+		;db  33, Token.TYPE_IMM8, Token.TYPE_DOIS_PONTOS, Token.TYPE_IMM16, 0, 0 ; JMP imm8 : imm16 
+		;dw opcode_JMP_GenInstr_141
+		;db  33, Token.TYPE_IMM16, Token.TYPE_DOIS_PONTOS, Token.TYPE_IMM8, 0, 0 ; JMP imm16 : imm8 
+		;dw opcode_JMP_GenInstr_142
+		;db  33, Token.TYPE_INSTR, Token.TYPE_MEM, 0, 0, 0 ; JMP FAR mem 
+		;dw opcode_JMP_GenInstr_143
+		;db  33, Token.TYPE_REG16, 0, 0, 0, 0 ; JMP reg16 
+		;dw opcode_JMP_GenInstr_144
+		;db  33, Token.TYPE_MEM, 0, 0, 0, 0 ; JMP mem 
+		;dw opcode_JMP_GenInstr_145
 
 
 
 
 
-		db  34, Token.TYPE_IMM16, 0, 0, 0, 0 ; JO imm16 (address) 
+		db  34, Token.TYPE_IMM16, 0, 0, 0, 0 ; JO label
 		dw opcode_JO_GenInstr_146
-		db  35, Token.TYPE_IMM16, 0, 0, 0, 0 ; JNO imm16 (address) 
+		db  35, Token.TYPE_IMM16, 0, 0, 0, 0 ; JNO label
 		dw opcode_JNO_GenInstr_147
-		db  36, Token.TYPE_IMM16, 0, 0, 0, 0 ; JB imm16 (address) 
+		db  36, Token.TYPE_IMM16, 0, 0, 0, 0 ; JB label
 		dw opcode_JB_GenInstr_148
-		db  37, Token.TYPE_IMM16, 0, 0, 0, 0 ; JC imm16 (address) 
+		db  37, Token.TYPE_IMM16, 0, 0, 0, 0 ; JC label 
 		dw opcode_JC_GenInstr_149
-		db  38, Token.TYPE_IMM16, 0, 0, 0, 0 ; JNAE imm16 (address) 
+		db  38, Token.TYPE_IMM16, 0, 0, 0, 0 ; JNAE label 
 		dw opcode_JNAE_GenInstr_150
-		db  39, Token.TYPE_IMM16, 0, 0, 0, 0 ; JAE imm16 (address) 
+		db  39, Token.TYPE_IMM16, 0, 0, 0, 0 ; JAE label
 		dw opcode_JAE_GenInstr_151
-		db  40, Token.TYPE_IMM16, 0, 0, 0, 0 ; JNB imm16 (address) 
+		db  40, Token.TYPE_IMM16, 0, 0, 0, 0 ; JNB label
 		dw opcode_JNB_GenInstr_152
-		db  41, Token.TYPE_IMM16, 0, 0, 0, 0 ; JNC imm16 (address) 
+		db  41, Token.TYPE_IMM16, 0, 0, 0, 0 ; JNC label
 		dw opcode_JNC_GenInstr_153
-		db  42, Token.TYPE_IMM16, 0, 0, 0, 0 ; JE imm16 (address) 
+		db  42, Token.TYPE_IMM16, 0, 0, 0, 0 ; JE label
 		dw opcode_JE_GenInstr_154
-		db  43, Token.TYPE_IMM16, 0, 0, 0, 0 ; JZ imm16 (address) 
+		db  43, Token.TYPE_IMM16, 0, 0, 0, 0 ; JZ label
 		dw opcode_JZ_GenInstr_155
-		db  44, Token.TYPE_IMM16, 0, 0, 0, 0 ; JNE imm16 (address) 
+		db  44, Token.TYPE_IMM16, 0, 0, 0, 0 ; JNE label
 		dw opcode_JNE_GenInstr_156
-		db  45, Token.TYPE_IMM16, 0, 0, 0, 0 ; JNZ imm16 (address) 
+		db  45, Token.TYPE_IMM16, 0, 0, 0, 0 ; JNZ label
 		dw opcode_JNZ_GenInstr_157
-		db  46, Token.TYPE_IMM16, 0, 0, 0, 0 ; JBE imm16 (address) 
+		db  46, Token.TYPE_IMM16, 0, 0, 0, 0 ; JBE label
 		dw opcode_JBE_GenInstr_158
-		db  47, Token.TYPE_IMM16, 0, 0, 0, 0 ; JNA imm16 (address) 
+		db  47, Token.TYPE_IMM16, 0, 0, 0, 0 ; JNA label
 		dw opcode_JNA_GenInstr_159
-		db  48, Token.TYPE_IMM16, 0, 0, 0, 0 ; JA imm16 (address) 
+		db  48, Token.TYPE_IMM16, 0, 0, 0, 0 ; JA label 
 		dw opcode_JA_GenInstr_160
-		db  49, Token.TYPE_IMM16, 0, 0, 0, 0 ; JNBE imm16 (address) 
+		db  49, Token.TYPE_IMM16, 0, 0, 0, 0 ; JNBE label 
 		dw opcode_JNBE_GenInstr_161
-		db  50, Token.TYPE_IMM16, 0, 0, 0, 0 ; JS imm16 (address) 
+		db  50, Token.TYPE_IMM16, 0, 0, 0, 0 ; JS label 
 		dw opcode_JS_GenInstr_162
-		db  51, Token.TYPE_IMM16, 0, 0, 0, 0 ; JNS imm16 (address) 
+		db  51, Token.TYPE_IMM16, 0, 0, 0, 0 ; JNS label 
 		dw opcode_JNS_GenInstr_163
-		db  52, Token.TYPE_IMM16, 0, 0, 0, 0 ; JP imm16 (address) 
+		db  52, Token.TYPE_IMM16, 0, 0, 0, 0 ; JP label 
 		dw opcode_JP_GenInstr_164
-		db  53, Token.TYPE_IMM16, 0, 0, 0, 0 ; JPE imm16 (address) 
+		db  53, Token.TYPE_IMM16, 0, 0, 0, 0 ; JPE label 
 		dw opcode_JPE_GenInstr_165
-		db  54, Token.TYPE_IMM16, 0, 0, 0, 0 ; JNP imm16 (address) 
+		db  54, Token.TYPE_IMM16, 0, 0, 0, 0 ; JNP label 
 		dw opcode_JNP_GenInstr_166
-		db  55, Token.TYPE_IMM16, 0, 0, 0, 0 ; JPO imm16 (address) 
+		db  55, Token.TYPE_IMM16, 0, 0, 0, 0 ; JPO label 
 		dw opcode_JPO_GenInstr_167
-		db  56, Token.TYPE_IMM16, 0, 0, 0, 0 ; JL imm16 (address) 
+		db  56, Token.TYPE_IMM16, 0, 0, 0, 0 ; JL label 
 		dw opcode_JL_GenInstr_168
-		db  57, Token.TYPE_IMM16, 0, 0, 0, 0 ; JNGE imm16 (address) 
+		db  57, Token.TYPE_IMM16, 0, 0, 0, 0 ; JNGE label 
 		dw opcode_JNGE_GenInstr_169
-		db  58, Token.TYPE_IMM16, 0, 0, 0, 0 ; JGE imm16 (address) 
+		db  58, Token.TYPE_IMM16, 0, 0, 0, 0 ; JGE label 
 		dw opcode_JGE_GenInstr_170
-		db  59, Token.TYPE_IMM16, 0, 0, 0, 0 ; JNL imm16 (address) 
+		db  59, Token.TYPE_IMM16, 0, 0, 0, 0 ; JNL label 
 		dw opcode_JNL_GenInstr_171
-		db  60, Token.TYPE_IMM16, 0, 0, 0, 0 ; JLE imm16 (address) 
+		db  60, Token.TYPE_IMM16, 0, 0, 0, 0 ; JLE label 
 		dw opcode_JLE_GenInstr_172
-		db  61, Token.TYPE_IMM16, 0, 0, 0, 0 ; JNG imm16 (address) 
+		db  61, Token.TYPE_IMM16, 0, 0, 0, 0 ; JNG label 
 		dw opcode_JNG_GenInstr_173
-		db  62, Token.TYPE_IMM16, 0, 0, 0, 0 ; JG imm16 (address) 
+		db  62, Token.TYPE_IMM16, 0, 0, 0, 0 ; JG label 
 		dw opcode_JG_GenInstr_174
-		db  63, Token.TYPE_IMM16, 0, 0, 0, 0 ; JNLE imm16 (address) 
+		db  63, Token.TYPE_IMM16, 0, 0, 0, 0 ; JNLE label 
 		dw opcode_JNLE_GenInstr_175
+
 
 
 
 
 		db  64, 0, 0, 0, 0, 0 ; LAHF 
 		dw opcode_LAHF_GenInstr_176
+
+
 		db  65, Token.TYPE_REG16, Token.TYPE_VIRGULA, Token.TYPE_MEM, 0, 0 ; LDS reg16 , mem 
 		dw opcode_LDS_GenInstr_177
+
+
 		db  66, Token.TYPE_REG16, Token.TYPE_VIRGULA, Token.TYPE_MEM, 0, 0 ; LES reg16 , mem 
 		dw opcode_LES_GenInstr_178
+
+
 		db  67, Token.TYPE_REG16, Token.TYPE_VIRGULA, Token.TYPE_MEM, 0, 0 ; LEA reg16 , mem 
 		dw opcode_LEA_GenInstr_179
+
+
 		db  68, 0, 0, 0, 0, 0 ; LODSB 
 		dw opcode_LODSB_GenInstr_180
 		db  69, 0, 0, 0, 0, 0 ; LODSW 
 		dw opcode_LODSW_GenInstr_181
+
+
 		db  70, Token.TYPE_IMM8, 0, 0, 0, 0 ; LOOP imm8 
 		dw opcode_LOOP_GenInstr_182
 		db  70, Token.TYPE_IMM8, Token.TYPE_VIRGULA, Token.TYPE_REG16, 0, 0 ; LOOP imm8 , reg16 
@@ -586,6 +615,8 @@
 		dw opcode_LOOPNZ_GenInstr_190
 		db  74, Token.TYPE_IMM8, Token.TYPE_VIRGULA, Token.TYPE_REG16, 0, 0 ; LOOPNZ imm8 , reg16 
 		dw opcode_LOOPNZ_GenInstr_191
+
+
 
 
 
@@ -616,16 +647,20 @@
 
 		db  75, Token.TYPE_REG8, Token.TYPE_VIRGULA, Token.TYPE_IMM8, 0, 0 ; MOV reg8 , imm8 
 		dw opcode_MOV_GenInstr_203
-		db  75, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_IMM8, 0, 0 ; MOV mem , imm8 
+
+		db  75, Token.TYPE_RESERVED_BYTE, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_IMM8, 0 ; MOV BYTE mem , imm8 
 		dw opcode_MOV_GenInstr_204
+
 		db  75, Token.TYPE_REG16, Token.TYPE_VIRGULA, Token.TYPE_IMM16, 0, 0 ; MOV reg16 , imm16 
 		dw opcode_MOV_GenInstr_205
 		db  75, Token.TYPE_REG16, Token.TYPE_VIRGULA, Token.TYPE_IMM8, 0, 0 ; MOV reg16 , imm8 
 		dw opcode_MOV_GenInstr_206
-		db  75, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_IMM16, 0, 0 ; MOV mem , imm16 
+
+		db  75, Token.TYPE_RESERVED_WORD, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_IMM16, 0 ; MOV WORD mem , imm16 
 		dw opcode_MOV_GenInstr_207
-		db  75, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_IMM8, 0, 0 ; MOV mem , imm8 
+		db  75, Token.TYPE_RESERVED_WORD, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_IMM8, 0 ; MOV WORD mem , imm8 
 		dw opcode_MOV_GenInstr_208
+
 		db  75, Token.TYPE_REG8, Token.TYPE_VIRGULA, Token.TYPE_MEMOFFS8, 0, 0 ; MOV reg8 , memoffs8 
 		dw opcode_MOV_GenInstr_209
 		db  75, Token.TYPE_REG16, Token.TYPE_VIRGULA, Token.TYPE_MEMOFFS16, 0, 0 ; MOV reg16 , memoffs16 
@@ -642,10 +677,14 @@
 		dw opcode_MOV_GenInstr_215
 		db  75, Token.TYPE_REGSEG, Token.TYPE_VIRGULA, Token.TYPE_MEM, 0, 0 ; MOV segreg , mem 
 		dw opcode_MOV_GenInstr_216
+
+
 		db  76, 0, 0, 0, 0, 0 ; MOVSB 
 		dw opcode_MOVSB_GenInstr_217
 		db  77, 0, 0, 0, 0, 0 ; MOVSW 
 		dw opcode_MOVSW_GenInstr_218
+
+
 		db  78, Token.TYPE_REG8, 0, 0, 0, 0 ; MUL reg8 
 		dw opcode_MUL_GenInstr_219
 		db  78, Token.TYPE_MEM, 0, 0, 0, 0 ; MUL mem 
@@ -654,6 +693,8 @@
 		dw opcode_MUL_GenInstr_221
 		db  78, Token.TYPE_MEM, 0, 0, 0, 0 ; MUL mem 
 		dw opcode_MUL_GenInstr_222
+
+
 		db  79, Token.TYPE_REG8, 0, 0, 0, 0 ; NEG reg8 
 		dw opcode_NEG_GenInstr_223
 		db  79, Token.TYPE_MEM, 0, 0, 0, 0 ; NEG mem 
@@ -662,6 +703,8 @@
 		dw opcode_NEG_GenInstr_225
 		db  79, Token.TYPE_MEM, 0, 0, 0, 0 ; NEG mem 
 		dw opcode_NEG_GenInstr_226
+
+
 		db  80, Token.TYPE_REG8, 0, 0, 0, 0 ; NOT reg8 
 		dw opcode_NOT_GenInstr_227
 		db  80, Token.TYPE_MEM, 0, 0, 0, 0 ; NOT mem 
@@ -670,8 +713,10 @@
 		dw opcode_NOT_GenInstr_229
 		db  80, Token.TYPE_MEM, 0, 0, 0, 0 ; NOT mem 
 		dw opcode_NOT_GenInstr_230
+
 		db  81, 0, 0, 0, 0, 0 ; NOP 
 		dw opcode_NOP_GenInstr_231
+
 		db  82, Token.TYPE_REG8, Token.TYPE_VIRGULA, Token.TYPE_REG8, 0, 0 ; OR reg8 , reg8 
 		dw opcode_OR_GenInstr_232
 		db  82, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_REG8, 0, 0 ; OR mem , reg8 
@@ -710,6 +755,8 @@
 		dw opcode_OR_GenInstr_249
 		db  82, Token.TYPE_REG16, Token.TYPE_VIRGULA, Token.TYPE_IMM8, 0, 0 ; OR reg16 , imm8 
 		dw opcode_OR_GenInstr_250
+
+
 		db  83, Token.TYPE_IMM8, Token.TYPE_VIRGULA, Token.TYPE_REG8, 0, 0 ; OUT imm8 , reg8 
 		dw opcode_OUT_GenInstr_251
 		db  83, Token.TYPE_IMM8, Token.TYPE_VIRGULA, Token.TYPE_REG16, 0, 0 ; OUT imm8 , reg16 
@@ -718,6 +765,8 @@
 		dw opcode_OUT_GenInstr_253
 		db  83, Token.TYPE_REG16, Token.TYPE_VIRGULA, Token.TYPE_REG16, 0, 0 ; OUT reg16 , reg16 
 		dw opcode_OUT_GenInstr_254
+
+
 		db  84, Token.TYPE_REG16, 0, 0, 0, 0 ; POP reg16 
 		dw opcode_POP_GenInstr_255
 		db  84, Token.TYPE_REG16, 0, 0, 0, 0 ; POP reg16 
@@ -730,6 +779,8 @@
 		dw opcode_POP_GenInstr_259
 		db  84, Token.TYPE_REGSEG, 0, 0, 0, 0 ; POP segreg 
 		dw opcode_POP_GenInstr_260
+
+
 		db  85, Token.TYPE_REG16, 0, 0, 0, 0 ; PUSH reg16 
 		dw opcode_PUSH_GenInstr_261
 		db  85, Token.TYPE_REG16, 0, 0, 0, 0 ; PUSH reg16 
@@ -744,6 +795,8 @@
 		dw opcode_PUSH_GenInstr_266
 		db  85, Token.TYPE_REGSEG, 0, 0, 0, 0 ; PUSH segreg 
 		dw opcode_PUSH_GenInstr_267
+
+
 		db  86, Token.TYPE_REG8, Token.TYPE_VIRGULA, Token.TYPE_ONE, 0, 0 ; RCL reg8 , 1 
 		dw opcode_RCL_GenInstr_268
 		db  86, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_ONE, 0, 0 ; RCL mem , 1 
@@ -756,10 +809,14 @@
 		dw opcode_RCL_GenInstr_272
 		db  86, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_ONE, 0, 0 ; RCL mem , 1 
 		dw opcode_RCL_GenInstr_273
+
+
 		db  87, Token.TYPE_REG16, Token.TYPE_VIRGULA, Token.TYPE_REG8, 0, 0 ; Rreg8 reg16 , reg8 
 		dw opcode_Rreg8_GenInstr_274
 		db  87, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_REG8, 0, 0 ; Rreg8 mem , reg8 
 		dw opcode_Rreg8_GenInstr_275
+
+
 		db  88, Token.TYPE_REG8, Token.TYPE_VIRGULA, Token.TYPE_ONE, 0, 0 ; RCR reg8 , 1 
 		dw opcode_RCR_GenInstr_276
 		db  88, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_ONE, 0, 0 ; RCR mem , 1 
@@ -776,24 +833,32 @@
 		dw opcode_RCR_GenInstr_282
 		db  88, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_REG8, 0, 0 ; RCR mem , reg8 
 		dw opcode_RCR_GenInstr_283
+
+
 		db  89, 0, 0, 0, 0, 0 ; RET 
 		dw opcode_RET_GenInstr_284
 		db  89, Token.TYPE_IMM16, 0, 0, 0, 0 ; RET imm16 
 		dw opcode_RET_GenInstr_285
 		db  89, Token.TYPE_IMM8, 0, 0, 0, 0 ; RET imm8 
 		dw opcode_RET_GenInstr_286
+
+
 		db  90, 0, 0, 0, 0, 0 ; RETF 
 		dw opcode_RETF_GenInstr_287
 		db  90, Token.TYPE_IMM16, 0, 0, 0, 0 ; RETF imm16 
 		dw opcode_RETF_GenInstr_288
 		db  90, Token.TYPE_IMM8, 0, 0, 0, 0 ; RETF imm8 
 		dw opcode_RETF_GenInstr_289
+
+
 		db  91, 0, 0, 0, 0, 0 ; RETN 
 		dw opcode_RETN_GenInstr_290
 		db  91, Token.TYPE_IMM16, 0, 0, 0, 0 ; RETN imm16 
 		dw opcode_RETN_GenInstr_291
 		db  91, Token.TYPE_IMM8, 0, 0, 0, 0 ; RETN imm8 
 		dw opcode_RETN_GenInstr_292
+
+
 		db  92, Token.TYPE_REG8, Token.TYPE_VIRGULA, Token.TYPE_ONE, 0, 0 ; ROL reg8 , 1 
 		dw opcode_ROL_GenInstr_293
 		db  92, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_ONE, 0, 0 ; ROL mem , 1 
@@ -810,6 +875,8 @@
 		dw opcode_ROL_GenInstr_299
 		db  92, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_REG8, 0, 0 ; ROL mem , reg8 
 		dw opcode_ROL_GenInstr_300
+
+
 		db  93, Token.TYPE_REG8, Token.TYPE_VIRGULA, Token.TYPE_ONE, 0, 0 ; ROR reg8 , 1 
 		dw opcode_ROR_GenInstr_301
 		db  93, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_ONE, 0, 0 ; ROR mem , 1 
@@ -826,8 +893,12 @@
 		dw opcode_ROR_GenInstr_307
 		db  93, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_REG8, 0, 0 ; ROR mem , reg8 
 		dw opcode_ROR_GenInstr_308
+
+
 		db  94, 0, 0, 0, 0, 0 ; SAHF 
 		dw opcode_SAHF_GenInstr_309
+
+
 		db  95, Token.TYPE_REG8, Token.TYPE_VIRGULA, Token.TYPE_ONE, 0, 0 ; SAL reg8 , 1 
 		dw opcode_SAL_GenInstr_310
 		db  95, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_ONE, 0, 0 ; SAL mem , 1 
@@ -844,6 +915,8 @@
 		dw opcode_SAL_GenInstr_316
 		db  95, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_REG8, 0, 0 ; SAL mem , reg8 
 		dw opcode_SAL_GenInstr_317
+
+
 		db  96, Token.TYPE_REG8, Token.TYPE_VIRGULA, Token.TYPE_ONE, 0, 0 ; SAR reg8 , 1 
 		dw opcode_SAR_GenInstr_318
 		db  96, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_ONE, 0, 0 ; SAR mem , 1 
@@ -860,6 +933,8 @@
 		dw opcode_SAR_GenInstr_324
 		db  96, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_REG8, 0, 0 ; SAR mem , reg8 
 		dw opcode_SAR_GenInstr_325
+
+
 		db  97, Token.TYPE_REG8, Token.TYPE_VIRGULA, Token.TYPE_REG8, 0, 0 ; SBB reg8 , reg8 
 		dw opcode_SBB_GenInstr_326
 		db  97, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_REG8, 0, 0 ; SBB mem , reg8 
@@ -898,10 +973,14 @@
 		dw opcode_SBB_GenInstr_343
 		db  97, Token.TYPE_REG16, Token.TYPE_VIRGULA, Token.TYPE_IMM8, 0, 0 ; SBB reg16 , imm8 
 		dw opcode_SBB_GenInstr_344
+
+
 		db  98, 0, 0, 0, 0, 0 ; SCASB 
 		dw opcode_SCASB_GenInstr_345
 		db  99, 0, 0, 0, 0, 0 ; SCASW 
 		dw opcode_SCASW_GenInstr_346
+
+
 		db 100, Token.TYPE_REG8, Token.TYPE_VIRGULA, Token.TYPE_ONE, 0, 0 ; SHL reg8 , 1 
 		dw opcode_SHL_GenInstr_347
 		db 100, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_ONE, 0, 0 ; SHL mem , 1 
@@ -918,6 +997,8 @@
 		dw opcode_SHL_GenInstr_353
 		db 100, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_REG8, 0, 0 ; SHL mem , reg8 
 		dw opcode_SHL_GenInstr_354
+
+
 		db 101, Token.TYPE_REG8, Token.TYPE_VIRGULA, Token.TYPE_ONE, 0, 0 ; SHR reg8 , 1 
 		dw opcode_SHR_GenInstr_355
 		db 101, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_ONE, 0, 0 ; SHR mem , 1 
@@ -1283,7 +1364,9 @@
         opcode_JMP_GenInstr_135 db 3, OG.WB, 0E9h, OG.RW ; wE9 rw
         opcode_JMP_GenInstr_136 db 3, OG.WB, 0E9h, OG.RW ; wE9 rw
         opcode_JMP_GenInstr_137 db 3, OG.WB, 0E9h, OG.RW ; wE9 rw
+
         opcode_JMP_GenInstr_138 db 3, OG.WB, 0EBh, OG.RB ; wEB rb
+
         opcode_JMP_GenInstr_139 db 4, OG.WB, 0EAh, OG.IW, OG.IW ; o16 wEA iw iw
         opcode_JMP_GenInstr_140 db 4, OG.WB, 0EAh, OG.IW, OG.IW ; o16 wEA iw iw
         opcode_JMP_GenInstr_141 db 4, OG.WB, 0EAh, OG.IW, OG.IW ; o16 wEA iw iw
@@ -1369,7 +1452,8 @@
         opcode_MOV_GenInstr_205 db 4, OG.WB, 0C7h, OG.B0, OG.IW ; o16 wC7 /0 iw
         opcode_MOV_GenInstr_206 db 4, OG.WB, 0C7h, OG.B0, OG.IW ; o16 wC7 /0 iw
         opcode_MOV_GenInstr_207 db 4, OG.WB, 0C7h, OG.B0, OG.IW ; o16 wC7 /0 iw
-        opcode_MOV_GenInstr_208 db 4, OG.WB, 0C7h, OG.B0, OG.IW ; o16 wC7 /0 iw
+        opcode_MOV_GenInstr_208 db 4, OG.WB, 0C7h, OG.B0, OG.GBIW ; o16 wC7 /0 gbiw
+
 ;;;;;        opcode_MOV_GenInstr_209 db 3, OG.WB, 0A0h, OG.OW, *********************************** 
         opcode_MOV_GenInstr_209 db 0, 0  
 

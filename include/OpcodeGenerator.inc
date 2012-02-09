@@ -596,7 +596,18 @@
 				mov	byte [.regIndex], al
 				call	private.OpcodeGenerator.debug.printHexByte
 				call	os_print_newline
+
+				;   al = Id
+				;   ah = Type
+				;   cl = RegIndex
+				;   ch = R/M
+				;   dl = has extra imm8
+				;   dh = extra imm8
+				;   bh = has extra imm16
+				;   si = extra imm16
+				;   di = extra imm16 is label ? 1=true 0=false
 				call	OpcodeGenerator.popRM
+
 				pusha
 
 				mov	ah, 0 ;debug
@@ -629,12 +640,30 @@
 				jmp	short .success
 			.writeExtraImm16:
 				mov	ax, si ; si = extra imm16
+				mov	[prov.AX], ax
 
 				mov	si, msg.handle_INSTR_BN.wrextrw
 				call	os_print_string
 				call	private.OpcodeGenerator.debug.printHexWord
 				call	os_print_newline
 
+				cmp	di, 1 ; extra imm16 is label ?
+				jne	.extraImm16NotIsLabel
+
+			.extraImm16IsLabel:
+				call	OpcodeGenerator.popIw ; remove label from iw stack
+				; ax = pointer to label string
+				; dx = address (offset) of label (org)
+				; bx = address where value must be corrected
+				; cl = LabelResolver.TYPE_XX
+				mov	ax, dx
+				mov	dx, 0
+				mov	bx, [OpcodeGenerator.index]
+				mov	cl, LabelResolver.TYPE_IW
+				call	LabelResolver.add
+
+			.extraImm16NotIsLabel:
+				mov	ax, [prov.AX]
 				call	private.OpcodeGenerator.writeWord
 				jmp	short .success
 			.success:
@@ -644,7 +673,7 @@
 			msg.handle_INSTR_BN.wr		db	"              ---> writing byte: ", 0
 			msg.handle_INSTR_BN.wrextrb	db	"              ---> writing extra byte: ", 0
 			msg.handle_INSTR_BN.wrextrw	db	"              ---> writing extra word: ", 0
-
+			prov.AX				dw 0
 
 		private.OpcodeGenerator.handle_INSTR_RM1:
 		; --------------------------------------------------------------

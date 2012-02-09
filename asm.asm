@@ -471,13 +471,11 @@
 				call	os_print_string
 				call	os_print_newline
 
-				; // TODO handle just decimal values
 				mov	ax, 0
 				mov	word [Mem.iw], ax
 				mov	word [Mem.iwIsLabel], 1
 				mov	byte [Mem.isIbOrIw], 2
 
-				; // TODO label token value needs to save too ?
 				mov	ax, 0
 				mov	cl, 1 ; is label
 				mov	dx, token.value ; label name
