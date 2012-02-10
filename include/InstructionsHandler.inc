@@ -179,6 +179,121 @@
 				ret
 			DB_handler_msg	db "DB_handler invoked !", 0
 
+		IN_handler:
+		; --------------------------------------------------------------
+		; ah = 0 - means that default handler must be called
+		;      1 - the instruction was handled here and must not call default handler
+		;      2 - Error
+				mov	si, IN_handler_msg
+				call	os_print_string
+				call	os_print_newline
+
+				call	parser.getNextToken
+
+				mov	al, [token.id]
+				cmp	al, ID_AL   ; 1st arg AL ?
+				je	.arg1IsAL
+
+				cmp	al, ID_AX   ; 1st arg AX ?
+				je	.arg1IsAX
+
+				jmp	short .error.expectedALorAX
+
+			.arg1IsAL:
+				call	parser.getNextToken
+
+				mov	al, [token.type]
+				cmp	al, Token.TYPE_VIRGULA ; 2nd token must be comma
+				jne	.error.expectedComma
+
+				call	parser.getNextToken
+
+				mov	al, [token.id]
+				cmp	al, ID_DX           ; 2nd arg DX ?
+				je	.arg1IsALarg2IsDX
+
+				mov	al, [token.type]
+				cmp	al, Token.TYPE_IMM8 ; 2nd arg imm8 ?
+				je	.arg1IsALarg2IsImm8
+
+				jmp	short .error.expectedDXorImm8
+
+			.arg1IsAX:
+				call	parser.getNextToken
+
+				mov	al, [token.type]
+				cmp	al, Token.TYPE_VIRGULA ; 2nd token must be comma
+				jne	.error.expectedComma
+
+				call	parser.getNextToken
+
+				mov	al, [token.id]
+				cmp	al, ID_DX           ; 2nd arg DX ?
+				je	.arg2IsAXarg2IsDX
+
+				mov	al, [token.type]
+				cmp	al, Token.TYPE_IMM8 ; 2nd arg imm8 ?
+				je	.arg2IsAXarg2IsIm8
+
+				jmp	short .error.expectedDXorImm8
+
+			.arg1IsALarg2IsImm8:
+				mov	ax, [token.iw]
+				call	OpcodeGenerator.pushIb
+				mov	ax, opcode_IN_GenInstr_120
+				jmp	short .generateOpcode
+			.arg2IsAXarg2IsIm8:
+				mov	ax, [token.iw]
+				call	OpcodeGenerator.pushIb
+				mov	ax, opcode_IN_GenInstr_121
+				jmp	short .generateOpcode
+			.arg1IsALarg2IsDX:
+				mov	ax, opcode_IN_GenInstr_122
+				jmp	short .generateOpcode
+			.arg2IsAXarg2IsDX:
+				mov	ax, opcode_IN_GenInstr_123
+				jmp	short .generateOpcode
+
+			.generateOpcode:
+				call	OpcodeGenerator.execute
+				mov	ah, 1
+				ret
+
+			.error.expectedALorAX:
+				mov	si, .msg.error.expectedALorAX
+				call	os_print_string
+				call	os_print_newline
+				mov	ah, 2
+				ret
+
+			.error.expectedDXorImm8:
+				mov	si, .msg.error.expectedDXorImm8
+				call	os_print_string
+				call	os_print_newline
+				mov	ah, 2
+				ret
+
+			.error.expectedComma:
+				mov	si, .msg.error.expectedComma
+				call	os_print_string
+				call	os_print_newline
+				mov	ah, 2
+				ret
+			.msg.error.expectedALorAX db " Error: 1st arg expected AL or AX !", 0
+			.msg.error.expectedDXorImm8 db " Error: 2nd arg expected DX or imm8 !", 0
+			.msg.error.expectedComma db " Error: expected comma !", 0
+			IN_handler_msg	db "IN_handler invoked !", 0
+				
+		; IN AL,imm8                    ; E4 ib                [8086]
+		; IN AX,imm8                    ; E5 ib                [8086]
+		; IN AL,DX                      ; EC                   [8086]
+		; IN AX,DX                      ; ED                   [8086]				
+
+		; opcode_IN_GenInstr_120 db 3, OG.WB, 0E4h, OG.IB ; wE4 ib amb1AL
+		; opcode_IN_GenInstr_121 db 3, OG.WB, 0E5h, OG.IB ; wE5 ib amb1AX
+		; opcode_IN_GenInstr_122 db 2, OG.WB, 0ECh        ; wEC amb1AL
+		; opcode_IN_GenInstr_123 db 2, OG.WB, 0EDh        ; wED amb1AX
+
 
 ;===============================================================================
 
@@ -1374,16 +1489,10 @@
         opcode_IMUL_GenInstr_119 db 3, OG.WB, 0F7h, OG.B5 ; o16 wF7 /5
 
 
-        opcode_IN_GenInstr_120 db 3, OG.WB, 0E4h, OG.IB ; wE4 ib amb1AL ************** TODO implement amb1 and amb2
-
-;;;;;        opcode_IN_GenInstr_121 db 3, OG.WB, 0E5h, OG.IB, *********************************** 
-        opcode_IN_GenInstr_121 db 0, 0  
-
-;;;;;        opcode_IN_GenInstr_122 db 2, OG.WB, 0ECh, ************************************************************************ 
-        opcode_IN_GenInstr_122 db 0, 0  
-
-;;;;;        opcode_IN_GenInstr_123 db 2, OG.WB, 0EDh, ************************************************************************ 
-        opcode_IN_GenInstr_123 db 0, 0  
+        opcode_IN_GenInstr_120 db 3, OG.WB, 0E4h, OG.IB ; wE4 ib amb1AL
+        opcode_IN_GenInstr_121 db 3, OG.WB, 0E5h, OG.IB ; wE5 ib amb1AX
+        opcode_IN_GenInstr_122 db 2, OG.WB, 0ECh        ; wEC amb1AL
+        opcode_IN_GenInstr_123 db 2, OG.WB, 0EDh        ; wED amb1AX
 
 
         opcode_INC_GenInstr_124 db 2, OG.PR, 040h ; o16 40+r

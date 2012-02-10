@@ -66,7 +66,7 @@
 		db "IMUL", 0, 0, 0,      24, Token.TYPE_INSTR
 		dw DEFAULT_handler
 		db "IN", 0, 0, 0, 0, 0,  25, Token.TYPE_INSTR
-		dw DEFAULT_handler
+		dw IN_handler
 		db "INC", 0, 0, 0, 0,    26, Token.TYPE_INSTR
 		dw DEFAULT_handler
 		db "INT", 0, 0, 0, 0,    27, Token.TYPE_INSTR
@@ -270,29 +270,33 @@
 		db "EQU", 0, 0, 0, 0,   117, Token.TYPE_INSTR
 		dw DEFAULT_handler
 
+		ID_AL equ 150
+		ID_AX equ 158
+		ID_DX equ 160
+
 		;                                                        0 1 2 3 4 5 6 7
 		;                                                       / 
 		; Registers                                  index  __---___r/m
-		db "AL", 0, 0, 0, 0, 0, 150, Token.TYPE_REG8,    0, 11000000b
-		db "CL", 0, 0, 0, 0, 0, 151, Token.TYPE_REG8,    1, 11000001b
-		db "DL", 0, 0, 0, 0, 0, 152, Token.TYPE_REG8,    2, 11000010b
-		db "BL", 0, 0, 0, 0, 0, 153, Token.TYPE_REG8,    3, 11000011b
-		db "AH", 0, 0, 0, 0, 0, 154, Token.TYPE_REG8,    4, 11000100b
-		db "CH", 0, 0, 0, 0, 0, 155, Token.TYPE_REG8,    5, 11000101b
-		db "DH", 0, 0, 0, 0, 0, 156, Token.TYPE_REG8,    6, 11000110b
-		db "BH", 0, 0, 0, 0, 0, 157, Token.TYPE_REG8,    7, 11000111b
-		db "AX", 0, 0, 0, 0, 0, 158, Token.TYPE_REG16,   0, 11000000b
-		db "CX", 0, 0, 0, 0, 0, 159, Token.TYPE_REG16,   1, 11000100b
-		db "DX", 0, 0, 0, 0, 0, 160, Token.TYPE_REG16,   2, 11000010b
-		db "BX", 0, 0, 0, 0, 0, 161, Token.TYPE_REG16,   3, 11000011b
-		db "SP", 0, 0, 0, 0, 0, 162, Token.TYPE_REG16,   4, 11000100b
-		db "BP", 0, 0, 0, 0, 0, 163, Token.TYPE_REG16,   5, 11000101b
-		db "SI", 0, 0, 0, 0, 0, 164, Token.TYPE_REG16,   6, 11000110b
-		db "DI", 0, 0, 0, 0, 0, 165, Token.TYPE_REG16,   7, 11000111b
-		db "ES", 0, 0, 0, 0, 0, 166, Token.TYPE_REGSEG,  0, 00000000b
-		db "CS", 0, 0, 0, 0, 0, 167, Token.TYPE_REGSEG,  1, 00000000b
-		db "SS", 0, 0, 0, 0, 0, 168, Token.TYPE_REGSEG,  2, 00000000b
-		db "DS", 0, 0, 0, 0, 0, 169, Token.TYPE_REGSEG,  3, 00000000b
+		db "AL", 0, 0, 0, 0, 0, ID_AL, Token.TYPE_REG8,    0, 11000000b
+		db "CL", 0, 0, 0, 0, 0,   151, Token.TYPE_REG8,    1, 11000001b
+		db "DL", 0, 0, 0, 0, 0,   152, Token.TYPE_REG8,    2, 11000010b
+		db "BL", 0, 0, 0, 0, 0,   153, Token.TYPE_REG8,    3, 11000011b
+		db "AH", 0, 0, 0, 0, 0,   154, Token.TYPE_REG8,    4, 11000100b
+		db "CH", 0, 0, 0, 0, 0,   155, Token.TYPE_REG8,    5, 11000101b
+		db "DH", 0, 0, 0, 0, 0,   156, Token.TYPE_REG8,    6, 11000110b
+		db "BH", 0, 0, 0, 0, 0,   157, Token.TYPE_REG8,    7, 11000111b
+		db "AX", 0, 0, 0, 0, 0, ID_AX, Token.TYPE_REG16,   0, 11000000b
+		db "CX", 0, 0, 0, 0, 0,   159, Token.TYPE_REG16,   1, 11000100b
+		db "DX", 0, 0, 0, 0, 0, ID_DX, Token.TYPE_REG16,   2, 11000010b
+		db "BX", 0, 0, 0, 0, 0,   161, Token.TYPE_REG16,   3, 11000011b
+		db "SP", 0, 0, 0, 0, 0,   162, Token.TYPE_REG16,   4, 11000100b
+		db "BP", 0, 0, 0, 0, 0,   163, Token.TYPE_REG16,   5, 11000101b
+		db "SI", 0, 0, 0, 0, 0,   164, Token.TYPE_REG16,   6, 11000110b
+		db "DI", 0, 0, 0, 0, 0,   165, Token.TYPE_REG16,   7, 11000111b
+		db "ES", 0, 0, 0, 0, 0,   166, Token.TYPE_REGSEG,  0, 00000000b
+		db "CS", 0, 0, 0, 0, 0,   167, Token.TYPE_REGSEG,  1, 00000000b
+		db "SS", 0, 0, 0, 0, 0,   168, Token.TYPE_REGSEG,  2, 00000000b
+		db "DS", 0, 0, 0, 0, 0,   169, Token.TYPE_REGSEG,  3, 00000000b
 
 		db ":", 0, 0, 0, 0, 0, 0, 201, Token.TYPE_DOIS_PONTOS,    0, 0
 		db ",", 0, 0, 0, 0, 0, 0, 202, Token.TYPE_VIRGULA,        0, 0
