@@ -857,7 +857,7 @@
 		dw opcode_LODSW_GenInstr_181
 
 
-		db  70, Token.TYPE_IMM8, 0, 0, 0, 0 ; LOOP imm8 
+		db  70, Token.TYPE_IMM16, 0, 0, 0, 0 ; LOOP imm8 // changed to LOOP imm16
 		dw opcode_LOOP_GenInstr_182
 		db  70, Token.TYPE_IMM8, Token.TYPE_VIRGULA, Token.TYPE_REG16, 0, 0 ; LOOP imm8 , reg16 
 		dw opcode_LOOP_GenInstr_183

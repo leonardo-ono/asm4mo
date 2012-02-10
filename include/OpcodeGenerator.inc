@@ -899,6 +899,8 @@
 
 		private.OpcodeGenerator.handle_INSTR_RB:
 		; --------------------------------------------------------------
+		; // TODO -> if ax > 0ffh -> error !
+
 				mov	si, msg.handle_INSTR_RB
 				call	os_print_string
 				call	OpcodeGenerator.popIw ; ax=iw
