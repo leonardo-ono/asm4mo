@@ -1,0 +1,27 @@
+==================================================================
+asm4mo - Open source 8086 Assembler for MikeOS
+Copyright (C) 2012 - Leonardo Ono -- see doc/LICENSE.TXT
+==================================================================
+
+asm4mo is a simple 8086 assembler for Mikeos.
+
+written entirely in assembly language (assembled with nasm).
+
+You can find the source code and documentation
+at https://github.com/leonardo-ono/asm4mo
+
+ -- Leonardo Ono (ono.leo@gmail.com)
+
+
+MikeOS is a learning tool for those wishing to understand simple OS 
+construction and x86 assembly. Quick getting-started guide: MikeOS can 
+run from a floppy disk or CD-ROM, either on an emulator or a real PC. 
+See the disk_images/ directory for files that you can write to the 
+appropriate media or boot in, for instance, VMware, QEMU or VirtualBox.
+
+Have fun, and see the website at http://mikeos.berlios.de
+
+ -- Mike Saunders (okachi@gmail.com)
+
+==================================================================
+
