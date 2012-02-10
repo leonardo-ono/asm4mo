@@ -294,6 +294,119 @@
 		; opcode_IN_GenInstr_122 db 2, OG.WB, 0ECh        ; wEC amb1AL
 		; opcode_IN_GenInstr_123 db 2, OG.WB, 0EDh        ; wED amb1AX
 
+		OUT_handler:
+		; --------------------------------------------------------------
+		; ah = 0 - means that default handler must be called
+		;      1 - the instruction was handled here and must not call default handler
+		;      2 - Error
+				mov	si, OUT_handler_msg
+				call	os_print_string
+				call	os_print_newline
+
+				call	parser.getNextToken
+
+				mov	al, [token.id]
+				cmp	al, ID_DX           ; 1st arg DX ?
+				je	.arg1IsDX
+
+				mov	al, [token.type]
+				cmp	al, Token.TYPE_IMM8 ; 1st arg imm8 ?
+				je	.arg1IsImm8
+
+				jmp	short .error.expectedDXorImm8
+
+			.arg1IsDX:
+				call	parser.getNextToken
+
+				mov	al, [token.type]
+				cmp	al, Token.TYPE_VIRGULA ; 2nd token must be comma
+				jne	.error.expectedComma
+
+				call	parser.getNextToken
+
+				mov	al, [token.id]
+				cmp	al, ID_AL           ; 2nd arg AL ?
+				je	.arg1IsDXarg2IsAL
+
+				cmp	al, ID_AX           ; 2nd arg AX ?
+				je	.arg1IsDXarg2IsAX
+
+				jmp	short .error.expectedALorAX
+
+			.arg1IsImm8:
+				call	parser.getNextToken
+
+				mov	al, [token.type]
+				cmp	al, Token.TYPE_VIRGULA ; 2nd token must be comma
+				jne	.error.expectedComma
+
+				call	parser.getNextToken
+
+				mov	al, [token.id]
+				cmp	al, ID_AL           ; 2nd arg AL ?
+				je	.arg1IsImm8arg2IsAL
+
+				cmp	al, ID_AX           ; 2nd arg AX ?
+				je	.arg1IsImm8arg2IsAX
+
+				jmp	short .error.expectedALorAX
+
+			.arg1IsImm8arg2IsAL:
+				mov	ax, [token.iw]
+				call	OpcodeGenerator.pushIb
+				mov	ax, opcode_OUT_GenInstr_251
+				jmp	short .generateOpcode
+			.arg1IsImm8arg2IsAX:
+				mov	ax, [token.iw]
+				call	OpcodeGenerator.pushIb
+				mov	ax, opcode_OUT_GenInstr_252
+				jmp	short .generateOpcode
+			.arg1IsDXarg2IsAL:
+				mov	ax, opcode_OUT_GenInstr_253
+				jmp	short .generateOpcode
+			.arg1IsDXarg2IsAX:
+				mov	ax, opcode_OUT_GenInstr_254
+				jmp	short .generateOpcode
+
+			.generateOpcode:
+				call	OpcodeGenerator.execute
+				mov	ah, 1
+				ret
+
+			.error.expectedALorAX:
+				mov	si, .msg.error.expectedALorAX
+				call	os_print_string
+				call	os_print_newline
+				mov	ah, 2
+				ret
+
+			.error.expectedDXorImm8:
+				mov	si, .msg.error.expectedDXorImm8
+				call	os_print_string
+				call	os_print_newline
+				mov	ah, 2
+				ret
+
+			.error.expectedComma:
+				mov	si, .msg.error.expectedComma
+				call	os_print_string
+				call	os_print_newline
+				mov	ah, 2
+				ret
+			.msg.error.expectedDXorImm8 db " Error: 1st arg expected DX or imm8 !", 0
+			.msg.error.expectedALorAX db " Error: 2nd arg expected AL or AX !", 0
+			.msg.error.expectedComma db " Error: expected comma !", 0
+			OUT_handler_msg	db "OUT_handler invoked !", 0
+				
+		; OUT imm8,AL                   ; E6 ib                [8086]	
+		; OUT imm8,AX                   ; E7 ib                [8086]
+		; OUT DX,AL                     ; EE                   [8086]
+		; OUT DX,AX                     ; EF                   [8086]		
+
+                ; opcode_OUT_GenInstr_251 db 3, OG.WB, 0E6h, OG.IB ; E6 ib
+                ; opcode_OUT_GenInstr_252 db 3, OG.WB, 0E7h, OG.IB ; E7 ib
+                ; opcode_OUT_GenInstr_253 db 2, OG.WB, 0EEh,       ; EE
+                ; opcode_OUT_GenInstr_254 db 2, OG.WB, 0EFh,       ; EF
 
 ;===============================================================================
 
@@ -1655,17 +1768,14 @@
 ;;;;;        opcode_OR_GenInstr_250 db 3, OG.WB, 00Dh, OG.IW, *********************************** 
         opcode_OR_GenInstr_250 db 0, 0  
 
-;;;;;        opcode_OUT_GenInstr_251 db 3, OG.WB, 0E6h, OG.IB, *********************************** 
-        opcode_OUT_GenInstr_251 db 0, 0  
 
-;;;;;        opcode_OUT_GenInstr_252 db 3, OG.WB, 0E7h, OG.IB, *********************************** 
-        opcode_OUT_GenInstr_252 db 0, 0  
 
-;;;;;        opcode_OUT_GenInstr_253 db 2, OG.WB, 0EEh, ************************************************************************ 
-        opcode_OUT_GenInstr_253 db 0, 0  
+        opcode_OUT_GenInstr_251 db 3, OG.WB, 0E6h, OG.IB ; E6 ib
+        opcode_OUT_GenInstr_252 db 3, OG.WB, 0E7h, OG.IB ; E7 ib
+        opcode_OUT_GenInstr_253 db 2, OG.WB, 0EEh,       ; EE
+        opcode_OUT_GenInstr_254 db 2, OG.WB, 0EFh,       ; EF
 
-;;;;;        opcode_OUT_GenInstr_254 db 2, OG.WB, 0EFh, ************************************************************************ 
-        opcode_OUT_GenInstr_254 db 0, 0  
+
 
         opcode_POP_GenInstr_255 db 2, OG.PR, 058h ; o16 58+r
         opcode_POP_GenInstr_256 db 3, OG.WB, 08Fh, OG.B0 ; o16 w8F /0

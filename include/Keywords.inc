@@ -182,7 +182,7 @@
 		db "OR", 0, 0, 0, 0, 0,  82, Token.TYPE_INSTR
 		dw DEFAULT_handler
 		db "OUT", 0, 0, 0, 0,    83, Token.TYPE_INSTR
-		dw DEFAULT_handler
+		dw OUT_handler
 		db "POP", 0, 0, 0, 0,    84, Token.TYPE_INSTR
 		dw DEFAULT_handler
 		db "PUSH", 0, 0, 0,      85, Token.TYPE_INSTR
