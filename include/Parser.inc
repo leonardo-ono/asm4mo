@@ -37,6 +37,14 @@
 				call	fileInputStream.openFile
 				ret
 
+		parser.backToPreviousToken:
+		; --------------------------------------------------------------
+				mov	ax, token.value 
+				call	os_string_length
+				inc	ax
+				sub	word [fileInputStream.index], ax
+				ret
+
 		parser.getNextToken:
 		; --------------------------------------------------------------
 		; ah = 0 - end of file
