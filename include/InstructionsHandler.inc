@@ -480,6 +480,86 @@
 		; opcode_POP_GenInstr_259 db 2, OG.WB, 007h ; 07 amb1ES
 		; opcode_POP_GenInstr_260 db 2, OG.WB, 017h ; 17 amb1SS
 
+		PUSH_handler:
+		; --------------------------------------------------------------
+		; Description: handles -> PUSH CS, POP DS, POP ES or POP SS
+		; ah = 0 - means that default handler must be called
+		;      1 - the instruction was handled here and must not call default handler
+		;      2 - Error
+				mov	si, PUSH_handler_msg
+				call	os_print_string
+				call	os_print_newline
+
+				call	parser.getNextToken
+
+				mov	al, [token.id]
+				cmp	al, ID_CS   ; 1st arg CS ?
+				je	.arg1IsCS
+
+				cmp	al, ID_DS   ; 1st arg DS ?
+				je	.arg1IsDS
+
+				cmp	al, ID_ES   ; 1st arg ES ?
+				je	.arg1IsES
+
+				cmp	al, ID_SS   ; 1st arg SS ?
+				je	.arg1IsSS
+
+				jmp	short .notIsCS_DS_ES_SS
+
+			.arg1IsCS:
+				mov	ax, opcode_PUSH_GenInstr_264
+				jmp	short .verifyNextTokenEndOfLine
+			.arg1IsDS:
+				mov	ax, opcode_PUSH_GenInstr_265
+				jmp	short .verifyNextTokenEndOfLine
+			.arg1IsES:
+				mov	ax, opcode_PUSH_GenInstr_266
+				jmp	short .verifyNextTokenEndOfLine
+			.arg1IsSS:
+				mov	ax, opcode_PUSH_GenInstr_267
+				jmp	short .verifyNextTokenEndOfLine
+
+			.generateOpcode:
+				call	OpcodeGenerator.execute
+				mov	ah, 1
+				ret
+
+			.error.expectedEndOfLine:
+				mov	si, .msg.error.expectedEndOfLine
+				call	os_print_string
+				call	os_print_newline
+				mov	ah, 2
+				ret
+
+			.notIsCS_DS_ES_SS:
+				; so must try DEFAULT HANDLER
+				call	parser.backToPreviousToken
+				mov	ah, 0
+				ret
+
+			.verifyNextTokenEndOfLine:
+				push	ax
+				call	parser.getNextToken
+				pop	ax
+				mov	bl, [token.type]
+				cmp	bl, Token.TYPE_END_OF_LINE ; 2nd token must be end of line
+				jne	.error.expectedEndOfLine
+				jmp	short .generateOpcode
+
+			.msg.error.expectedEndOfLine	db " Error: expected end of line !", 0
+			PUSH_handler_msg		db "PUSH_handler invoked !", 0
+
+		; PUSH CS                       ; 0E                   [8086]
+		; PUSH DS                       ; 1E                   [8086]
+		; PUSH ES                       ; 06                   [8086]
+		; PUSH SS                       ; 16                   [8086]				
+
+		; opcode_PUSH_GenInstr_264 db 2, OG.WB, 00Eh ; w0E amb1CS
+		; opcode_PUSH_GenInstr_265 db 2, OG.WB, 01Eh ; w1E amb1DS
+		; opcode_PUSH_GenInstr_266 db 2, OG.WB, 006h ; w06 amb1ES
+		; opcode_PUSH_GenInstr_267 db 2, OG.WB, 016h ; w16 amb1SS
+
 ;===============================================================================
 
 	InstructionHandler.possibleInstructions:
@@ -1121,16 +1201,18 @@
 		dw opcode_PUSH_GenInstr_261
 		db  85, Token.TYPE_REG16, 0, 0, 0, 0 ; PUSH reg16 
 		dw opcode_PUSH_GenInstr_262
-		db  85, Token.TYPE_MEM, 0, 0, 0, 0 ; PUSH mem 
+		db  85, Token.TYPE_RESERVED_WORD, Token.TYPE_MEM, 0, 0, 0 ; PUSH WORD [mem] 
 		dw opcode_PUSH_GenInstr_263
-		db  85, Token.TYPE_REGSEG, 0, 0, 0, 0 ; PUSH segreg 
-		dw opcode_PUSH_GenInstr_264
-		db  85, Token.TYPE_REGSEG, 0, 0, 0, 0 ; PUSH segreg 
-		dw opcode_PUSH_GenInstr_265
-		db  85, Token.TYPE_REGSEG, 0, 0, 0, 0 ; PUSH segreg 
-		dw opcode_PUSH_GenInstr_266
-		db  85, Token.TYPE_REGSEG, 0, 0, 0, 0 ; PUSH segreg 
-		dw opcode_PUSH_GenInstr_267
+
+		; handled by POP_HANDLER
+		; db  85, Token.TYPE_REGSEG, 0, 0, 0, 0 ; PUSH segreg 
+		; dw opcode_PUSH_GenInstr_264
+		; db  85, Token.TYPE_REGSEG, 0, 0, 0, 0 ; PUSH segreg 
+		; dw opcode_PUSH_GenInstr_265
+		; db  85, Token.TYPE_REGSEG, 0, 0, 0, 0 ; PUSH segreg 
+		; dw opcode_PUSH_GenInstr_266
+		; db  85, Token.TYPE_REGSEG, 0, 0, 0, 0 ; PUSH segreg 
+		; dw opcode_PUSH_GenInstr_267
 
 
 		db  86, Token.TYPE_REG8, Token.TYPE_VIRGULA, Token.TYPE_ONE, 0, 0 ; RCL reg8 , 1 
@@ -1844,10 +1926,10 @@
 
 
 
-        opcode_OUT_GenInstr_251 db 3, OG.WB, 0E6h, OG.IB ; E6 ib
-        opcode_OUT_GenInstr_252 db 3, OG.WB, 0E7h, OG.IB ; E7 ib
-        opcode_OUT_GenInstr_253 db 2, OG.WB, 0EEh,       ; EE
-        opcode_OUT_GenInstr_254 db 2, OG.WB, 0EFh,       ; EF
+        opcode_OUT_GenInstr_251 db 3, OG.WB, 0E6h, OG.IB ; wE6 ib
+        opcode_OUT_GenInstr_252 db 3, OG.WB, 0E7h, OG.IB ; wE7 ib
+        opcode_OUT_GenInstr_253 db 2, OG.WB, 0EEh,       ; wEE
+        opcode_OUT_GenInstr_254 db 2, OG.WB, 0EFh,       ; wEF
 
 
 
@@ -1862,17 +1944,14 @@
         opcode_PUSH_GenInstr_261 db 2, OG.PR, 050h ; o16 50+r
         opcode_PUSH_GenInstr_262 db 3, OG.WB, 0FFh, OG.B6 ; o16 wFF /6
         opcode_PUSH_GenInstr_263 db 3, OG.WB, 0FFh, OG.B6 ; o16 wFF /6
-;;;;;        opcode_PUSH_GenInstr_264 db 2, OG.WB, 00Eh, *********************************** 
-        opcode_PUSH_GenInstr_264 db 0, 0  
 
-;;;;;        opcode_PUSH_GenInstr_265 db 2, OG.WB, 01Eh, *********************************** 
-        opcode_PUSH_GenInstr_265 db 0, 0  
+        opcode_PUSH_GenInstr_264 db 2, OG.WB, 00Eh ; w0E amb1CS
+        opcode_PUSH_GenInstr_265 db 2, OG.WB, 01Eh ; w1E amb1DS
+        opcode_PUSH_GenInstr_266 db 2, OG.WB, 006h ; w06 amb1ES
+        opcode_PUSH_GenInstr_267 db 2, OG.WB, 016h ; w16 amb1SS
 
-;;;;;        opcode_PUSH_GenInstr_266 db 2, OG.WB, 006h, *********************************** 
-        opcode_PUSH_GenInstr_266 db 0, 0  
 
-;;;;;        opcode_PUSH_GenInstr_267 db 2, OG.WB, 016h, *********************************** 
-        opcode_PUSH_GenInstr_267 db 0, 0  
+
 
         opcode_RCL_GenInstr_268 db 3, OG.WB, 0D0h, OG.B2 ; wD0 /2
         opcode_RCL_GenInstr_269 db 3, OG.WB, 0D0h, OG.B2 ; wD0 /2

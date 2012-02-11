@@ -186,7 +186,7 @@
 		db "POP", 0, 0, 0, 0,    84, Token.TYPE_INSTR
 		dw POP_handler
 		db "PUSH", 0, 0, 0,      85, Token.TYPE_INSTR
-		dw DEFAULT_handler
+		dw PUSH_handler
 		db "RCL", 0, 0, 0, 0,    86, Token.TYPE_INSTR
 		dw DEFAULT_handler
 		db "Rreg8", 0, 0,        87, Token.TYPE_INSTR
