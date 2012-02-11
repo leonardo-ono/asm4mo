@@ -408,6 +408,78 @@
                 ; opcode_OUT_GenInstr_253 db 2, OG.WB, 0EEh,       ; EE
                 ; opcode_OUT_GenInstr_254 db 2, OG.WB, 0EFh,       ; EF
 
+		POP_handler:
+		; --------------------------------------------------------------
+		; Description: handles -> POP DS, POP ES or POP SS
+		; ah = 0 - means that default handler must be called
+		;      1 - the instruction was handled here and must not call default handler
+		;      2 - Error
+				mov	si, POP_handler_msg
+				call	os_print_string
+				call	os_print_newline
+
+				call	parser.getNextToken
+
+				mov	al, [token.id]
+				cmp	al, ID_DS   ; 1st arg DS ?
+				je	.arg1IsDS
+
+				cmp	al, ID_ES   ; 1st arg ES ?
+				je	.arg1IsES
+
+				cmp	al, ID_SS   ; 1st arg SS ?
+				je	.arg1IsSS
+
+				jmp	short .notIsDS_ES_SS
+
+			.arg1IsDS:
+				mov	ax, opcode_POP_GenInstr_258
+				jmp	short .verifyNextTokenEndOfLine
+			.arg1IsES:
+				mov	ax, opcode_POP_GenInstr_259
+				jmp	short .verifyNextTokenEndOfLine
+			.arg1IsSS:
+				mov	ax, opcode_POP_GenInstr_260
+				jmp	short .verifyNextTokenEndOfLine
+
+			.generateOpcode:
+				call	OpcodeGenerator.execute
+				mov	ah, 1
+				ret
+
+			.error.expectedEndOfLine:
+				mov	si, .msg.error.expectedEndOfLine
+				call	os_print_string
+				call	os_print_newline
+				mov	ah, 2
+				ret
+
+			.notIsDS_ES_SS:
+				; so must try DEFAULT HANDLER
+				call	parser.backToPreviousToken
+				mov	ah, 0
+				ret
+
+			.verifyNextTokenEndOfLine:
+				push	ax
+				call	parser.getNextToken
+				pop	ax
+				mov	bl, [token.type]
+				cmp	bl, Token.TYPE_END_OF_LINE ; 2nd token must be end of line
+				jne	.error.expectedEndOfLine
+				jmp	short .generateOpcode
+
+			.msg.error.expectedEndOfLine db " Error: expected end of line !", 0
+			POP_handler_msg	db "POP_handler invoked !", 0
+				
+		; POP DS                        ; 1F                   [8086]
+		; POP ES                        ; 07                   [8086]
+		; POP SS                        ; 17                   [8086]
+
+		; opcode_POP_GenInstr_258 db 2, OG.WB, 01Fh ; 1F amb1DS
+		; opcode_POP_GenInstr_259 db 2, OG.WB, 007h ; 07 amb1ES
+		; opcode_POP_GenInstr_260 db 2, OG.WB, 017h ; 17 amb1SS
+
 ;===============================================================================
 
 	InstructionHandler.possibleInstructions:
@@ -1033,14 +1105,16 @@
 		dw opcode_POP_GenInstr_255
 		db  84, Token.TYPE_REG16, 0, 0, 0, 0 ; POP reg16 
 		dw opcode_POP_GenInstr_256
-		db  84, Token.TYPE_MEM, 0, 0, 0, 0 ; POP mem 
+		db  84, Token.TYPE_RESERVED_WORD, Token.TYPE_MEM, 0, 0, 0 ; POP WORD [mem] 
 		dw opcode_POP_GenInstr_257
-		db  84, Token.TYPE_REGSEG, 0, 0, 0, 0 ; POP segreg 
-		dw opcode_POP_GenInstr_258
-		db  84, Token.TYPE_REGSEG, 0, 0, 0, 0 ; POP segreg 
-		dw opcode_POP_GenInstr_259
-		db  84, Token.TYPE_REGSEG, 0, 0, 0, 0 ; POP segreg 
-		dw opcode_POP_GenInstr_260
+
+		; handled by POP_HANDLER
+		; db  84, Token.TYPE_REGSEG, 0, 0, 0, 0 ; POP DS
+		; dw opcode_POP_GenInstr_258
+		; db  84, Token.TYPE_REGSEG, 0, 0, 0, 0 ; POP ES
+		; dw opcode_POP_GenInstr_259
+		; db  84, Token.TYPE_REGSEG, 0, 0, 0, 0 ; POP SS
+		; dw opcode_POP_GenInstr_260
 
 
 		db  85, Token.TYPE_REG16, 0, 0, 0, 0 ; PUSH reg16 
@@ -1780,14 +1854,10 @@
         opcode_POP_GenInstr_255 db 2, OG.PR, 058h ; o16 58+r
         opcode_POP_GenInstr_256 db 3, OG.WB, 08Fh, OG.B0 ; o16 w8F /0
         opcode_POP_GenInstr_257 db 3, OG.WB, 08Fh, OG.B0 ; o16 w8F /0
-;;;;;        opcode_POP_GenInstr_258 db 2, OG.WB, 01Fh, *********************************** 
-        opcode_POP_GenInstr_258 db 0, 0  
 
-;;;;;        opcode_POP_GenInstr_259 db 2, OG.WB, 007h, *********************************** 
-        opcode_POP_GenInstr_259 db 0, 0  
-
-;;;;;        opcode_POP_GenInstr_260 db 2, OG.WB, 017h, *********************************** 
-        opcode_POP_GenInstr_260 db 0, 0  
+        opcode_POP_GenInstr_258 db 2, OG.WB, 01Fh ; 1F amb1DS
+        opcode_POP_GenInstr_259 db 2, OG.WB, 007h ; 07 amb1ES
+        opcode_POP_GenInstr_260 db 2, OG.WB, 017h ; 17 amb1SS
 
         opcode_PUSH_GenInstr_261 db 2, OG.PR, 050h ; o16 50+r
         opcode_PUSH_GenInstr_262 db 3, OG.WB, 0FFh, OG.B6 ; o16 wFF /6

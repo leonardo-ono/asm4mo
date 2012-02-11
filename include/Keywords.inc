@@ -184,7 +184,7 @@
 		db "OUT", 0, 0, 0, 0,    83, Token.TYPE_INSTR
 		dw OUT_handler
 		db "POP", 0, 0, 0, 0,    84, Token.TYPE_INSTR
-		dw DEFAULT_handler
+		dw POP_handler
 		db "PUSH", 0, 0, 0,      85, Token.TYPE_INSTR
 		dw DEFAULT_handler
 		db "RCL", 0, 0, 0, 0,    86, Token.TYPE_INSTR
@@ -273,6 +273,10 @@
 		ID_AL equ 150
 		ID_AX equ 158
 		ID_DX equ 160
+		ID_ES equ 166 
+		ID_CS equ 167
+		ID_SS equ 168
+		ID_DS equ 169
 
 		;                                                        0 1 2 3 4 5 6 7
 		;                                                       / 
@@ -293,10 +297,10 @@
 		db "BP", 0, 0, 0, 0, 0,   163, Token.TYPE_REG16,   5, 11000101b
 		db "SI", 0, 0, 0, 0, 0,   164, Token.TYPE_REG16,   6, 11000110b
 		db "DI", 0, 0, 0, 0, 0,   165, Token.TYPE_REG16,   7, 11000111b
-		db "ES", 0, 0, 0, 0, 0,   166, Token.TYPE_REGSEG,  0, 00000000b
-		db "CS", 0, 0, 0, 0, 0,   167, Token.TYPE_REGSEG,  1, 00000000b
-		db "SS", 0, 0, 0, 0, 0,   168, Token.TYPE_REGSEG,  2, 00000000b
-		db "DS", 0, 0, 0, 0, 0,   169, Token.TYPE_REGSEG,  3, 00000000b
+		db "ES", 0, 0, 0, 0, 0, ID_ES, Token.TYPE_REGSEG,  0, 00000000b
+		db "CS", 0, 0, 0, 0, 0, ID_CS, Token.TYPE_REGSEG,  1, 00000000b
+		db "SS", 0, 0, 0, 0, 0, ID_SS, Token.TYPE_REGSEG,  2, 00000000b
+		db "DS", 0, 0, 0, 0, 0, ID_DS, Token.TYPE_REGSEG,  3, 00000000b
 
 		db ":", 0, 0, 0, 0, 0, 0, 201, Token.TYPE_DOIS_PONTOS,    0, 0
 		db ",", 0, 0, 0, 0, 0, 0, 202, Token.TYPE_VIRGULA,        0, 0
