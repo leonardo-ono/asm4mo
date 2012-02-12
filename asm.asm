@@ -229,11 +229,19 @@
 				call	OpcodeGenerator.execute
 				cmp	bl, 0
 				je	.notImplementedYet
+				cmp	bl, 2
+				je	.invalidArguments
 				jmp	.newLine
 			.notImplementedYet:
 				mov	si, Main.msg.error.notImplementedYet
 				call	os_print_string
 				call	os_print_newline
+				ret
+			.invalidArguments:
+				mov	si, Main.msg.error.invalidArguments
+				call	os_print_string
+				call	os_print_newline
+				ret
 			.end:
 			.success:
 				call	os_print_newline
@@ -262,6 +270,7 @@
 
 			Main.msg.error.fileNotFound		db "File not found !", 0
 			Main.msg.error.notImplementedYet	db "Instruction not implemented yet !", 0
+			Main.msg.error.invalidArguments		db "Invalid arguments !", 0
 			Main.msg.error.expectedLabelOrInstr	db "Expected label or instruction !", 0
 			Main.msg.error.expectedInstr		db "Expected instruction !", 0
 			Main.msg.error.instructionHandler	db "Error instruction handler !", 0

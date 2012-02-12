@@ -6,34 +6,36 @@
 	; ----------------------------------------------------------------------
 	OG:
 
-		.IB	EQU 010h ; immediate byte (ib <byte>)
-		.IW	EQU 020h ; immediate word (iw <word>)
-		.GBIW	EQU 021h ; immediate word (but must get data from byte imm stack)
-		.WB	EQU 030h ; immediate byte (wb <byte>)
-		.WW	EQU 040h ; immediate word (ww <word>)
+		.IB		EQU 010h ; immediate byte (ib <byte>)
+		.IW		EQU 020h ; immediate word (iw <word>)
+		.GBIW		EQU 021h ; immediate word (but must get data from byte imm stack)
+		.WB		EQU 030h ; immediate byte (wb <byte>)
+		.WW		EQU 040h ; immediate word (ww <word>)
 
-		.BN	EQU 050h ; /n (r/m)
-		.B0	EQU 050h ; /0 (r/m)
-		.B1	EQU 051h ; /1 (r/m)
-		.B2	EQU 052h ; /2 (r/m)
-		.B3	EQU 053h ; /3 (r/m)
-		.B4	EQU 054h ; /4 (r/m)
-		.B5	EQU 055h ; /5 (r/m)
-		.B6	EQU 056h ; /6 (r/m)
-		.B7	EQU 057h ; /7 (r/m)
+		.BN		EQU 050h ; /n (r/m)
+		.B0		EQU 050h ; /0 (r/m)
+		.B1		EQU 051h ; /1 (r/m)
+		.B2		EQU 052h ; /2 (r/m)
+		.B3		EQU 053h ; /3 (r/m)
+		.B4		EQU 054h ; /4 (r/m)
+		.B5		EQU 055h ; /5 (r/m)
+		.B6		EQU 056h ; /6 (r/m)
+		.B7		EQU 057h ; /7 (r/m)
 
-		.BR	EQU 060h ; /r
-		.RM1	EQU 061h ; /r1 (r/m for first argument)
-		.RM2	EQU 062h ; /r2 (r/m for second argument)
+		.BR		EQU 060h ; /r
+		.RM1		EQU 061h ; /r1 (r/m for first argument)
+		.RM2		EQU 062h ; /r2 (r/m for second argument)
 
-		.RW	EQU 070h ; relative adress WORD
-		.RB	EQU 071h ; relative adress BYTE
-		.GBRW	EQU 072h ; relative adress WORD (but must get data from byte imm stack)
+		.RW		EQU 070h ; relative adress WORD
+		.RB		EQU 071h ; relative adress BYTE
+		.GBRW		EQU 072h ; relative adress WORD (but must get data from byte imm stack)
 
-		.OW	EQU 080h ; ? offset (value of offset ?)
+		.OW		EQU 080h ; ? offset (value of offset ?)
 
-		.PR	EQU 090h ; XX+r 
+		.PR		EQU 090h ; XX+r 
 
+		.A2MBIMM1	EQU 091h ; arg 2 must be imm 1
+		.A2MBCL		EQU 092h ; arg 2 must be CL
 
 	; public static properties
 	; ----------------------------------------------------------------------
@@ -99,6 +101,7 @@
 		; ax = memory address of opcode generation instructions
 		; bl = 0 - invalid instruction !
 		;      1 - success
+		;      2 - invalid argument !
 				mov	word [private.OpcodeGenerator.generationInstructionIndex], 1
 				mov	word [private.OpcodeGenerator.generationInstructionAddress], ax
 				call	private.OpcodeGenerator.debug.printIndex
@@ -131,6 +134,12 @@
 				cmp	al, OG.PR
 				je	private.OpcodeGenerator.handle_INSTR_PLUS_R
 
+				cmp	al, OG.A2MBIMM1
+				je	private.OpcodeGenerator.handle_INSTR_A2MBIMM1
+
+				cmp	al, OG.A2MBCL
+				je	private.OpcodeGenerator.handle_INSTR_A2MBCL
+
 				cmp	al, OG.RB
 				je	private.OpcodeGenerator.handle_INSTR_RB
 
@@ -142,16 +151,20 @@
 				mov	ah, 2
 				je	private.OpcodeGenerator.handle_INSTR_GBRW
 
+
 				mov	ah, al
 				and	ah, 0F0h
 				cmp	ah, OG.BN
 				je	private.OpcodeGenerator.handle_INSTR_BN
 
+			.success:
+				mov	bl, 1
+				ret
 			.invalidInstruction:
 				mov	bl, 0
 				ret
-			.success:
-				mov	bl, 1
+			.invalidArgument:
+				mov	bl, 2
 				ret
 
 		OpcodeGenerator.clearIbIwRMStacks:
@@ -987,6 +1000,41 @@
 			msg.handle_INSTR_RW	db	"          ---> writing rel word: ", 0
 			msg.handle_INSTR_GBRW	db	"          ---> writing rel word (GBRW): ", 0
 
+		private.OpcodeGenerator.handle_INSTR_A2MBIMM1:
+		; --------------------------------------------------------------
+				mov	si, msg.handle_INSTR_A2MBIMM1
+				call	os_print_string
+				mov	ax, [private.OpcodeGenerator.ib1]
+				cmp	ax, 1
+				jne	.error
+			.ok:
+				mov	si, msg.handle_INSTR_A2MBIMM1.ok
+				call	os_print_string
+				call	os_print_newline
+				jmp	OpcodeGenerator.execute.nextInstruction
+			.error:
+				jmp	OpcodeGenerator.execute.invalidArgument
+
+			msg.handle_INSTR_A2MBIMM1 	db "          ---> Arg2 must be 1 ... ", 0
+			msg.handle_INSTR_A2MBIMM1.ok	db "ok", 0
+
+		private.OpcodeGenerator.handle_INSTR_A2MBCL:
+		; --------------------------------------------------------------
+				mov	si, msg.handle_INSTR_A2MBCL
+				call	os_print_string
+				mov	al, [private.OpcodeGenerator.rmId2]
+				cmp	al, ID_CL
+				jne	.error
+			.ok:
+				mov	si, msg.handle_INSTR_A2MBCL.ok
+				call	os_print_string
+				call	os_print_newline
+				jmp	OpcodeGenerator.execute.nextInstruction
+			.error:
+				jmp	OpcodeGenerator.execute.invalidArgument
+
+			msg.handle_INSTR_A2MBCL 	db "          ---> Arg2 must be CL ... ", 0
+			msg.handle_INSTR_A2MBCL.ok	db "ok", 0
 
 	; private static methods (debug functions)
 	; ----------------------------------------------------------------------

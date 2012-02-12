@@ -560,6 +560,7 @@
 		; opcode_PUSH_GenInstr_266 db 2, OG.WB, 006h ; w06 amb1ES
 		; opcode_PUSH_GenInstr_267 db 2, OG.WB, 016h ; w16 amb1SS
 
+
 ;===============================================================================
 
 	InstructionHandler.possibleInstructions:
@@ -1215,24 +1216,25 @@
 		; dw opcode_PUSH_GenInstr_267
 
 
-		db  86, Token.TYPE_REG8, Token.TYPE_VIRGULA, Token.TYPE_ONE, 0, 0 ; RCL reg8 , 1 
+
+		db  86, Token.TYPE_REG8, Token.TYPE_VIRGULA, Token.TYPE_IMM8, 0, 0 ; RCL reg8 , 1 
 		dw opcode_RCL_GenInstr_268
-		db  86, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_ONE, 0, 0 ; RCL mem , 1 
+		db  86, Token.TYPE_RESERVED_BYTE, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_IMM8, 0 ; RCL BYTE [mem] , 1 
 		dw opcode_RCL_GenInstr_269
-		db  87, Token.TYPE_REG8, Token.TYPE_VIRGULA, Token.TYPE_REG8, 0, 0 ; Rreg8 reg8 , reg8 
-		dw opcode_Rreg8_GenInstr_270
-		db  87, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_REG8, 0, 0 ; Rreg8 mem , reg8 
-		dw opcode_Rreg8_GenInstr_271
-		db  86, Token.TYPE_REG16, Token.TYPE_VIRGULA, Token.TYPE_ONE, 0, 0 ; RCL reg16 , 1 
+		db  86, Token.TYPE_REG8, Token.TYPE_VIRGULA, Token.TYPE_REG8, 0, 0 ; RCL reg8 , CL 
+		dw opcode_RCL_GenInstr_270
+		db  86, Token.TYPE_RESERVED_BYTE, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_REG8, 0 ; RCL BYTE [mem] , CL
+		dw opcode_RCL_GenInstr_271
+		db  86, Token.TYPE_REG16, Token.TYPE_VIRGULA, Token.TYPE_IMM8, 0, 0 ; RCL reg16 , 1 
 		dw opcode_RCL_GenInstr_272
-		db  86, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_ONE, 0, 0 ; RCL mem , 1 
+		db  86, Token.TYPE_RESERVED_WORD, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_IMM8, 0 ; RCL WORD [mem] , 1 
 		dw opcode_RCL_GenInstr_273
+		db  86, Token.TYPE_REG16, Token.TYPE_VIRGULA, Token.TYPE_REG8, 0, 0 ; RCL reg16 , CL
+		dw opcode_RCL_GenInstr_274
+		db  86, Token.TYPE_RESERVED_WORD, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_REG8, 0 ; RCL WORD [mem] , CL
+		dw opcode_RCL_GenInstr_275
 
 
-		db  87, Token.TYPE_REG16, Token.TYPE_VIRGULA, Token.TYPE_REG8, 0, 0 ; Rreg8 reg16 , reg8 
-		dw opcode_Rreg8_GenInstr_274
-		db  87, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_REG8, 0, 0 ; Rreg8 mem , reg8 
-		dw opcode_Rreg8_GenInstr_275
 
 
 		db  88, Token.TYPE_REG8, Token.TYPE_VIRGULA, Token.TYPE_ONE, 0, 0 ; RCR reg8 , 1 
@@ -1953,21 +1955,16 @@
 
 
 
-        opcode_RCL_GenInstr_268 db 3, OG.WB, 0D0h, OG.B2 ; wD0 /2
-        opcode_RCL_GenInstr_269 db 3, OG.WB, 0D0h, OG.B2 ; wD0 /2
-;;;;;        opcode_Rreg8_GenInstr_270 db 3, OG.WB, 0D2h, OG.B2, *********************************** 
-        opcode_Rreg8_GenInstr_270 db 0, 0  
+        opcode_RCL_GenInstr_268 db 4, OG.WB, 0D0h, OG.B2, OG.A2MBIMM1 ; wD0 /2 a2mbimm1
+        opcode_RCL_GenInstr_269 db 4, OG.WB, 0D0h, OG.B2, OG.A2MBIMM1 ; wD0 /2 a2mbimm1
+        opcode_RCL_GenInstr_270 db 4, OG.WB, 0D2h, OG.B2, OG.A2MBCL   ; wD2 /2 a2mbCL
+        opcode_RCL_GenInstr_271 db 4, OG.WB, 0D2h, OG.B2, OG.A2MBCL   ; wD2 /2 a2mbCL
+        opcode_RCL_GenInstr_272 db 4, OG.WB, 0D1h, OG.B2, OG.A2MBIMM1 ; wD1 /2 a2mbimm1
+        opcode_RCL_GenInstr_273 db 4, OG.WB, 0D1h, OG.B2, OG.A2MBIMM1 ; wD1 /2 a2mbimm1
+        opcode_RCL_GenInstr_274 db 4, OG.WB, 0D3h, OG.B2, OG.A2MBCL   ; wD3 /2 a2mbCL
+        opcode_RCL_GenInstr_275 db 4, OG.WB, 0D3h, OG.B2, OG.A2MBCL   ; wD3 /2 a2mbCL
 
-;;;;;        opcode_Rreg8_GenInstr_271 db 3, OG.WB, 0D2h, OG.B2, *********************************** 
-        opcode_Rreg8_GenInstr_271 db 0, 0  
 
-        opcode_RCL_GenInstr_272 db 3, OG.WB, 0D1h, OG.B2 ; o16 wD1 /2
-        opcode_RCL_GenInstr_273 db 3, OG.WB, 0D1h, OG.B2 ; o16 wD1 /2
-;;;;;        opcode_Rreg8_GenInstr_274 db 3, OG.WB, 0D3h, OG.B2, *********************************** 
-        opcode_Rreg8_GenInstr_274 db 0, 0  
-
-;;;;;        opcode_Rreg8_GenInstr_275 db 3, OG.WB, 0D3h, OG.B2, *********************************** 
-        opcode_Rreg8_GenInstr_275 db 0, 0  
 
         opcode_RCR_GenInstr_276 db 3, OG.WB, 0D0h, OG.B3 ; wD0 /3
         opcode_RCR_GenInstr_277 db 3, OG.WB, 0D0h, OG.B3 ; wD0 /3

@@ -189,8 +189,6 @@
 		dw PUSH_handler
 		db "RCL", 0, 0, 0, 0,    86, Token.TYPE_INSTR
 		dw DEFAULT_handler
-		db "Rreg8", 0, 0,        87, Token.TYPE_INSTR
-		dw DEFAULT_handler
 		db "RCR", 0, 0, 0, 0,    88, Token.TYPE_INSTR
 		dw DEFAULT_handler
 		db "RET", 0, 0, 0, 0,    89, Token.TYPE_INSTR
@@ -271,6 +269,7 @@
 		dw DEFAULT_handler
 
 		ID_AL equ 150
+		ID_CL equ 151
 		ID_AX equ 158
 		ID_DX equ 160
 		ID_ES equ 166 
@@ -282,7 +281,7 @@
 		;                                                       / 
 		; Registers                                  index  __---___r/m
 		db "AL", 0, 0, 0, 0, 0, ID_AL, Token.TYPE_REG8,    0, 11000000b
-		db "CL", 0, 0, 0, 0, 0,   151, Token.TYPE_REG8,    1, 11000001b
+		db "CL", 0, 0, 0, 0, 0, ID_CL, Token.TYPE_REG8,    1, 11000001b
 		db "DL", 0, 0, 0, 0, 0,   152, Token.TYPE_REG8,    2, 11000010b
 		db "BL", 0, 0, 0, 0, 0,   153, Token.TYPE_REG8,    3, 11000011b
 		db "AH", 0, 0, 0, 0, 0,   154, Token.TYPE_REG8,    4, 11000100b
@@ -290,7 +289,7 @@
 		db "DH", 0, 0, 0, 0, 0,   156, Token.TYPE_REG8,    6, 11000110b
 		db "BH", 0, 0, 0, 0, 0,   157, Token.TYPE_REG8,    7, 11000111b
 		db "AX", 0, 0, 0, 0, 0, ID_AX, Token.TYPE_REG16,   0, 11000000b
-		db "CX", 0, 0, 0, 0, 0,   159, Token.TYPE_REG16,   1, 11000100b
+		db "CX", 0, 0, 0, 0, 0,   159, Token.TYPE_REG16,   1, 11000001b
 		db "DX", 0, 0, 0, 0, 0, ID_DX, Token.TYPE_REG16,   2, 11000010b
 		db "BX", 0, 0, 0, 0, 0,   161, Token.TYPE_REG16,   3, 11000011b
 		db "SP", 0, 0, 0, 0, 0,   162, Token.TYPE_REG16,   4, 11000100b
