@@ -1347,22 +1347,25 @@
 
 
 
-		db  96, Token.TYPE_REG8, Token.TYPE_VIRGULA, Token.TYPE_ONE, 0, 0 ; SAR reg8 , 1 
+
+
+		db  96, Token.TYPE_REG8, Token.TYPE_VIRGULA, Token.TYPE_IMM8, 0, 0 ; SAR reg8 , 1 
 		dw opcode_SAR_GenInstr_318
-		db  96, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_ONE, 0, 0 ; SAR mem , 1 
+		db  96, Token.TYPE_RESERVED_BYTE, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_IMM8, 0 ; SAR BYTE [mem] , 1 
 		dw opcode_SAR_GenInstr_319
-		db  96, Token.TYPE_REG8, Token.TYPE_VIRGULA, Token.TYPE_REG8, 0, 0 ; SAR reg8 , reg8 
+		db  96, Token.TYPE_REG8, Token.TYPE_VIRGULA, Token.TYPE_REG8, 0, 0 ; SAR reg8 , CL 
 		dw opcode_SAR_GenInstr_320
-		db  96, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_REG8, 0, 0 ; SAR mem , reg8 
+		db  96, Token.TYPE_RESERVED_BYTE, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_REG8, 0 ; SAR BYTE [mem] , CL
 		dw opcode_SAR_GenInstr_321
-		db  96, Token.TYPE_REG16, Token.TYPE_VIRGULA, Token.TYPE_ONE, 0, 0 ; SAR reg16 , 1 
+		db  96, Token.TYPE_REG16, Token.TYPE_VIRGULA, Token.TYPE_IMM8, 0, 0 ; SAR reg16 , 1 
 		dw opcode_SAR_GenInstr_322
-		db  96, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_ONE, 0, 0 ; SAR mem , 1 
+		db  96, Token.TYPE_RESERVED_WORD, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_IMM8, 0 ; SAR WORD [mem] , 1 
 		dw opcode_SAR_GenInstr_323
-		db  96, Token.TYPE_REG16, Token.TYPE_VIRGULA, Token.TYPE_REG8, 0, 0 ; SAR reg16 , reg8 
+		db  96, Token.TYPE_REG16, Token.TYPE_VIRGULA, Token.TYPE_REG8, 0, 0 ; SAR reg16 , CL
 		dw opcode_SAR_GenInstr_324
-		db  96, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_REG8, 0, 0 ; SAR mem , reg8 
+		db  96, Token.TYPE_RESERVED_WORD, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_REG8, 0 ; SAR WORD [mem] , CL
 		dw opcode_SAR_GenInstr_325
+
 
 
 		db  97, Token.TYPE_REG8, Token.TYPE_VIRGULA, Token.TYPE_REG8, 0, 0 ; SBB reg8 , reg8 
@@ -2040,21 +2043,18 @@
 
 
 
-        opcode_SAR_GenInstr_318 db 3, OG.WB, 0D0h, OG.B0 ; wD0 /0
-        opcode_SAR_GenInstr_319 db 3, OG.WB, 0D0h, OG.B0 ; wD0 /0
-;;;;;        opcode_SAR_GenInstr_320 db 3, OG.WB, 0D2h, OG.B0, *********************************** 
-        opcode_SAR_GenInstr_320 db 0, 0  
+        opcode_SAR_GenInstr_318 db 3, OG.WB, 0D0h, OG.B7, OG.A2MBIMM1 ; wD0 /7 a2mbimm1
+        opcode_SAR_GenInstr_319 db 3, OG.WB, 0D0h, OG.B7, OG.A2MBIMM1 ; wD0 /7 a2mbimm1
+        opcode_SAR_GenInstr_320 db 3, OG.WB, 0D2h, OG.B7, OG.A2MBCL   ; wD2 /7 a2mbCL
+        opcode_SAR_GenInstr_321 db 3, OG.WB, 0D2h, OG.B7, OG.A2MBCL   ; wD2 /7 a2mbCL
+        opcode_SAR_GenInstr_322 db 3, OG.WB, 0D1h, OG.B7, OG.A2MBIMM1 ; wD1 /7 a2mbimm1
+        opcode_SAR_GenInstr_323 db 3, OG.WB, 0D1h, OG.B7, OG.A2MBIMM1 ; wD1 /7 a2mbimm1
+        opcode_SAR_GenInstr_324 db 3, OG.WB, 0D3h, OG.B7, OG.A2MBCL   ; wD3 /7 a2mbCL
+        opcode_SAR_GenInstr_325 db 3, OG.WB, 0D3h, OG.B7, OG.A2MBCL   ; wD3 /7 a2mbCL
 
-;;;;;        opcode_SAR_GenInstr_321 db 3, OG.WB, 0D2h, OG.B0, *********************************** 
-        opcode_SAR_GenInstr_321 db 0, 0  
 
-        opcode_SAR_GenInstr_322 db 3, OG.WB, 0D1h, OG.B0 ; o16 wD1 /0
-        opcode_SAR_GenInstr_323 db 3, OG.WB, 0D1h, OG.B0 ; o16 wD1 /0
-;;;;;        opcode_SAR_GenInstr_324 db 3, OG.WB, 0D3h, OG.B0, *********************************** 
-        opcode_SAR_GenInstr_324 db 0, 0  
 
-;;;;;        opcode_SAR_GenInstr_325 db 3, OG.WB, 0D3h, OG.B0, *********************************** 
-        opcode_SAR_GenInstr_325 db 0, 0  
+
 
         opcode_SBB_GenInstr_326 db 3, OG.WB, 018h, OG.RM1 ; w18 /r1
         opcode_SBB_GenInstr_327 db 3, OG.WB, 018h, OG.RM1 ; w18 /r1
