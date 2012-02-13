@@ -1301,22 +1301,25 @@
 
 
 
-		db  93, Token.TYPE_REG8, Token.TYPE_VIRGULA, Token.TYPE_ONE, 0, 0 ; ROR reg8 , 1 
+
+
+		db  93, Token.TYPE_REG8, Token.TYPE_VIRGULA, Token.TYPE_IMM8, 0, 0 ; ROR reg8 , 1 
 		dw opcode_ROR_GenInstr_301
-		db  93, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_ONE, 0, 0 ; ROR mem , 1 
+		db  93, Token.TYPE_RESERVED_BYTE, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_IMM8, 0 ; ROR BYTE [mem] , 1 
 		dw opcode_ROR_GenInstr_302
-		db  93, Token.TYPE_REG8, Token.TYPE_VIRGULA, Token.TYPE_REG8, 0, 0 ; ROR reg8 , reg8 
+		db  93, Token.TYPE_REG8, Token.TYPE_VIRGULA, Token.TYPE_REG8, 0, 0 ; ROR reg8 , CL 
 		dw opcode_ROR_GenInstr_303
-		db  93, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_REG8, 0, 0 ; ROR mem , reg8 
+		db  93, Token.TYPE_RESERVED_BYTE, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_REG8, 0 ; ROR BYTE [mem] , CL
 		dw opcode_ROR_GenInstr_304
-		db  93, Token.TYPE_REG16, Token.TYPE_VIRGULA, Token.TYPE_ONE, 0, 0 ; ROR reg16 , 1 
+		db  93, Token.TYPE_REG16, Token.TYPE_VIRGULA, Token.TYPE_IMM8, 0, 0 ; ROR reg16 , 1 
 		dw opcode_ROR_GenInstr_305
-		db  93, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_ONE, 0, 0 ; ROR mem , 1 
+		db  93, Token.TYPE_RESERVED_WORD, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_IMM8, 0 ; ROR WORD [mem] , 1 
 		dw opcode_ROR_GenInstr_306
-		db  93, Token.TYPE_REG16, Token.TYPE_VIRGULA, Token.TYPE_REG8, 0, 0 ; ROR reg16 , reg8 
+		db  93, Token.TYPE_REG16, Token.TYPE_VIRGULA, Token.TYPE_REG8, 0, 0 ; ROR reg16 , CL
 		dw opcode_ROR_GenInstr_307
-		db  93, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_REG8, 0, 0 ; ROR mem , reg8 
+		db  93, Token.TYPE_RESERVED_WORD, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_REG8, 0 ; ROR WORD [mem] , CL
 		dw opcode_ROR_GenInstr_308
+
 
 
 		db  94, 0, 0, 0, 0, 0 ; SAHF 
@@ -2004,21 +2007,18 @@
 
 
 
-        opcode_ROR_GenInstr_301 db 3, OG.WB, 0D0h, OG.B1 ; wD0 /1
-        opcode_ROR_GenInstr_302 db 3, OG.WB, 0D0h, OG.B1 ; wD0 /1
-;;;;;        opcode_ROR_GenInstr_303 db 3, OG.WB, 0D2h, OG.B1, *********************************** 
-        opcode_ROR_GenInstr_303 db 0, 0  
 
-;;;;;        opcode_ROR_GenInstr_304 db 3, OG.WB, 0D2h, OG.B1, *********************************** 
-        opcode_ROR_GenInstr_304 db 0, 0  
+        opcode_ROR_GenInstr_301 db 3, OG.WB, 0D0h, OG.B1, OG.A2MBIMM1 ; wD0 /1 a2mbimm1
+        opcode_ROR_GenInstr_302 db 3, OG.WB, 0D0h, OG.B1, OG.A2MBIMM1 ; wD0 /1 a2mbimm1
+        opcode_ROR_GenInstr_303 db 3, OG.WB, 0D2h, OG.B1, OG.A2MBCL   ; wD2 /1 a2mbCL
+        opcode_ROR_GenInstr_304 db 3, OG.WB, 0D2h, OG.B1, OG.A2MBCL   ; wD2 /1 a2mbCL
+        opcode_ROR_GenInstr_305 db 3, OG.WB, 0D1h, OG.B1, OG.A2MBIMM1 ; wD1 /1 a2mbimm1
+        opcode_ROR_GenInstr_306 db 3, OG.WB, 0D1h, OG.B1, OG.A2MBIMM1 ; wD1 /1 a2mbimm1
+        opcode_ROR_GenInstr_307 db 3, OG.WB, 0D3h, OG.B1, OG.A2MBCL   ; wD3 /1 a2mbCL
+        opcode_ROR_GenInstr_308 db 3, OG.WB, 0D3h, OG.B1, OG.A2MBCL   ; wD3 /1 a2mbCL
 
-        opcode_ROR_GenInstr_305 db 3, OG.WB, 0D1h, OG.B1 ; o16 wD1 /1
-        opcode_ROR_GenInstr_306 db 3, OG.WB, 0D1h, OG.B1 ; o16 wD1 /1
-;;;;;        opcode_ROR_GenInstr_307 db 3, OG.WB, 0D3h, OG.B1, *********************************** 
-        opcode_ROR_GenInstr_307 db 0, 0  
 
-;;;;;        opcode_ROR_GenInstr_308 db 3, OG.WB, 0D3h, OG.B1, *********************************** 
-        opcode_ROR_GenInstr_308 db 0, 0  
+
 
         opcode_SAHF_GenInstr_309 db 2, OG.WB, 09Eh ; w9E
         opcode_SAL_GenInstr_310 db 3, OG.WB, 0D0h, OG.B4 ; wD0 /4
