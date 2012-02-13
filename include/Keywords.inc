@@ -257,7 +257,7 @@
 		dw DB_handler
 
 		db "DW", 0, 0, 0, 0, 0, 114, Token.TYPE_INSTR
-		dw DEFAULT_handler
+		dw DW_handler
 
 		db "ORG", 0, 0, 0, 0,   115, Token.TYPE_INSTR
 		dw ORG_handler

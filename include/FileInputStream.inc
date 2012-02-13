@@ -7,7 +7,7 @@
 
 	; private static constants
 	; ----------------------------------------------------------------------
-	FileInputStream.MEMORY_LOCATION_TO_LOAD	equ 47768
+	FileInputStream.MEMORY_LOCATION_TO_LOAD	equ 48768
 
 	; public properties
 	; ----------------------------------------------------------------------

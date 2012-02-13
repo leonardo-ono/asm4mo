@@ -179,6 +179,53 @@
 				ret
 			DB_handler_msg	db "DB_handler invoked !", 0
 
+
+		DW_handler:
+		; --------------------------------------------------------------
+				mov	si, DW_handler_msg
+				call	os_print_string
+				call	os_print_newline
+			.nextToken:
+				call	parser.getNextToken
+				mov	al, [token.type]
+				cmp	al, Token.TYPE_IMM8
+				je	.dbImm8
+				mov	al, [token.type]
+				cmp	al, Token.TYPE_IMM16
+				je	.dbImm16
+
+			.dbImm8:
+				mov	si, token.value
+				mov	ax, [token.iw]
+				mov	ah, 0
+				call	private.OpcodeGenerator.writeWord
+				jmp	.verifyHasMoreArguments
+
+			.dbImm16:
+				mov	si, token.value
+				mov	ax, [token.iw]
+				call	private.OpcodeGenerator.writeWord
+				jmp	.verifyHasMoreArguments
+
+			.verifyHasMoreArguments:
+				call	parser.getNextToken
+				mov	al, [token.type]
+				cmp	al, Token.TYPE_VIRGULA
+				je	.nextToken
+			.noMoreArgument:
+				; expected now end of line
+				mov	al, [token.type]
+				cmp	al, Token.TYPE_END_OF_LINE
+				je	.ok
+			.error:
+				mov	ah, 2
+				ret
+			.ok:
+				mov	ah, 1
+				ret
+			DW_handler_msg	db "DW_handler invoked !", 0
+
+
 		IN_handler:
 		; --------------------------------------------------------------
 		; ah = 0 - means that default handler must be called
