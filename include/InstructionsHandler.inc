@@ -1326,22 +1326,25 @@
 		dw opcode_SAHF_GenInstr_309
 
 
-		db  95, Token.TYPE_REG8, Token.TYPE_VIRGULA, Token.TYPE_ONE, 0, 0 ; SAL reg8 , 1 
+
+
+		db  95, Token.TYPE_REG8, Token.TYPE_VIRGULA, Token.TYPE_IMM8, 0, 0 ; SAL reg8 , 1 
 		dw opcode_SAL_GenInstr_310
-		db  95, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_ONE, 0, 0 ; SAL mem , 1 
+		db  95, Token.TYPE_RESERVED_BYTE, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_IMM8, 0 ; SAL BYTE [mem] , 1 
 		dw opcode_SAL_GenInstr_311
-		db  95, Token.TYPE_REG8, Token.TYPE_VIRGULA, Token.TYPE_REG8, 0, 0 ; SAL reg8 , reg8 
+		db  95, Token.TYPE_REG8, Token.TYPE_VIRGULA, Token.TYPE_REG8, 0, 0 ; SAL reg8 , CL 
 		dw opcode_SAL_GenInstr_312
-		db  95, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_REG8, 0, 0 ; SAL mem , reg8 
+		db  95, Token.TYPE_RESERVED_BYTE, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_REG8, 0 ; SAL BYTE [mem] , CL
 		dw opcode_SAL_GenInstr_313
-		db  95, Token.TYPE_REG16, Token.TYPE_VIRGULA, Token.TYPE_ONE, 0, 0 ; SAL reg16 , 1 
+		db  95, Token.TYPE_REG16, Token.TYPE_VIRGULA, Token.TYPE_IMM8, 0, 0 ; SAL reg16 , 1 
 		dw opcode_SAL_GenInstr_314
-		db  95, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_ONE, 0, 0 ; SAL mem , 1 
+		db  95, Token.TYPE_RESERVED_WORD, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_IMM8, 0 ; SAL WORD [mem] , 1 
 		dw opcode_SAL_GenInstr_315
-		db  95, Token.TYPE_REG16, Token.TYPE_VIRGULA, Token.TYPE_REG8, 0, 0 ; SAL reg16 , reg8 
+		db  95, Token.TYPE_REG16, Token.TYPE_VIRGULA, Token.TYPE_REG8, 0, 0 ; SAL reg16 , CL
 		dw opcode_SAL_GenInstr_316
-		db  95, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_REG8, 0, 0 ; SAL mem , reg8 
+		db  95, Token.TYPE_RESERVED_WORD, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_REG8, 0 ; SAL WORD [mem] , CL
 		dw opcode_SAL_GenInstr_317
+
 
 
 		db  96, Token.TYPE_REG8, Token.TYPE_VIRGULA, Token.TYPE_ONE, 0, 0 ; SAR reg8 , 1 
@@ -2021,21 +2024,21 @@
 
 
         opcode_SAHF_GenInstr_309 db 2, OG.WB, 09Eh ; w9E
-        opcode_SAL_GenInstr_310 db 3, OG.WB, 0D0h, OG.B4 ; wD0 /4
-        opcode_SAL_GenInstr_311 db 3, OG.WB, 0D0h, OG.B4 ; wD0 /4
-;;;;;        opcode_SAL_GenInstr_312 db 3, OG.WB, 0D2h, OG.B4, *********************************** 
-        opcode_SAL_GenInstr_312 db 0, 0  
 
-;;;;;        opcode_SAL_GenInstr_313 db 3, OG.WB, 0D2h, OG.B4, *********************************** 
-        opcode_SAL_GenInstr_313 db 0, 0  
 
-        opcode_SAL_GenInstr_314 db 3, OG.WB, 0D1h, OG.B4 ; o16 wD1 /4
-        opcode_SAL_GenInstr_315 db 3, OG.WB, 0D1h, OG.B4 ; o16 wD1 /4
-;;;;;        opcode_SAL_GenInstr_316 db 3, OG.WB, 0D3h, OG.B4, *********************************** 
-        opcode_SAL_GenInstr_316 db 0, 0  
 
-;;;;;        opcode_SAL_GenInstr_317 db 3, OG.WB, 0D3h, OG.B4, *********************************** 
-        opcode_SAL_GenInstr_317 db 0, 0  
+
+        opcode_SAL_GenInstr_310 db 3, OG.WB, 0D0h, OG.B4, OG.A2MBIMM1 ; wD0 /4 a2mbimm1
+        opcode_SAL_GenInstr_311 db 3, OG.WB, 0D0h, OG.B4, OG.A2MBIMM1 ; wD0 /4 a2mbimm1
+        opcode_SAL_GenInstr_312 db 3, OG.WB, 0D2h, OG.B4, OG.A2MBCL   ; wD2 /4 a2mbCL
+        opcode_SAL_GenInstr_313 db 3, OG.WB, 0D2h, OG.B4, OG.A2MBCL   ; wD2 /4 a2mbCL
+        opcode_SAL_GenInstr_314 db 3, OG.WB, 0D1h, OG.B4, OG.A2MBIMM1 ; wD1 /4 a2mbimm1
+        opcode_SAL_GenInstr_315 db 3, OG.WB, 0D1h, OG.B4, OG.A2MBIMM1 ; wD1 /4 a2mbimm1
+        opcode_SAL_GenInstr_316 db 3, OG.WB, 0D3h, OG.B4, OG.A2MBCL   ; wD3 /4 a2mbCL
+        opcode_SAL_GenInstr_317 db 3, OG.WB, 0D3h, OG.B4, OG.A2MBCL   ; wD3 /4 a2mbCL
+
+
+
 
         opcode_SAR_GenInstr_318 db 3, OG.WB, 0D0h, OG.B0 ; wD0 /0
         opcode_SAR_GenInstr_319 db 3, OG.WB, 0D0h, OG.B0 ; wD0 /0
