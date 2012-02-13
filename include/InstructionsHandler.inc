@@ -1237,22 +1237,23 @@
 
 
 
-		db  88, Token.TYPE_REG8, Token.TYPE_VIRGULA, Token.TYPE_ONE, 0, 0 ; RCR reg8 , 1 
+		db  88, Token.TYPE_REG8, Token.TYPE_VIRGULA, Token.TYPE_IMM8, 0, 0 ; RCR reg8 , 1 
 		dw opcode_RCR_GenInstr_276
-		db  88, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_ONE, 0, 0 ; RCR mem , 1 
+		db  88, Token.TYPE_RESERVED_BYTE, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_IMM8, 0 ; RCR BYTE [mem] , 1 
 		dw opcode_RCR_GenInstr_277
-		db  88, Token.TYPE_REG8, Token.TYPE_VIRGULA, Token.TYPE_REG8, 0, 0 ; RCR reg8 , reg8 
+		db  88, Token.TYPE_REG8, Token.TYPE_VIRGULA, Token.TYPE_REG8, 0, 0 ; RCR reg8 , CL 
 		dw opcode_RCR_GenInstr_278
-		db  88, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_REG8, 0, 0 ; RCR mem , reg8 
+		db  88, Token.TYPE_RESERVED_BYTE, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_REG8, 0 ; RCR BYTE [mem] , CL
 		dw opcode_RCR_GenInstr_279
-		db  88, Token.TYPE_REG16, Token.TYPE_VIRGULA, Token.TYPE_ONE, 0, 0 ; RCR reg16 , 1 
+		db  88, Token.TYPE_REG16, Token.TYPE_VIRGULA, Token.TYPE_IMM8, 0, 0 ; RCR reg16 , 1 
 		dw opcode_RCR_GenInstr_280
-		db  88, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_ONE, 0, 0 ; RCR mem , 1 
+		db  88, Token.TYPE_RESERVED_WORD, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_IMM8, 0 ; RCR WORD [mem] , 1 
 		dw opcode_RCR_GenInstr_281
-		db  88, Token.TYPE_REG16, Token.TYPE_VIRGULA, Token.TYPE_REG8, 0, 0 ; RCR reg16 , reg8 
+		db  88, Token.TYPE_REG16, Token.TYPE_VIRGULA, Token.TYPE_REG8, 0, 0 ; RCR reg16 , CL
 		dw opcode_RCR_GenInstr_282
-		db  88, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_REG8, 0, 0 ; RCR mem , reg8 
+		db  88, Token.TYPE_RESERVED_WORD, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_REG8, 0 ; RCR WORD [mem] , CL
 		dw opcode_RCR_GenInstr_283
+
 
 
 		db  89, 0, 0, 0, 0, 0 ; RET 
@@ -1966,21 +1967,16 @@
 
 
 
-        opcode_RCR_GenInstr_276 db 3, OG.WB, 0D0h, OG.B3 ; wD0 /3
-        opcode_RCR_GenInstr_277 db 3, OG.WB, 0D0h, OG.B3 ; wD0 /3
-;;;;;        opcode_RCR_GenInstr_278 db 3, OG.WB, 0D2h, OG.B3, *********************************** 
-        opcode_RCR_GenInstr_278 db 0, 0  
+        opcode_RCR_GenInstr_276 db 3, OG.WB, 0D0h, OG.B3, OG.A2MBIMM1 ; wD0 /3 a2mbimm1
+        opcode_RCR_GenInstr_277 db 3, OG.WB, 0D0h, OG.B3, OG.A2MBIMM1 ; wD0 /3 a2mbimm1
+        opcode_RCR_GenInstr_278 db 3, OG.WB, 0D2h, OG.B3, OG.A2MBCL   ; wD2 /3 a2mbCL
+        opcode_RCR_GenInstr_279 db 3, OG.WB, 0D2h, OG.B3, OG.A2MBCL   ; wD2 /3 a2mbCL
+        opcode_RCR_GenInstr_280 db 3, OG.WB, 0D1h, OG.B3, OG.A2MBIMM1 ; wD1 /3 a2mbimm1
+        opcode_RCR_GenInstr_281 db 3, OG.WB, 0D1h, OG.B3, OG.A2MBIMM1 ; wD1 /3 a2mbimm1
+        opcode_RCR_GenInstr_282 db 3, OG.WB, 0D3h, OG.B3, OG.A2MBCL   ; wD3 /3 a2mbCL
+        opcode_RCR_GenInstr_283 db 3, OG.WB, 0D3h, OG.B3, OG.A2MBCL   ; wD3 /3 a2mbCL
 
-;;;;;        opcode_RCR_GenInstr_279 db 3, OG.WB, 0D2h, OG.B3, *********************************** 
-        opcode_RCR_GenInstr_279 db 0, 0  
 
-        opcode_RCR_GenInstr_280 db 3, OG.WB, 0D1h, OG.B3 ; o16 wD1 /3
-        opcode_RCR_GenInstr_281 db 3, OG.WB, 0D1h, OG.B3 ; o16 wD1 /3
-;;;;;        opcode_RCR_GenInstr_282 db 3, OG.WB, 0D3h, OG.B3, *********************************** 
-        opcode_RCR_GenInstr_282 db 0, 0  
-
-;;;;;        opcode_RCR_GenInstr_283 db 3, OG.WB, 0D3h, OG.B3, *********************************** 
-        opcode_RCR_GenInstr_283 db 0, 0  
 
         opcode_RET_GenInstr_284 db 2, OG.WB, 0C3h ; wC3
         opcode_RET_GenInstr_285 db 3, OG.WB, 0C2h, OG.IW ; wC2 iw
