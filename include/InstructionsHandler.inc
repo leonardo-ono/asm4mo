@@ -1432,22 +1432,29 @@
 		dw opcode_SHL_GenInstr_354
 
 
-		db 101, Token.TYPE_REG8, Token.TYPE_VIRGULA, Token.TYPE_ONE, 0, 0 ; SHR reg8 , 1 
+
+
+
+
+		db 101, Token.TYPE_REG8, Token.TYPE_VIRGULA, Token.TYPE_IMM8, 0, 0 ; SHR reg8 , 1 
 		dw opcode_SHR_GenInstr_355
-		db 101, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_ONE, 0, 0 ; SHR mem , 1 
+		db 101, Token.TYPE_RESERVED_BYTE, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_IMM8, 0 ; SHR BYTE [mem] , 1 
 		dw opcode_SHR_GenInstr_356
-		db 101, Token.TYPE_REG8, Token.TYPE_VIRGULA, Token.TYPE_REG8, 0, 0 ; SHR reg8 , reg8 
+		db 101, Token.TYPE_REG8, Token.TYPE_VIRGULA, Token.TYPE_REG8, 0, 0 ; SHR reg8 , CL 
 		dw opcode_SHR_GenInstr_357
-		db 101, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_REG8, 0, 0 ; SHR mem , reg8 
+		db 101, Token.TYPE_RESERVED_BYTE, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_REG8, 0 ; SHR BYTE [mem] , CL
 		dw opcode_SHR_GenInstr_358
-		db 101, Token.TYPE_REG16, Token.TYPE_VIRGULA, Token.TYPE_ONE, 0, 0 ; SHR reg16 , 1 
+		db 101, Token.TYPE_REG16, Token.TYPE_VIRGULA, Token.TYPE_IMM8, 0, 0 ; SHR reg16 , 1 
 		dw opcode_SHR_GenInstr_359
-		db 101, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_ONE, 0, 0 ; SHR mem , 1 
+		db 101, Token.TYPE_RESERVED_WORD, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_IMM8, 0 ; SHR WORD [mem] , 1 
 		dw opcode_SHR_GenInstr_360
-		db 101, Token.TYPE_REG16, Token.TYPE_VIRGULA, Token.TYPE_REG8, 0, 0 ; SHR reg16 , reg8 
+		db 101, Token.TYPE_REG16, Token.TYPE_VIRGULA, Token.TYPE_REG8, 0, 0 ; SHR reg16 , CL
 		dw opcode_SHR_GenInstr_361
-		db 101, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_REG8, 0, 0 ; SHR mem , reg8 
+		db 101, Token.TYPE_RESERVED_WORD, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_REG8, 0 ; SHR WORD [mem] , CL
 		dw opcode_SHR_GenInstr_362
+
+
+
 
 		db 102, 0, 0, 0, 0, 0 ; STC 
 		dw opcode_STC_GenInstr_363 ; TESTED OK 08/02/2012 16:10
@@ -2099,21 +2106,17 @@
 ;;;;;        opcode_SHL_GenInstr_354 db 3, OG.WB, 0D3h, OG.B4, *********************************** 
         opcode_SHL_GenInstr_354 db 0, 0  
 
-        opcode_SHR_GenInstr_355 db 3, OG.WB, 0D0h, OG.B5 ; wD0 /5
-        opcode_SHR_GenInstr_356 db 3, OG.WB, 0D0h, OG.B5 ; wD0 /5
-;;;;;        opcode_SHR_GenInstr_357 db 3, OG.WB, 0D2h, OG.B5, *********************************** 
-        opcode_SHR_GenInstr_357 db 0, 0  
 
-;;;;;        opcode_SHR_GenInstr_358 db 3, OG.WB, 0D2h, OG.B5, *********************************** 
-        opcode_SHR_GenInstr_358 db 0, 0  
+        opcode_SHR_GenInstr_355 db 3, OG.WB, 0D0h, OG.B5, OG.A2MBIMM1 ; wD0 /5 a2mbimm1
+        opcode_SHR_GenInstr_356 db 3, OG.WB, 0D0h, OG.B5, OG.A2MBIMM1 ; wD0 /5 a2mbimm1
+        opcode_SHR_GenInstr_357 db 3, OG.WB, 0D2h, OG.B5, OG.A2MBCL   ; wD2 /5 a2mbCL
+        opcode_SHR_GenInstr_358 db 3, OG.WB, 0D2h, OG.B5, OG.A2MBCL   ; wD2 /5 a2mbCL
+        opcode_SHR_GenInstr_359 db 3, OG.WB, 0D1h, OG.B5, OG.A2MBIMM1 ; wD1 /5 a2mbimm1
+        opcode_SHR_GenInstr_360 db 3, OG.WB, 0D1h, OG.B5, OG.A2MBIMM1 ; wD1 /5 a2mbimm1
+        opcode_SHR_GenInstr_361 db 3, OG.WB, 0D3h, OG.B5, OG.A2MBCL   ; wD3 /5 a2mbCL
+        opcode_SHR_GenInstr_362 db 3, OG.WB, 0D3h, OG.B5, OG.A2MBCL   ; wD3 /5 a2mbCL
 
-        opcode_SHR_GenInstr_359 db 3, OG.WB, 0D1h, OG.B5 ; o16 wD1 /5
-        opcode_SHR_GenInstr_360 db 3, OG.WB, 0D1h, OG.B5 ; o16 wD1 /5
-;;;;;        opcode_SHR_GenInstr_361 db 3, OG.WB, 0D3h, OG.B5, *********************************** 
-        opcode_SHR_GenInstr_361 db 0, 0  
 
-;;;;;        opcode_SHR_GenInstr_362 db 3, OG.WB, 0D3h, OG.B5, *********************************** 
-        opcode_SHR_GenInstr_362 db 0, 0  
 
         opcode_STC_GenInstr_363 db 2, OG.WB, 0F9h ; wF9 ; -- OK 16/02/2012 16:10
 
