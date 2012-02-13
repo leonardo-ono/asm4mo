@@ -1414,25 +1414,25 @@
 		dw opcode_SCASW_GenInstr_346
 
 
-		db 100, Token.TYPE_REG8, Token.TYPE_VIRGULA, Token.TYPE_ONE, 0, 0 ; SHL reg8 , 1 
+
+
+
+		db 100, Token.TYPE_REG8, Token.TYPE_VIRGULA, Token.TYPE_IMM8, 0, 0 ; SHL reg8 , 1 
 		dw opcode_SHL_GenInstr_347
-		db 100, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_ONE, 0, 0 ; SHL mem , 1 
+		db 100, Token.TYPE_RESERVED_BYTE, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_IMM8, 0 ; SHL BYTE [mem] , 1 
 		dw opcode_SHL_GenInstr_348
-		db 100, Token.TYPE_REG8, Token.TYPE_VIRGULA, Token.TYPE_REG8, 0, 0 ; SHL reg8 , reg8 
+		db 100, Token.TYPE_REG8, Token.TYPE_VIRGULA, Token.TYPE_REG8, 0, 0 ; SHL reg8 , CL 
 		dw opcode_SHL_GenInstr_349
-		db 100, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_REG8, 0, 0 ; SHL mem , reg8 
+		db 100, Token.TYPE_RESERVED_BYTE, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_REG8, 0 ; SHL BYTE [mem] , CL
 		dw opcode_SHL_GenInstr_350
-		db 100, Token.TYPE_REG16, Token.TYPE_VIRGULA, Token.TYPE_ONE, 0, 0 ; SHL reg16 , 1 
+		db 100, Token.TYPE_REG16, Token.TYPE_VIRGULA, Token.TYPE_IMM8, 0, 0 ; SHL reg16 , 1 
 		dw opcode_SHL_GenInstr_351
-		db 100, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_ONE, 0, 0 ; SHL mem , 1 
+		db 100, Token.TYPE_RESERVED_WORD, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_IMM8, 0 ; SHL WORD [mem] , 1 
 		dw opcode_SHL_GenInstr_352
-		db 100, Token.TYPE_REG16, Token.TYPE_VIRGULA, Token.TYPE_REG8, 0, 0 ; SHL reg16 , reg8 
+		db 100, Token.TYPE_REG16, Token.TYPE_VIRGULA, Token.TYPE_REG8, 0, 0 ; SHL reg16 , CL
 		dw opcode_SHL_GenInstr_353
-		db 100, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_REG8, 0, 0 ; SHL mem , reg8 
+		db 100, Token.TYPE_RESERVED_WORD, Token.TYPE_MEM, Token.TYPE_VIRGULA, Token.TYPE_REG8, 0 ; SHL WORD [mem] , CL
 		dw opcode_SHL_GenInstr_354
-
-
-
 
 
 
@@ -2090,21 +2090,18 @@
 
         opcode_SCASB_GenInstr_345 db 2, OG.WB, 0AEh ; wAE
         opcode_SCASW_GenInstr_346 db 2, OG.WB, 0AFh ; o16 wAF
-        opcode_SHL_GenInstr_347 db 3, OG.WB, 0D0h, OG.B4 ; wD0 /4
-        opcode_SHL_GenInstr_348 db 3, OG.WB, 0D0h, OG.B4 ; wD0 /4
-;;;;;        opcode_SHL_GenInstr_349 db 3, OG.WB, 0D2h, OG.B4, *********************************** 
-        opcode_SHL_GenInstr_349 db 0, 0  
 
-;;;;;        opcode_SHL_GenInstr_350 db 3, OG.WB, 0D2h, OG.B4, *********************************** 
-        opcode_SHL_GenInstr_350 db 0, 0  
 
-        opcode_SHL_GenInstr_351 db 3, OG.WB, 0D1h, OG.B4 ; o16 wD1 /4
-        opcode_SHL_GenInstr_352 db 3, OG.WB, 0D1h, OG.B4 ; o16 wD1 /4
-;;;;;        opcode_SHL_GenInstr_353 db 3, OG.WB, 0D3h, OG.B4, *********************************** 
-        opcode_SHL_GenInstr_353 db 0, 0  
 
-;;;;;        opcode_SHL_GenInstr_354 db 3, OG.WB, 0D3h, OG.B4, *********************************** 
-        opcode_SHL_GenInstr_354 db 0, 0  
+        opcode_SHL_GenInstr_347 db 3, OG.WB, 0D0h, OG.B4, OG.A2MBIMM1 ; wD0 /4 a2mbimm1
+        opcode_SHL_GenInstr_348 db 3, OG.WB, 0D0h, OG.B4, OG.A2MBIMM1 ; wD0 /4 a2mbimm1
+        opcode_SHL_GenInstr_349 db 3, OG.WB, 0D2h, OG.B4, OG.A2MBCL   ; wD2 /4 a2mbCL
+        opcode_SHL_GenInstr_350 db 3, OG.WB, 0D2h, OG.B4, OG.A2MBCL   ; wD2 /4 a2mbCL
+        opcode_SHL_GenInstr_351 db 3, OG.WB, 0D1h, OG.B4, OG.A2MBIMM1 ; wD1 /4 a2mbimm1
+        opcode_SHL_GenInstr_352 db 3, OG.WB, 0D1h, OG.B4, OG.A2MBIMM1 ; wD1 /4 a2mbimm1
+        opcode_SHL_GenInstr_353 db 3, OG.WB, 0D3h, OG.B4, OG.A2MBCL   ; wD3 /4 a2mbCL
+        opcode_SHL_GenInstr_354 db 3, OG.WB, 0D3h, OG.B4, OG.A2MBCL   ; wD3 /4 a2mbCL
+
 
 
         opcode_SHR_GenInstr_355 db 3, OG.WB, 0D0h, OG.B5, OG.A2MBIMM1 ; wD0 /5 a2mbimm1
