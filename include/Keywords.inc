@@ -296,6 +296,22 @@
 		db "BP", 0, 0, 0, 0, 0,   163, Token.TYPE_REG16,   5, 11000101b
 		db "SI", 0, 0, 0, 0, 0,   164, Token.TYPE_REG16,   6, 11000110b
 		db "DI", 0, 0, 0, 0, 0,   165, Token.TYPE_REG16,   7, 11000111b
+		db "EAX", 0, 0, 0, 0, 0, ID_AX, Token.TYPE_REG32,   0, 11000000b
+		db "ECX", 0, 0, 0, 0, 0,   159, Token.TYPE_REG32,   1, 11000001b
+		db "EDX", 0, 0, 0, 0, 0, ID_DX, Token.TYPE_REG32,   2, 11000010b
+		db "EBX", 0, 0, 0, 0, 0,   161, Token.TYPE_REG32,   3, 11000011b
+		db "ESP", 0, 0, 0, 0, 0,   162, Token.TYPE_REG32,   4, 11000100b
+		db "EBP", 0, 0, 0, 0, 0,   163, Token.TYPE_REG32,   5, 11000101b
+		db "ESI", 0, 0, 0, 0, 0,   164, Token.TYPE_REG32,   6, 11000110b
+		db "EDI", 0, 0, 0, 0, 0,   165, Token.TYPE_REG32,   7, 11000111b
+		db "RAX", 0, 0, 0, 0, 0, ID_AX, Token.TYPE_REG64,   0, 11000000b
+		db "RCX", 0, 0, 0, 0, 0,   159, Token.TYPE_REG64,   1, 11000001b
+		db "RDX", 0, 0, 0, 0, 0, ID_DX, Token.TYPE_REG64,   2, 11000010b
+		db "RBX", 0, 0, 0, 0, 0,   161, Token.TYPE_REG64,   3, 11000011b
+		db "RSP", 0, 0, 0, 0, 0,   162, Token.TYPE_REG64,   4, 11000100b
+		db "RBP", 0, 0, 0, 0, 0,   163, Token.TYPE_REG64,   5, 11000101b
+		db "RSI", 0, 0, 0, 0, 0,   164, Token.TYPE_REG64,   6, 11000110b
+		db "RDI", 0, 0, 0, 0, 0,   165, Token.TYPE_REG64,   7, 11000111b
 		db "ES", 0, 0, 0, 0, 0, ID_ES, Token.TYPE_REGSEG,  0, 00000000b
 		db "CS", 0, 0, 0, 0, 0, ID_CS, Token.TYPE_REGSEG,  1, 00000000b
 		db "SS", 0, 0, 0, 0, 0, ID_SS, Token.TYPE_REGSEG,  2, 00000000b
